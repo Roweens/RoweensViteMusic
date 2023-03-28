@@ -1,0 +1,37 @@
+:root {
+    // fonts
+    --font-bold: 700;
+    --font-family-primary: 'Lato', sans-serif;
+    --font-size-m: 16px;
+    --font-line-m: 24px;
+    --font-m:  var(--font-size-m) / var(--font-line-m) var(--font-family-primary);
+    --font-m-bold: var(--font-bold) var(--font-size-m) / var(--font-line-m) var(--font-family-primary);
+    --font-size-l: 24px;
+    --font-line-l: 32px;
+    --font-l:  var(--font-size-l) / var(--font-line-l) var(--font-family-primary);
+    --font-l-bold: var(--font-bold) var(--font-size-l) / var(--font-line-l) var(--font-family-primary);
+    --font-size-xl: 32px;
+    --font-line-xl: 40px;
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-primary);
+    --font-xl-bold: var(--font-bold) var(--font-size-xl) / var(--font-line-xl) var(--font-family-primary);
+    --title-font-size: 80px;
+
+
+    //  sizes
+    --navbar-height: 85px;
+    --sidebar-width: 350px;
+    --player-heigth: 85px;
+    --switch-small: 60px;
+    --switch-medium: 90px;
+    --switch-large: 120px;
+    --card-size : 200px;
+
+
+    //  colors
+    --player-text-color: white;
+    --app-color: #29c944;
+    --error-color:#C41727;
+    --success-color:#1C9E07;
+    --overlay-color: rgba(0 0 0 / 60%);
+
+}

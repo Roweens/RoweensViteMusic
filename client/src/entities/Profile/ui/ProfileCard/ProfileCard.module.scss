@@ -1,0 +1,22 @@
+.profileCard{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.loading,
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    
+}
+
+.input{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+}

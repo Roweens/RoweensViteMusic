@@ -1,0 +1,12 @@
+.profilePage{
+    padding-top: 40px;
+    padding-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    margin: 0 auto;
+    justify-content: center;
+    background-color: var(--bg-color);
+    flex-grow: 1;
+}
+

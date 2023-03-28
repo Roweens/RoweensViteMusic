@@ -1,0 +1,53 @@
+.inputWrapper {
+    color: var(--secondary-color);
+    position: relative;
+    font: var(--font-l);
+    
+
+
+    .Input{
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid var(--primary-color);
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: inherit;
+
+        &::placeholder{
+            color: inherit;
+        }
+
+        &:focus{
+            outline: inherit;
+            border-color: var(--app-color);
+            border-width: 2px;
+        }
+    }
+
+    .outlined{
+        border: 1px solid var(--primary-color);
+    }
+
+    .filled{
+        background-color: var(--shadow-color);
+    }
+
+      
+    .placeholder{
+        position: absolute;
+        left: 15px;
+        top: 5px;
+        pointer-events: none;
+        transition: 0.2s ease all;
+    }
+
+    .focused{
+        font: var(--font-m);
+        top: -35px;
+        left: 5px;
+    }
+
+    .disabled{
+        opacity: 0.5;
+    }
+}

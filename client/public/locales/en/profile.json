@@ -1,0 +1,18 @@
+{
+  "Редактировать":"Edit",
+  "Отменить": "Cancel",
+  "Сохранить":"Save",
+  "Настройки профиля":"User settings",
+  "Произошла неожиданная ошибка": "Unexpected error occured",
+  "Попробуйте обновить страницу":"Try refreshing the page",
+  "Имя пользователя:":"Username:",
+  "Ваше имя:":"First name:",
+  "Ваша фамилия:":"Last name:",
+  "Ваш пол:": "Your gender:",
+  "Ваш город:": "City:",
+  "Ваш возраст:":"Your age:",
+  "Выбранная валюта:":"Selected currency:",
+  "Ваша страна:":"Country:",
+  "Отображаемый язык:":"Display language:",
+  "Ссылка на аватар:":"Link to avatar:"
+}

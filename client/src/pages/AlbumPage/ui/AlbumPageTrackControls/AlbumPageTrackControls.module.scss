@@ -1,0 +1,42 @@
+.albumPageTrackControls {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    border-bottom: 2px solid var(--primary-color);
+    padding: 7px 12px 12px 10px;
+    margin-top: 60px;
+
+}
+
+
+.button, .buttonJustified {
+    text-align: start;
+}
+
+.buttonJustifiedEnd{
+    justify-self: end;
+}
+
+
+.info{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.album{
+    justify-self: start;
+}
+
+.image{
+    height: 50px;
+}
+
+.listens{
+    justify-self: end;
+}
+
+.time{
+    justify-self: center;
+}

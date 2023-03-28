@@ -1,0 +1,19 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.info{
+    overflow-wrap: break-word;
+
+    .title{
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .text{
+        font-size: 16px;
+        filter: brightness(0.7);
+    }
+}

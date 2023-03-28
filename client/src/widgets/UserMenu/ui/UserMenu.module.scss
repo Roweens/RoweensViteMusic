@@ -1,0 +1,47 @@
+.dropDown {
+    width: fit-content;
+    color: var(--primary-color);
+
+    .dropDownChip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px;
+        background-color: var(--secondary-bg-color);
+        gap: 10px;
+        cursor: pointer;
+        border-radius: 20px;
+
+        &:hover {
+            filter: opacity(0.8);
+        }
+
+        svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    .dropDownList {
+        margin-top: 10px;
+        padding: 20px 20px 20px 14px;
+        background-color: var(--secondary-bg-color);
+        border-radius: 20px;
+        font: var(--font-m);
+        position: absolute;
+
+        a,
+        li {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: var(--dropdown-secondary-bg-color);
+                color: var(--secondary-bg-color)
+            }
+        }
+    }
+}

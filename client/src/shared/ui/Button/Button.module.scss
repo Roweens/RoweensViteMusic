@@ -1,0 +1,76 @@
+.Button{
+    border: none;
+    outline: none;
+    background-color: unset;
+    cursor: pointer;
+    font: var(--font-m);
+    color: var(--primary-color);
+    border-radius: 5px;
+
+    &:hover{
+        filter: opacity(0.9);
+    }
+
+    
+    svg{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.outlined{
+    border: 1px solid var(--primary-color);
+    padding: 5px 10px;
+}
+
+.filled{
+    background-color: var(--app-color);
+    padding: 5px 10px;
+}
+
+.shadow{
+    background-color: var(--app-color);
+    padding: 5px 10px;
+    box-shadow: 2px 2px 4px 1px var(--shadow-color);
+    transition: 0.2s ease box-shadow, 0.2s ease transform;
+
+    &:hover{
+        filter: unset;
+        transform: translate(2px, 2px);
+        box-shadow: inset 2px 2px 3px 1px var(--shadow-color);
+    }
+}
+
+.square {
+    padding: 0;
+}
+
+.medium {
+    font: var(--font-m);
+}
+
+.large {
+    font: var(--font-l);
+}
+
+.extra-large {
+    font: var(--font-xl);
+}
+
+.square.medium {
+    width: var(--font-line-m);
+    height: var(--font-line-m);
+    font: var(--font-m);
+}
+
+.square.large {
+    width: var(--font-line-l);
+    height: var(--font-line-l);
+    font: var(--font-l);
+}
+
+.square.extra-large {
+    width: var(--font-line-xl);
+    height: var(--font-line-xl);
+    font: var(--font-xl);
+}

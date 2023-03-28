@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: start;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.controls{
+    display: flex;
+    gap: 20px;
+}

@@ -1,0 +1,28 @@
+.card{
+    padding: 30px 50px 60px;
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.titleText{
+    margin-bottom: 30px;
+}
+
+.errorText{
+    margin-top: 30px;
+}
+
+.loginInput{
+    margin-top: 30px;
+}
+
+.usernameInput{
+    margin-top: 45px;
+}
+
+.passwordInput{
+    margin-top: 45px;
+    margin-bottom: 40px;
+}
