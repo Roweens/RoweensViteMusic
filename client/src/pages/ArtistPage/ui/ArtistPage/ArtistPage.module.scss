@@ -1,9 +1,14 @@
 .artistPage {
-	
+    padding-bottom: 50px;
 }
 
 .tracks{
     width: 50%;
     margin-top: 30px;
     padding-left: 50px;
+}
+
+.mainBlock{
+    display: flex;
+    gap: 50px;
 }

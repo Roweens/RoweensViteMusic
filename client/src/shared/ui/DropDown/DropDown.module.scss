@@ -82,5 +82,10 @@
     pointer-events: none;
 }
 
+.selected{
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color)
+}
+
 
 

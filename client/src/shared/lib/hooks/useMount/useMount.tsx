@@ -14,7 +14,9 @@ export const useMount = ({ opened, setState }: useMountProps) => {
         if (opened && !mounted) {
             setMounted(true);
         } else if (!opened && mounted) {
-            if (setState) setState(true);
+            if (setState) {
+                setState(true);
+            }
             setTimeout(() => {
                 setMounted(false);
                 if (setState) setState(false);

@@ -6,7 +6,7 @@ export const fetchAlbumById = createAsyncThunk<Album, string, ThunkConfig<string
     'album/fetchAlbumById',
     async (albumId, { rejectWithValue, extra }) => {
         try {
-            const response = await extra.api.get<Album>(`/album/${albumId}`);
+            const response = await extra.api.get<Album>(`/album/single/${albumId}`);
 
             if (!response.data) throw new Error();
 
@@ -14,5 +14,5 @@ export const fetchAlbumById = createAsyncThunk<Album, string, ThunkConfig<string
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

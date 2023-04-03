@@ -1,6 +1,6 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
-const { User, Basket, Profile } = require('../models/models');
+const { User, Basket, Profile, Favourite } = require('../models/models');
 const jwt = require('jsonwebtoken');
 
 const generateToken = (id, email, role, username) => {
@@ -36,6 +36,10 @@ class UserController {
       userId: user.id,
       username: user.username,
       firstname: firstname
+    })
+
+    const favourite = await Favourite.create({
+      userId: user.id,
     })
 
     const token = generateToken(user.id, email, user.role, user.username);

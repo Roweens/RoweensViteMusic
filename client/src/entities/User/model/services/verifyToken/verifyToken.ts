@@ -27,6 +27,7 @@ export const verifyToken = createAsyncThunk<User | void, void, ThunkConfig<strin
 
                 return { username: 'CognusZxc', token, id };
             } catch (error) {
+                dispatch(userActions.logout());
                 return rejectWithValue('error');
             }
         }

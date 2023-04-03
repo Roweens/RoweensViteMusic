@@ -9,7 +9,7 @@ const artistTracksAdapter = createEntityAdapter<Track>({
 });
 
 export const getArtistTracks = artistTracksAdapter.getSelectors<StateSchema>(
-    (state) => state.artistPageTracks || artistTracksAdapter.getInitialState()
+    (state) => state.artistPage?.tracks || artistTracksAdapter.getInitialState()
 );
 
 export const artistPageTracksSlice = createSlice({

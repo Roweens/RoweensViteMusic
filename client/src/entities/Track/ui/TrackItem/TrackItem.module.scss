@@ -1,7 +1,7 @@
 .trackItem {
     display: grid;
     align-items: center;
-    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
     margin-top: 20px;
     background-color: var(--secondary-bg-color);
     padding: 7px 12px 7px 10px;

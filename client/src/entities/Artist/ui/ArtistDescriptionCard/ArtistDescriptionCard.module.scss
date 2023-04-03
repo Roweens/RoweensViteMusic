@@ -1,0 +1,36 @@
+.artistDescriptionCard {
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    margin-bottom: 10px;
+}
+
+.bioCard{
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.bioCard:hover{
+    transform: scale(1.02);
+}
+
+.img{
+    cursor: pointer;
+    filter: brightness(0.6);
+
+}
+
+
+
+.textWrapper{
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+}

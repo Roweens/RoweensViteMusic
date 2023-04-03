@@ -3,6 +3,7 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import useComponentVisible from 'shared/lib/hooks/UseVisible/UseComponentVisible';
+import { Mods } from 'shared/types/Mods';
 import { ReactComponent as DownArrow } from './assets/down.svg';
 import cls from './DropDown.module.scss';
 
@@ -12,7 +13,7 @@ export enum ThemeDropDown {
     FILLED = 'filled',
 }
 
-type OptionsType = {
+export type OptionsType = {
     id: number;
     label: string | number;
     value: string;
@@ -68,9 +69,9 @@ export const DropDown = memo((props: DropDownProps) => {
                             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                             <li
                                 key={option.id}
-                                onClick={() => selectItem(option.label)}
+                                onClick={() => selectItem(option.value)}
                                 className={classNames({
-                                    selected: option.value === state,
+                                    [cls.selected]: option.value === state,
                                 })}
                             >
                                 {option.label}

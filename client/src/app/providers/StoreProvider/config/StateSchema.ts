@@ -7,13 +7,13 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { AlbumSchema } from 'entities/Album';
-import { ArtistSliceSchema } from 'entities/Artist/model/types/artist';
+import { ArtistSliceSchema } from 'entities/Artist';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/authByEmail';
 import { SignUpSchema } from 'features/signUp';
 import { AlbumPageTracksSchema } from 'pages/AlbumPage';
-import { ArtistPageTracksSchema } from 'pages/ArtistPage/model/types/artistPageTracksSchema';
+import { ArtistPageSchema } from 'pages/ArtistPage';
 import { NavigateOptions, To } from 'react-router-dom';
 import { PlayerSchema } from 'widgets/Player';
 
@@ -25,7 +25,7 @@ export interface StateSchema {
     albumPageTracks?: AlbumPageTracksSchema;
     profile?: ProfileSchema;
     artist?: ArtistSliceSchema;
-    artistPageTracks?: ArtistPageTracksSchema;
+    artistPage?: ArtistPageSchema;
     signUp?: SignUpSchema;
 }
 

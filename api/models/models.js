@@ -38,12 +38,15 @@ const Track = sequelize.define('track', {
   listens: { type: DataTypes.INTEGER, defaultValue: 0, allowNull: false },
   date: { type: DataTypes.STRING, allowNull: false },
   file: { type: DataTypes.STRING, allowNull: false },
+  length: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Artist = sequelize.define('artist', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, allowNull: false, unique: true },
-  bio: { type: DataTypes.STRING },
+  bio: { type: DataTypes.STRING(2000) },
+  bioImg: { type: DataTypes.STRING },
+  label: { type: DataTypes.STRING, defaultValue: 'No label' },
   listens: { type: DataTypes.INTEGER, defaultValue: 0, allowNull: false },
   img: { type: DataTypes.STRING, allowNull: false },
 });
@@ -52,12 +55,18 @@ const Album = sequelize.define('album', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false, unique: true },
   description: { type: DataTypes.STRING },
+  category: { type: DataTypes.STRING, allowNull: false, defaultValue: 'playlist' },
   img: { type: DataTypes.STRING, allowNull: false },
   date: { type: DataTypes.STRING, allowNull: false },
 });
 
 const AlbumTrack = sequelize.define('album_track', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+});
+
+const Genre = sequelize.define('genre', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
 
@@ -71,7 +80,7 @@ Favourite.belongsTo(User);
 Favourite.hasMany(FavouriteTrack)
 FavouriteTrack.belongsTo(Favourite)
 
-Track.hasMany(FavouriteTrack, {as: 'favourite_tracks'})
+Track.hasMany(FavouriteTrack, {as: 'favourite_track'})
 FavouriteTrack.belongsTo(Track)
 
 Artist.hasMany(Album)
@@ -79,6 +88,9 @@ Album.belongsTo(Artist)
 
 Album.hasMany(AlbumTrack, {as: 'album_tracks'})
 AlbumTrack.belongsTo(Album)
+
+Genre.hasMany(Album);
+Album.belongsTo(Genre);
 
 Track.hasMany(AlbumTrack)
 AlbumTrack.belongsTo(Track)

@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { Track } from 'entities/Track';
+import { Track, TrackSortField } from 'entities/Track';
+import { SortOrder } from 'shared/types/SortOrder';
 import { fetchTracksByAlbumId } from '../services/fetchTracksByAlbumId';
 import { AlbumPageTracksSchema } from '../types/AlbumPageTracksSchema';
 
@@ -19,8 +20,17 @@ export const albumPageTracksSlice = createSlice({
         error: undefined,
         ids: [],
         entities: {},
+        order: 'DESC',
+        sort: TrackSortField.CREATED,
     }),
-    reducers: {},
+    reducers: {
+        setSort: (state, action: PayloadAction<TrackSortField>) => {
+            state.sort = action.payload;
+        },
+        setOrder: (state, action: PayloadAction<SortOrder>) => {
+            state.order = action.payload;
+        },
+    },
     extraReducers(builder) {
         builder.addCase(fetchTracksByAlbumId.fulfilled, (state, action: PayloadAction<Track[]>) => {
             state.isLoading = false;
@@ -37,5 +47,5 @@ export const albumPageTracksSlice = createSlice({
     },
 });
 
-// export const { actions: AlbumPageTracksSliceActions } = AlbumPageTracksSlice;
+export const { actions: albumPageTracksSliceActions } = albumPageTracksSlice;
 export const { reducer: AlbumPageTracksSliceReducer } = albumPageTracksSlice;

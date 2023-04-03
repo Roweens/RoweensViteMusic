@@ -20,7 +20,7 @@ export const AlbumCard = memo((props:AlbumCardProps) => {
             <Link to={`${RoutePath.album}${album.id}`}>
                 <Card>
                     <div className={cls.card}>
-                        <Image src={album.img} alt="card image" squared width="100%" height="100%" />
+                        <Image src={`${__STATIC_URL__}${album.img}`} alt="card image" squared width="170px" height="170px" />
                         <div className={cls.info}>
                             <h5 className={cls.title}>
                                 {album.title}

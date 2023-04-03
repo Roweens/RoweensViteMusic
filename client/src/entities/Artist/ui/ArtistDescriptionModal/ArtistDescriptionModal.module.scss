@@ -1,0 +1,25 @@
+.artistDescriptionModal {
+    max-width: 650px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.info{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.img{
+    object-fit: cover;
+}
+
+.link{
+    font: var(--font-m)
+}

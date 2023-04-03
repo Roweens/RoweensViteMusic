@@ -1,6 +1,6 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { AlbumDetails } from 'entities/Album';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { TrackList } from 'entities/Track';
@@ -27,9 +27,14 @@ export const AlbumPage = memo((props:AlbumPageProps) => {
     const { id } = useParams();
     const tracks = useSelector(getAlbumTracks.selectAll);
     const dispatch = useAppDispatch();
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        dispatch(fetchTracksByAlbumId(id));
+        dispatch(fetchTracksByAlbumId({ albumId: id, queryParams: searchParams }));
+    }, [dispatch, id, searchParams]);
+
+    const onFavouriteChangeHandle = useCallback(() => {
+        dispatch(fetchTracksByAlbumId({ albumId: id }));
     }, [dispatch, id]);
 
     if (!id) {
@@ -41,9 +46,8 @@ export const AlbumPage = memo((props:AlbumPageProps) => {
             <Page>
                 <div className={classNames(cls.albumPage, {}, [className])}>
                     <AlbumDetails id={id} />
-                    <AlbumPageTrackControls />
-                    {/* <Controls/> */}
-                    <TrackList isLoading={tracksIsLoading} tracks={tracks} />
+                    <AlbumPageTrackControls id={id} />
+                    <TrackList isLoading={tracksIsLoading} tracks={tracks} onFavouriteChange={onFavouriteChangeHandle} />
                 </div>
             </Page>
         </DynamicReducerLoader>

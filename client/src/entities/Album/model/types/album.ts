@@ -8,6 +8,12 @@ export interface AlbumTracks {
     trackId: number;
     artistId: number;
 }
+
+export enum AlbumCategory {
+    ALBUM = 'album',
+    PLAYLIST = 'playlist',
+}
+
 export interface Album {
     id: number;
     title: string;
@@ -19,4 +25,6 @@ export interface Album {
     artistId: number;
     artist: Artist;
     album_tracks: AlbumTracks[];
+    genreId: number;
+    category: AlbumCategory;
 }

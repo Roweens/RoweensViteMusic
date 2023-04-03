@@ -5,15 +5,16 @@ import { Track } from '../../model/types/track';
 import { TrackItem } from '../TrackItem/TrackItem';
 
 interface TrackListProps {
-   className?: string;
-   tracks: Track[];
-   isLoading?: boolean
-error?:string
+    className?: string;
+    tracks: Track[];
+    isLoading?: boolean
+    error?:string
+    onFavouriteChange?: () => void
 }
 
 export const TrackList = memo((props:TrackListProps) => {
     const {
-        className, tracks, isLoading, error,
+        className, tracks, isLoading, error, onFavouriteChange,
     } = props;
 
     if (isLoading) {
@@ -28,7 +29,7 @@ export const TrackList = memo((props:TrackListProps) => {
 
     return (
         <div className={classNames(cls.trackList, {}, [className])}>
-            {tracks.map((track) => <TrackItem track={track} isLoading={isLoading} key={track.id} />)}
+            {tracks.map((track) => <TrackItem track={track} isLoading={isLoading} key={track.id} onFavouriteChange={onFavouriteChange} />)}
         </div>
     );
 });

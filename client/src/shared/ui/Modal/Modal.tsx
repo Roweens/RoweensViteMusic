@@ -8,13 +8,16 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
+className?: string;
   children: ReactNode
   isVisible: boolean
   onClose?: () => void
 }
 
 export const Modal: FC<ModalProps> = (props) => {
-    const { children, isVisible, onClose } = props;
+    const {
+        children, isVisible, onClose, className,
+    } = props;
     const [isClosing, setIsClosing] = useState(false);
     const { theme } = useTheme();
     const { mounted } = useMount({ opened: isVisible, setState: setIsClosing });
@@ -55,7 +58,7 @@ export const Modal: FC<ModalProps> = (props) => {
     return (
         <Portal element={document.body}>
             <div className={classNames(cls.overlay, mods)} onClick={onCloseHandler} id={theme}>
-                <div className={cls.modal} onClick={onContentClick}>
+                <div className={classNames(cls.modal, mods, [className])} onClick={onContentClick}>
                     {children}
                 </div>
             </div>

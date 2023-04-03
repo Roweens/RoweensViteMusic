@@ -10,6 +10,7 @@ import {
 } from 'widgets/Player';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useSelector } from 'react-redux';
+import { AddToFavouriteButton } from 'features/addToFavourite';
 import cls from './TrackItem.module.scss';
 import { Track } from '../../model/types/track';
 
@@ -17,10 +18,13 @@ interface TrackItemProps {
    className?: string;
    track?: Track;
    isLoading?: boolean;
+   onFavouriteChange?: () => void
 }
 
 export const TrackItem = memo((props:TrackItemProps) => {
-    const { className, track, isLoading } = props;
+    const {
+        className, track, isLoading, onFavouriteChange,
+    } = props;
     const { t } = useTranslation();
     const currentTrack = useSelector(getPlayerTrack);
     const paused = useSelector(getPlayerPaused);
@@ -59,6 +63,7 @@ export const TrackItem = memo((props:TrackItemProps) => {
             </div>
             <Link to={`${RoutePath.album}${track?.album?.id}`} className={cls.album}>{track?.album?.title}</Link>
             <Text text={track?.track.listens} classname={cls.listens} />
+            <AddToFavouriteButton track={track} onFavouriteChange={onFavouriteChange} />
             <Text text="минуты" classname={cls.time} />
         </div>
     );

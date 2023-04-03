@@ -1,5 +1,14 @@
 import { Album } from 'entities/Album';
 import { Artist } from 'entities/Artist';
+import { FavouriteTrack } from 'features/addToFavourite';
+
+export enum TrackSortField {
+    CREATED = 'createdAt',
+    LISTENS = 'listens',
+    NAME = 'name',
+    ALBUM = 'album',
+    LENGTH = 'length',
+}
 
 export interface TrackData {
     id: number;
@@ -8,6 +17,8 @@ export interface TrackData {
     file: string;
     date: string;
     listens: string;
+    length: number;
+    favourite_track: FavouriteTrack[];
 }
 export interface Track {
     id: number;

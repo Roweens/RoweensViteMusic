@@ -2,10 +2,10 @@
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
     border-bottom: 2px solid var(--primary-color);
     padding: 7px 12px 12px 10px;
-    margin-top: 60px;
+    margin-top: 24px;
 
 }
 

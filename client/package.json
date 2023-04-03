@@ -7,7 +7,6 @@
     "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vite",
     "build": "SET NODE_OPTIONS=--openssl-legacy-provider && tsc && vite build",
     "dev:server": "node ./server/server.cjs",
-    "start": "concurrently \"npm run dev\" \"npm run dev:server\"",
     "preview": "vite preview",
     "test:unit": "vitest --mode development",
     "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
