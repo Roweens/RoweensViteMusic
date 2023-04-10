@@ -1,15 +1,15 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PlayerPlayButton } from './PlayButton';
+import { PlayButton } from './PlayButton';
 
 export default {
-    title: 'widgets/PlayerPlayButton',
-    component: PlayerPlayButton,
+    title: 'widgets/PlayButton',
+    component: PlayButton,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof PlayerPlayButton>;
+} as ComponentMeta<typeof PlayButton>;
 
-const Template: ComponentStory<typeof PlayerPlayButton> = (args) => <PlayerPlayButton {...args} />;
+const Template: ComponentStory<typeof PlayButton> = (args) => <PlayButton {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

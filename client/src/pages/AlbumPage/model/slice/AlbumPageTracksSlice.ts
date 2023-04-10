@@ -22,6 +22,10 @@ export const albumPageTracksSlice = createSlice({
         entities: {},
         order: 'DESC',
         sort: TrackSortField.CREATED,
+        page: 1,
+        _limit: 2,
+        totalCount: 0,
+        _inited: false,
     }),
     reducers: {
         setSort: (state, action: PayloadAction<TrackSortField>) => {
@@ -30,11 +34,28 @@ export const albumPageTracksSlice = createSlice({
         setOrder: (state, action: PayloadAction<SortOrder>) => {
             state.order = action.payload;
         },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
+        },
+        setLimit: (state, action: PayloadAction<number>) => {
+            state._limit = action.payload;
+        },
+        setTotalCount: (state, action: PayloadAction<number>) => {
+            state.totalCount = action.payload;
+        },
+        setInited: (state, action: PayloadAction<boolean>) => {
+            state._inited = action.payload;
+        },
     },
     extraReducers(builder) {
-        builder.addCase(fetchTracksByAlbumId.fulfilled, (state, action: PayloadAction<Track[]>) => {
+        builder.addCase(fetchTracksByAlbumId.fulfilled, (state, action) => {
             state.isLoading = false;
-            albumTracksAdapter.setAll(state, action.payload);
+            state.totalCount = action.payload.count;
+            albumTracksAdapter.addMany(state, action.payload.rows);
+
+            if (action.meta.arg.replace) {
+                albumTracksAdapter.setAll(state, action.payload.rows);
+            }
         });
         builder.addCase(fetchTracksByAlbumId.pending, (state) => {
             state.error = undefined;

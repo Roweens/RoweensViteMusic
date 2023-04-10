@@ -17,19 +17,16 @@ export const TrackList = memo((props:TrackListProps) => {
         className, tracks, isLoading, error, onFavouriteChange,
     } = props;
 
-    if (isLoading) {
-        return (
-            <div className={classNames(cls.trackList, {}, [className])}>
-                <TrackItem isLoading />
-                <TrackItem isLoading />
-                <TrackItem isLoading />
-            </div>
-        );
-    }
-
     return (
         <div className={classNames(cls.trackList, {}, [className])}>
             {tracks.map((track) => <TrackItem track={track} isLoading={isLoading} key={track.id} onFavouriteChange={onFavouriteChange} />)}
+            {isLoading && (
+                <div className={classNames(cls.trackList, {}, [className])}>
+                    <TrackItem isLoading />
+                    <TrackItem isLoading />
+                    <TrackItem isLoading />
+                </div>
+            )}
         </div>
     );
 });

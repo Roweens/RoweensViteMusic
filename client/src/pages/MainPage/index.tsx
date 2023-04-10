@@ -1,3 +1,2 @@
-import { MainPage } from './ui/MainPage';
-
-export { MainPage };
+export type { AlbumsByGenreSchema } from './model/types/albumsByGenreSchema';
+export { MainPage } from './ui/MainPage';

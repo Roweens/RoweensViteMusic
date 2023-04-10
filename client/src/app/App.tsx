@@ -19,17 +19,9 @@ export function App() {
     }, [dispatch]);
 
     return (
-
         <div className={classNames('app')}>
             <Suspense fallback={<Loader />}>
-                <div className="main-container">
-                    <SideBar />
-                    <div className="page-container">
-                        <Navbar />
-                        {isMounted && <AppRouter />}
-                    </div>
-                </div>
-                <Player />
+                {isMounted && <AppRouter />}
             </Suspense>
         </div>
 

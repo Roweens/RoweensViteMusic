@@ -1,5 +1,3 @@
-import { ReducersMapObject } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
 import classNames from 'classnames';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';

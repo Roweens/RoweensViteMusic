@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchPlaylistsByArtistId } from 'pages/ArtistPage/model/services/fetchPlaylistsForArtist/fetchPlaylistsForArtist';
 import { Text } from 'shared/ui/Text/Text';
 import { AlbumList } from 'entities/Album';
 import { useSelector } from 'react-redux';
-import { getArtistPlaylists } from 'pages/ArtistPage/model/slice/artistPagePlaylistsSlice';
-import { getArtistPagePlaylistsIsLoading } from 'pages/ArtistPage/model/selectors/getArtistPagePlaylists';
+import { fetchPlaylistsByArtistId } from '../../model/services/fetchPlaylistsForArtist/fetchPlaylistsForArtist';
+import { getArtistPlaylists } from '../../model/slice/artistPagePlaylistsSlice';
+import { getArtistPagePlaylistsIsLoading } from '../../model/selectors/getArtistPagePlaylists';
 import cls from './ArtistPagePlaylists.module.scss';
 
 interface ArtistPagePlaylistsProps {

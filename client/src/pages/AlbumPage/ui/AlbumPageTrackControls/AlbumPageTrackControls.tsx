@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { TrackSortField, TrackSortSelector } from 'entities/Track';
 import { useSelector } from 'react-redux';
-import { getAlbumPageTracksOrder } from 'pages/AlbumPage/model/selectors/getAlbumPageTracksOrder/getAlbumPageTracksOrder';
-import { getAlbumPageTracksSort } from 'pages/AlbumPage/model/selectors/getAlbumPageTracksSort/getAlbumPageTracksSort';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { SortOrder } from 'shared/types/SortOrder';
-import { fetchTracksByAlbumId } from 'pages/AlbumPage/model/services/fetchTracksByAlbumId';
+import { getAlbumPageTracksOrder } from '../../model/selectors/getAlbumPageTracksOrder/getAlbumPageTracksOrder';
+import { getAlbumPageTracksSort } from '../../model/selectors/getAlbumPageTracksSort/getAlbumPageTracksSort';
+import { fetchTracksByAlbumId } from '../../model/services/fetchTracksByAlbumId';
 import cls from './AlbumPageTrackControls.module.scss';
 import { albumPageTracksSliceActions } from '../../model/slice/AlbumPageTracksSlice';
 
@@ -26,12 +26,12 @@ export const AlbumPageTrackControls = memo((props:AlbumPageTrackControlsProps) =
 
     const onChangeSort = useCallback((newSort: TrackSortField) => {
         dispatch(albumPageTracksSliceActions.setSort(newSort));
-        dispatch(fetchTracksByAlbumId({ albumId: id }));
+        dispatch(fetchTracksByAlbumId({ albumId: id, replace: true }));
     }, [dispatch, id]);
 
     const onChangeOrder = useCallback((newOrder: SortOrder) => {
         dispatch(albumPageTracksSliceActions.setOrder(newOrder));
-        dispatch(fetchTracksByAlbumId({ albumId: id }));
+        dispatch(fetchTracksByAlbumId({ albumId: id, replace: true }));
     }, [dispatch, id]);
 
     return (

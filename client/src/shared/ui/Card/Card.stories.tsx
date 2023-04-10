@@ -1,6 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import testImage from 'shared/assets/testImage.jpg';
-import { Card, CardSize } from './Card';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Themes } from 'app/providers/ThemeProvider';
+import { Card } from './Card';
+import { Image } from '../Image/Image';
+import { Text } from '../Text/Text';
 
 export default {
     title: 'shared/Card',
@@ -13,36 +17,21 @@ export default {
 
 const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 
-export const Light_M = Template.bind({});
+export const Normal = Template.bind({});
 
-Light_M.args = {
-    image: testImage,
-    title: 'Test card',
-    text: 'Some interesting text',
-    size: CardSize.M,
+Normal.args = {
+    children: <>
+        <Image src={testImage} />
+        <Text text="Some interesting text" />
+              </>,
 };
 
-export const Dark_M = Template.bind({});
-Dark_M.args = {
-    image: testImage,
-    title: 'Test card',
-    text: 'Some interesting text',
-    size: CardSize.M,
+export const Dark = Template.bind({});
+Dark.args = {
+    children: <>
+        <Image src={testImage} />
+        <Text text="Some interesting text" />
+              </>,
 };
 
-export const Light_L = Template.bind({});
-
-Light_L.args = {
-    image: testImage,
-    title: 'Test card',
-    text: 'Some interesting text',
-    size: CardSize.L,
-};
-
-export const Dark_L = Template.bind({});
-Dark_L.args = {
-    image: testImage,
-    title: 'Test card',
-    text: 'Some interesting text',
-    size: CardSize.L,
-};
+Dark.decorators = [ThemeDecorator(Themes.DARK)];

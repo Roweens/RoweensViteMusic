@@ -12,7 +12,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'react-hooks'],
+    plugins: ['react', '@typescript-eslint', 'react-hooks', 'roweens-plugin'],
     rules: {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
@@ -40,7 +40,7 @@ module.exports = {
         // ],
         'max-len': ['error', {
             ignoreComments: true,
-            code: 150,
+            code: 170,
         }],
         // 'jsx-a11y/no-static-element-interactions': 'off',
         // 'jsx-a11y/click-events-have-key-events': 'off',
@@ -48,6 +48,8 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'react/jsx-no-useless-fragment': 'warn',
+        'roweens-plugin/path-checker': 'error',
+        'react/no-array-index-key': 'warn',
     },
     // globals: {
     //       __IS_DEV__: true,

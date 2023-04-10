@@ -1,7 +1,11 @@
 .page{
     max-width: 100%;
-    background-color: var(--bg-color);
     padding: 0 0 30px;
     height: calc(100vh - var(--navbar-height) - var(--player-heigth));
     overflow-y: auto;
+}
+
+.triggerElement{
+    height: 20px;
+    margin: 10px;
 }

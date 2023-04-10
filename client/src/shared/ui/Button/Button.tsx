@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import {
-    ButtonHTMLAttributes, memo, ReactNode,
+    ComponentPropsWithRef, ComponentType,
 } from 'react';
 import cls from './Button.module.scss';
 
@@ -17,40 +17,46 @@ export enum ButtonTheme {
     SHADOW = 'shadow'
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-  children: ReactNode,
+type ButtonElements = 'button' | 'a'
+
+type ButtonAdditionalProps<Type extends ButtonElements | ComponentType>
+= Type extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[Type] : ComponentPropsWithRef<Type>
+
+type ButtonProps<Type extends ButtonElements | ComponentType> = {
   className?: string,
   theme?: ButtonTheme,
   size?:ButtonSize,
-  disabled?: boolean
   squared?: boolean
-}
+  disabled?: boolean;
+  as?: Type
+} & ButtonAdditionalProps<Type>
 
-export const Button = memo((props: ButtonProps) => {
+export const Button = <Type extends ButtonElements | ComponentType<any> = 'button'>(props: ButtonProps<Type>) => {
     const {
         className,
-        children,
-        theme = ButtonTheme.OUTLINED,
-        size = ButtonSize.MEDIUM,
+        as,
+        theme,
+        size,
+        squared,
         disabled,
-        squared = false,
         ...otherProps
     } = props;
+
+    const Component = as || 'button';
 
     const mods: Record<string, boolean> = {
         [cls[theme]]: true,
         [cls[size]]: true,
         [cls.square]: squared,
+        [cls.disabled]: disabled,
+    };
+
+    const componentProps = {
+        ...otherProps,
+        className: classNames(cls.Button, mods, className ?? ''),
     };
 
     return (
-        <button
-            type="button"
-            className={classNames(cls.Button, className, mods)}
-            disabled={disabled}
-            {...otherProps}
-        >
-            {children}
-        </button>
+        <Component {...componentProps} />
     );
-});
+};

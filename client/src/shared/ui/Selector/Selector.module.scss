@@ -1,0 +1,77 @@
+.outlined {
+    .selectorList {
+        border: 1px solid var(--secondary-color);
+    }
+}
+
+.filled {
+    .selectorList {
+        background-color: var(--app-color);
+    }
+}
+
+
+
+.selectorWrapper {
+    min-width: max-content;
+    font: var(--font-m);
+    color: var(--secondary-color);
+    position: relative;
+    white-space: nowrap;
+
+
+    .collapsed {
+        filter: opacity(0.8);
+    }
+
+    .selectorBtn {   
+        min-width: var(--selector-width);
+        display: flex;
+        justify-content: space-between;
+
+
+        &:hover {
+            filter: opacity(0.8);
+        }
+
+    }
+
+    .selectorList { 
+        margin-top: 6px;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 100;
+        padding: 10px 30px 10px 34px;
+        min-width: 100%;
+    }
+}
+
+.disabled{
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.selected{
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color)
+}
+
+.option{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 4px;
+
+    &:hover {
+        background-color: var(--secondary-bg-color);
+        color: var(--app-color)
+    }
+}
+
+.icon{
+    position: absolute;
+    left: -30px;
+}

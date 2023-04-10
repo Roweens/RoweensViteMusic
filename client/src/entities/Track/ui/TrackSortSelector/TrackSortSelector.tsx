@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { DropDown, OptionsType, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
 import { SortOrder } from 'shared/types/SortOrder';
+import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
+import { OptionsType } from 'shared/types/OptionsType';
 import { TrackSortField } from '../../model/types/track';
 import cls from './TrackSortSelector.module.scss';
 
@@ -63,8 +64,8 @@ export const TrackSortSelector = memo((props:TrackSortSelectorProps) => {
 
     return (
         <div className={classNames(cls.trackSortSelector, {}, [className])}>
-            <DropDown options={orderOptions} state={order} onClick={onOrderChange} theme={ThemeDropDown.FILLED} />
-            <DropDown options={sortOptions} state={sort} onClick={onSortChange} theme={ThemeDropDown.FILLED} />
+            <Selector options={orderOptions} value={order} onChange={onOrderChange} theme={SelectorTheme.FILLED} label={t('Порядок сортировки')} />
+            <Selector options={sortOptions} value={sort} onChange={onSortChange} theme={SelectorTheme.FILLED} label={t('Значение для сортировки')} />
         </div>
     );
 });

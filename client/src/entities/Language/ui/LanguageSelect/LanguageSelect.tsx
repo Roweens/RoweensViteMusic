@@ -1,6 +1,9 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 import { DropDown, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
+import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
+import { useTranslation } from 'react-i18next';
+import { OptionsType } from 'shared/types/OptionsType';
 import { Language } from '../../model/types/Language';
 
 interface LanguageSelectProps {
@@ -10,7 +13,7 @@ interface LanguageSelectProps {
     readOnly?: boolean
 }
 
-const LanguageOptions = [
+const LanguageOptions: OptionsType[] = [
     {
         id: 1,
         label: Language.RU,
@@ -33,13 +36,15 @@ export const LanguageSelect: FC<LanguageSelectProps> = (props) => {
         className, onChange, value, readOnly,
     } = props;
 
+    const { t } = useTranslation();
+
     return (
-        <DropDown
-            onClick={onChange}
-            title="Выберите язык"
-            state={value}
+        <Selector
+            onChange={onChange}
+            label={t('Выберите язык')}
+            value={value}
             options={LanguageOptions}
-            theme={ThemeDropDown.FILLED}
+            theme={SelectorTheme.FILLED}
             readOnly={readOnly}
         />
     );

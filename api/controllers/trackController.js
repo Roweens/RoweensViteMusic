@@ -5,7 +5,9 @@ const { Track, AlbumTrack, Album, Artist, Favourite, FavouriteTrack } = require(
 class TrackController {
   async getByAlbumId(req, res, next) {
     const { id } = req.params;
-    const { userId, sort, order } = req.query;
+    const { userId, sort, order, _limit, page } = req.query;
+    console.log(req.params)
+    let offset = page * _limit - _limit
 
     if (!id) {
       return next(ApiError.badRequest('No id'));
@@ -17,23 +19,24 @@ class TrackController {
     let tracksFromAlbum = []
 
     if (sort === 'album'){
-    tracksFromAlbum = await AlbumTrack.findAll(
-      { where: { albumId: id }, 
-        include: [{model: Track, include: [{model: FavouriteTrack, where: {favouriteId: favouriteList.id}, required: false, as:   'favourite_track'}]}, {model: Album }, {model: Artist}],
-        order: [
+    tracksFromAlbum = await AlbumTrack.findAndCountAll({ 
+      where: { albumId: id }, 
+      include: [{model: Track, include: [{model: FavouriteTrack, where: {favouriteId: favouriteList.id}, required: false, as:   'favourite_track'}]}, {model: Album }, {model: Artist}],
+      order: [
           [ {model: Album}, 'title', order]
-      ]
-      }
-    );
+      ],
+      limit: _limit,
+      offset,
+      });
     } else {
-    tracksFromAlbum = await AlbumTrack.findAll(
-      { where: { albumId: id }, 
-        include: [{model: Track, include: [{model: FavouriteTrack, where: {favouriteId: favouriteList.id}, required: false, as:   'favourite_track'}]}, {model: Album }, {model: Artist}],
-        order: [
+    tracksFromAlbum = await AlbumTrack.findAndCountAll({ where: { albumId: id }, 
+      include: [{model: Track, include: [{model: FavouriteTrack, where: {favouriteId: favouriteList.id}, required: false, as:   'favourite_track'}]}, {model: Album }, {model: Artist}],
+      order: [
           [ {model: Track}, sort, order]
-      ]
-      }
-    );
+      ],
+      limit: _limit,
+      offset,
+      });
   }
 
     if (!tracksFromAlbum) {

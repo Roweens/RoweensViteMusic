@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import classNames from 'classnames';
-import { DropDown, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
+import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
+import { useTranslation } from 'react-i18next';
+import { OptionsType } from 'shared/types/OptionsType';
 import { Country } from '../../model/types/Country';
 
 interface CountrySelectProps {
@@ -10,7 +11,7 @@ interface CountrySelectProps {
     readOnly?:boolean;
 }
 
-const CountryOptions = [{
+const CountryOptions: OptionsType[] = [{
     id: 1,
     label: Country.RUSSIA,
     value: Country.RUSSIA,
@@ -35,13 +36,15 @@ export const CountrySelect: FC<CountrySelectProps> = (props) => {
         className, onChange, value, readOnly,
     } = props;
 
+    const { t } = useTranslation();
+
     return (
-        <DropDown
-            onClick={onChange}
-            title="Выберите страну"
-            state={value}
+        <Selector
+            onChange={onChange}
+            label={t('Выберите страну')}
+            value={value}
             options={CountryOptions}
-            theme={ThemeDropDown.FILLED}
+            theme={SelectorTheme.FILLED}
             readOnly={readOnly}
         />
     );

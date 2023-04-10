@@ -14,7 +14,6 @@ export const verifyToken = createAsyncThunk<User | void, void, ThunkConfig<strin
         if (user) {
             try {
                 const response = await $authApi.get<{ token: string }>('user/verify');
-                console.log('123');
 
                 if (!response.data) throw new Error();
 

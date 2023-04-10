@@ -2,7 +2,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Themes } from 'app/providers/ThemeProvider';
-import { DropDown, ThemeDropDown } from './DropDown';
+import { ReactComponent as IconTest } from 'widgets/SideBar/assets/heart.svg';
+import { DropDown, DropdownItem, ThemeDropDown } from './DropDown';
+import { Button } from '../Button/Button';
+import { Icon } from '../Icon/Icon';
 
 export default {
     title: 'shared/DropDown',
@@ -15,65 +18,68 @@ export default {
 
 const Template: ComponentStory<typeof DropDown> = (args) => <DropDown {...args} />;
 
-const valuesArray = [
-    {
-        id: 0,
-        label: 'Option 1',
-        value: 'value 1',
-    },
+const valuesArray: DropdownItem[] = [
     {
         id: 1,
-        label: 'Option 2',
-        value: 'value 2',
+        content: 'Button item',
+        disabled: false,
     },
     {
         id: 2,
-        label: 'Option 3',
-        value: 'value 3',
+        content: <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Icon Svg={IconTest} width={25} height={25} />
+            Button item
+                 </div>,
+        disabled: true,
+    },
+    {
+        id: 3,
+        content: 'Link item',
+        disabled: false,
+        href: '#',
     },
 ];
-
-export const CLEAR = Template.bind({});
-CLEAR.args = {
-    state: 'Dropdown',
+export const Clear = Template.bind({});
+Clear.args = {
     theme: ThemeDropDown.CLEAR,
     options: valuesArray,
+    trigger: <Button>Clear menu</Button>,
 };
 
-export const OUTLINED = Template.bind({});
-OUTLINED.args = {
-    state: 'Dropdown',
+export const Outlined = Template.bind({});
+Outlined.args = {
     theme: ThemeDropDown.OUTLINED,
     options: valuesArray,
+    trigger: <Button>Outlined menu</Button>,
 };
 
-export const FILLED = Template.bind({});
-FILLED.args = {
-    state: 'Dropdown',
+export const Filled = Template.bind({});
+Filled.args = {
     theme: ThemeDropDown.FILLED,
     options: valuesArray,
+    trigger: <Button>Filled menu</Button>,
 };
 
-export const CLEAR_DARK = Template.bind({});
-CLEAR_DARK.args = {
-    state: 'Dropdown',
+export const ClearDark = Template.bind({});
+ClearDark.args = {
     theme: ThemeDropDown.CLEAR,
     options: valuesArray,
+    trigger: <Button>Clear menu</Button>,
 };
-CLEAR_DARK.decorators = [ThemeDecorator(Themes.DARK)];
+ClearDark.decorators = [ThemeDecorator(Themes.DARK)];
 
-export const OUTLINED_DARK = Template.bind({});
-OUTLINED_DARK.args = {
-    state: 'Dropdown',
+export const OutlinedDark = Template.bind({});
+OutlinedDark.args = {
     theme: ThemeDropDown.OUTLINED,
     options: valuesArray,
+    trigger: <Button>Outlined menu</Button>,
 };
-OUTLINED_DARK.decorators = [ThemeDecorator(Themes.DARK)];
+OutlinedDark.decorators = [ThemeDecorator(Themes.DARK)];
 
-export const FILLED_DARK = Template.bind({});
-FILLED_DARK.args = {
-    state: 'Dropdown',
+export const FilledDark = Template.bind({});
+FilledDark.args = {
     theme: ThemeDropDown.FILLED,
     options: valuesArray,
+    trigger: <Button>Filled menu</Button>,
 };
-FILLED_DARK.decorators = [ThemeDecorator(Themes.DARK)];
+FilledDark.decorators = [ThemeDecorator(Themes.DARK)];

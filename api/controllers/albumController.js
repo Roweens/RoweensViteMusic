@@ -67,20 +67,17 @@ class AlbumController {
   }
     async getAll(req, res, next) {
 
-    const { _limit, genre } = req.query;
-
-    if (!id) {
-      return next(ApiError.badRequest('No id'));
-    }
+    const { _limit, genreId } = req.query;
+    console.log(req.query)
 
     let albums = []
 
-    if (_limit){
+    if (_limit && !genreId){
       albums = await Album.findAll({ limit: _limit });
-    } else if (genre){
-      albums = await Album.findAll({ where: { genreId: genre }});
-    } else if (genre && _limit){
-      albums = await Album.findAll({ where: { genreId: genre }, limit: _limit });
+    } else if (genreId && !_limit){
+      albums = await Album.findAll({ where: { genreId }});
+    } else if (genreId && _limit){
+      albums = await Album.findAll({ where: { genreId }, limit: _limit});
     } else {
       albums = await Album.findAll();
     }

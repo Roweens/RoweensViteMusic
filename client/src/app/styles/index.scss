@@ -12,6 +12,11 @@ body{
 .app {
     position: relative;
     background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: hidden;
+
 }
 
 .main-container{

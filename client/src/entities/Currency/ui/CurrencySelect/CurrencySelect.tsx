@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import classNames from 'classnames';
 import { DropDown, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
+import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
+import { OptionsType } from 'shared/types/OptionsType';
+import { useTranslation } from 'react-i18next';
 import { Currency } from '../../model/types/Currency';
 
 interface CurrencySelectProps {
@@ -10,7 +12,7 @@ interface CurrencySelectProps {
     readOnly?:boolean;
 }
 
-const CurrencyOptions = [
+const CurrencyOptions: OptionsType[] = [
     {
         id: 1,
         label: Currency.EUR,
@@ -33,13 +35,15 @@ export const CurrencySelect: FC<CurrencySelectProps> = (props) => {
         className, onChange, value, readOnly,
     } = props;
 
+    const { t } = useTranslation();
+
     return (
-        <DropDown
-            onClick={onChange}
-            title="Выберите валюту"
-            state={value}
+        <Selector
+            onChange={onChange}
+            label={t('Выберите валюту')}
+            value={value}
             options={CurrencyOptions}
-            theme={ThemeDropDown.FILLED}
+            theme={SelectorTheme.FILLED}
             readOnly={readOnly}
         />
     );

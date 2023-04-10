@@ -5,13 +5,14 @@ import {
     Text, TextAlign, TextTheme, TitleTheme,
 } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
-import { Gender, Profile } from 'entities/Profile';
-import { DropDown, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Currency, CurrencySelect } from 'entities/Currency';
 import { Country, CountrySelect } from 'entities/Country';
 import { Language, LanguageSelect } from 'entities/Language';
+import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
+import { OptionsType } from 'shared/types/OptionsType';
 import cls from './ProfileCard.module.scss';
+import { Gender, Profile } from '../../model/types/profile';
 
 interface ProfileCardProps {
   form?: Profile;
@@ -30,7 +31,7 @@ interface ProfileCardProps {
   onLanguageChange?:(value: Language) => void;
 }
 
-const genderOptions = [{
+const genderOptions: OptionsType[] = [{
     id: 1,
     label: 'Male',
     value: 'Male',
@@ -97,11 +98,12 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
             </div>
             <div className={cls.input}>
                 <Text title={t('Ваш пол:')} />
-                <DropDown
-                    onClick={onGenderChange}
-                    state={form?.gender}
+                <Selector
+                    onChange={onGenderChange}
                     options={genderOptions}
-                    theme={ThemeDropDown.FILLED}
+                    label={t('Выберите пол')}
+                    value={form?.gender}
+                    theme={SelectorTheme.FILLED}
                     readOnly={readonly}
                 />
             </div>

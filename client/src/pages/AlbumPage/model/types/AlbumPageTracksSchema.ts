@@ -7,4 +7,8 @@ export interface AlbumPageTracksSchema extends EntityState<Track> {
     error?: string;
     sort: TrackSortField;
     order: SortOrder;
+    page: number;
+    _limit: number;
+    totalCount: number;
+    _inited: boolean;
 }

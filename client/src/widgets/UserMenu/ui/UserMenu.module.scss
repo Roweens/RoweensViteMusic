@@ -45,3 +45,12 @@
         }
     }
 }
+
+.menuItem{
+    &:hover{
+        svg{
+            fill: var(--primary-color);
+        }
+    }
+
+}

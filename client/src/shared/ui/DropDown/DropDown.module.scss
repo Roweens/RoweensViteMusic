@@ -38,7 +38,7 @@
         cursor: pointer;
         gap: 10px;
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
         width: inherit;
    
 
@@ -57,28 +57,15 @@
     .dropDownList {
         margin-top: 10px;
         padding: 20px 20px 20px 6px;
-        border-radius: 20px;
+        border-radius: 10px;
         position: absolute;
         z-index: 100;
-
-        a,
-        li {
-            display: block;
-            width: 100%;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-
-            &:hover {
-                background-color: var(--secondary-bg-color);
-                color: var(--primary-color)
-            }
-        }
+        min-width: 100%;
     }
 }
 
 .disabled{
-    opacity: 0.7;
+    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -87,5 +74,18 @@
     color: var(--primary-color)
 }
 
+.option{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: var(--secondary-bg-color);
+        color: var(--primary-color)
+    }
+}
 
 

@@ -24,8 +24,8 @@ export type CustomRouteProps = RouteProps & {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.PROFILE]: '/profile/',
-    [AppRoutes.LOGIN]: 'login',
-    [AppRoutes.REGISTER]: 'register',
+    [AppRoutes.LOGIN]: '/login',
+    [AppRoutes.REGISTER]: '/register',
     [AppRoutes.ARTIST]: '/artist/',
     [AppRoutes.ALBUM]: '/album/',
     [AppRoutes.NOT_FOUND]: '/*',

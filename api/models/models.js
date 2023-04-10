@@ -109,4 +109,5 @@ module.exports = {
   FavouriteTrack,
   Profile,
   User,
+  Genre
 };

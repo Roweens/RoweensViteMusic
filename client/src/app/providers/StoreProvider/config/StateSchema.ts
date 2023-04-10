@@ -8,12 +8,14 @@ import {
 import { AxiosInstance } from 'axios';
 import { AlbumSchema } from 'entities/Album';
 import { ArtistSliceSchema } from 'entities/Artist';
+import { GenresSliceSchema } from 'entities/Genre';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/authByEmail';
 import { SignUpSchema } from 'features/signUp';
 import { AlbumPageTracksSchema } from 'pages/AlbumPage';
 import { ArtistPageSchema } from 'pages/ArtistPage';
+import { AlbumsByGenreSchema } from 'pages/MainPage';
 import { NavigateOptions, To } from 'react-router-dom';
 import { PlayerSchema } from 'widgets/Player';
 
@@ -27,6 +29,8 @@ export interface StateSchema {
     artist?: ArtistSliceSchema;
     artistPage?: ArtistPageSchema;
     signUp?: SignUpSchema;
+    genres?: GenresSliceSchema;
+    mainPageAlbumsByGenre?: AlbumsByGenreSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

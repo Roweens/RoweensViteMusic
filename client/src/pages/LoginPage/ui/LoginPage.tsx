@@ -13,9 +13,7 @@ export const LoginPage = memo((props: LoginPageProps) => {
 
     return (
         <div className={classNames(cls.loginPageWrapper, {}, [className])}>
-            <Page>
-                <LoginCard />
-            </Page>
+            <LoginCard />
         </div>
     );
 });
