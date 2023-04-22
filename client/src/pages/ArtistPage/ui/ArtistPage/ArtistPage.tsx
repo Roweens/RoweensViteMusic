@@ -1,13 +1,13 @@
 import { memo, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 import { useParams } from 'react-router-dom';
 import { ArtistDetails } from 'entities/Artist';
 import { TrackList } from 'entities/Track';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { artistPageReducer } from 'pages/ArtistPage/model/slice';
+import { artistPageReducer } from '../../model/slice';
 import cls from './ArtistPage.module.scss';
 import { getArtistTracks } from '../../model/slice/artistPageTracksSlice';
 import { fetchTracksByArtistId } from '../../model/services/fetchTracksByArtistId/fetchTracksByArtistId';
@@ -47,24 +47,22 @@ export const ArtistPage = memo((props:ArtistPageProps) => {
 
     return (
         <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.artistPage, {}, [className])}>
-                <Page>
-                    <ArtistDetails id={id} />
-                    <div className={cls.mainBlock}>
-                        <TrackList
-                            isLoading={isLoading}
-                            tracks={tracks}
-                            error={error}
-                            className={cls.tracks}
-                            onFavouriteChange={onFavouriteChangeHandle}
-                        />
-                        <ArtistPageBio />
-                    </div>
-                    <ArtistPageAlbums id={id} />
+            <Page className={classNames(cls.artistPage, {}, [className])}>
+                <ArtistDetails id={id} />
+                <div className={cls.mainBlock}>
+                    <TrackList
+                        isLoading={isLoading}
+                        tracks={tracks}
+                        error={error}
+                        className={cls.tracks}
+                        onFavouriteChange={onFavouriteChangeHandle}
+                    />
+                    <ArtistPageBio />
+                </div>
+                <ArtistPageAlbums id={id} />
 
-                    <ArtistPagePlaylists id={id} />
-                </Page>
-            </div>
+                <ArtistPagePlaylists id={id} />
+            </Page>
         </DynamicReducerLoader>
     );
 });

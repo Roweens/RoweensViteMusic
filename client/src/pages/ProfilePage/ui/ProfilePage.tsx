@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import cls from './ProfilePage.module.scss';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';

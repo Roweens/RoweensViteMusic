@@ -28,6 +28,9 @@ export const playerSlice = createSlice({
         setPlayTime: (state, action: PayloadAction<number>) => {
             state.playTime = action.payload;
         },
+        setDuration: (state, action: PayloadAction<number>) => {
+            state.duration = action.payload;
+        },
         setTrack: (state, action: PayloadAction<Track>) => {
             state.track = action.payload;
         },

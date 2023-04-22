@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Image } from 'shared/ui/Image/Image';
 import { Text } from 'shared/ui/Text/Text';
@@ -10,7 +9,7 @@ import {
 } from 'widgets/Player';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useSelector } from 'react-redux';
-import { AddToFavouriteButton } from 'features/addToFavourite';
+import { AddTrackToFavouriteButton } from 'features/addTrackToFavourite';
 import cls from './TrackItem.module.scss';
 import { Track } from '../../model/types/track';
 
@@ -19,13 +18,14 @@ interface TrackItemProps {
    track?: Track;
    isLoading?: boolean;
    onFavouriteChange?: () => void
+       onTrackPlay?: (track: Track) => void;
+     onTrackPause?: (track: Track) => void;
 }
 
 export const TrackItem = memo((props:TrackItemProps) => {
     const {
-        className, track, isLoading, onFavouriteChange,
+        className, track, isLoading, onFavouriteChange, onTrackPause, onTrackPlay,
     } = props;
-    const { t } = useTranslation();
     const currentTrack = useSelector(getPlayerTrack);
     const paused = useSelector(getPlayerPaused);
 
@@ -48,7 +48,9 @@ export const TrackItem = memo((props:TrackItemProps) => {
     return (
         <div className={classNames(cls.trackItem, {}, [className])}>
             <div className={cls.info}>
-                {currentTrack?.id === track?.id && !paused ? <PauseButton /> : <PlayButton track={track} />}
+                {currentTrack?.id === track?.id && !paused
+                    ? <PauseButton onPause={onTrackPause} track={track} />
+                    : <PlayButton onPlay={onTrackPlay} track={track} />}
                 <div className={cls.image}>
                     {track?.album?.img && (
                         <Image
@@ -63,7 +65,7 @@ export const TrackItem = memo((props:TrackItemProps) => {
             </div>
             <Link to={`${RoutePath.album}${track?.album?.id}`} className={cls.album}>{track?.album?.title}</Link>
             <Text text={track?.track.listens} classname={cls.listens} />
-            <AddToFavouriteButton track={track} onFavouriteChange={onFavouriteChange} />
+            <AddTrackToFavouriteButton track={track} onFavouriteChange={onFavouriteChange} />
             <Text text="минуты" classname={cls.time} />
         </div>
     );

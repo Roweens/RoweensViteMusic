@@ -1,12 +1,14 @@
 import { ChangeEvent, CSSProperties, memo } from 'react';
 import classNames from 'classnames';
-import { Text } from 'shared/ui/Text/Text';
+import { Text } from '../../ui/Text/Text';
 import cls from './RangeInput.module.scss';
 
 interface RangeInputProps {
    className?: string;
    left: number;
    right: number;
+   rightLabel?: string;
+   leftLabel?: string;
    step?: number;
    width?: number | string;
    disabled?:boolean;
@@ -15,7 +17,15 @@ interface RangeInputProps {
 
 export const RangeInput = memo((props:RangeInputProps) => {
     const {
-        className, width, left, right, step, onChange, disabled,
+        className,
+        width,
+        left,
+        right,
+        step,
+        onChange,
+        disabled,
+        leftLabel = '',
+        rightLabel = '',
     } = props;
 
     const styles: CSSProperties = {
@@ -39,7 +49,7 @@ export const RangeInput = memo((props:RangeInputProps) => {
                 style={styles}
                 disabled={disabled}
             />
-            <Text text={`left: ${left} / right: ${right}`} />
+            <Text text={`${leftLabel} ${left} / ${rightLabel} ${right}`} />
         </>
     );
 });

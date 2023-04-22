@@ -5,10 +5,11 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Track } from 'entities/Track';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { addToFavouriteList } from 'features/addToFavourite/model/services/addToFavouriteList/addToFavouriteList';
-import { removeFromFavouriteList } from 'features/addToFavourite/model/services/removeFromFavouriteList/removeFromFavouriteList';
+import { HStack } from 'shared/ui/Stack';
+import { addToFavouriteList } from '../../model/services/addToFavouriteList/addToFavouriteList';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
-import cls from './AddToFavouriteButton.module.scss';
+import cls from './AddTrackToFavouriteButton.module.scss';
+import { removeFromFavouriteList } from '../../model/services/removeFromFavouriteList/removeFromFavouriteList';
 
 interface addToFavouriteButtonProps {
    className?: string;
@@ -16,7 +17,7 @@ interface addToFavouriteButtonProps {
    onFavouriteChange?: () => void
 }
 
-export const AddToFavouriteButton = memo((props:addToFavouriteButtonProps) => {
+export const AddTrackToFavouriteButton = memo((props:addToFavouriteButtonProps) => {
     const { className, track, onFavouriteChange } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ export const AddToFavouriteButton = memo((props:addToFavouriteButtonProps) => {
     }
 
     return (
-        <>
+        <HStack>
             {track.track.favourite_track.length ? (
                 <Button
                     className={classNames(cls.addToFavouriteButton, {}, [className])}
@@ -55,6 +56,6 @@ export const AddToFavouriteButton = memo((props:addToFavouriteButtonProps) => {
                 </Button>
             )}
 
-        </>
+        </HStack>
     );
 });
