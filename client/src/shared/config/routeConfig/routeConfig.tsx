@@ -6,6 +6,7 @@ import { LoginPage } from 'pages/LoginPage';
 import { AlbumPage } from 'pages/AlbumPage';
 import { ArtistPage } from 'pages/ArtistPage';
 import { RegisterPage } from 'pages/RegisterPage';
+import { CollectionPage } from 'pages/CollectionPage';
 
 export enum AppRoutes {
   MAIN = 'main',
@@ -13,6 +14,8 @@ export enum AppRoutes {
   LOGIN = 'login',
   REGISTER = 'register',
   ARTIST = 'artist',
+  COLLECTION = 'collection',
+  FAVOURITE = 'favourite',
   ALBUM = 'album',
   NOT_FOUND = 'not_found',
 }
@@ -27,6 +30,8 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.LOGIN]: '/login',
     [AppRoutes.REGISTER]: '/register',
     [AppRoutes.ARTIST]: '/artist/',
+    [AppRoutes.COLLECTION]: '/collection/',
+    [AppRoutes.FAVOURITE]: '/favourite/',
     [AppRoutes.ALBUM]: '/album/',
     [AppRoutes.NOT_FOUND]: '/*',
 };
@@ -58,6 +63,16 @@ export const RouteConfig: Record<AppRoutes, CustomRouteProps> = {
     [AppRoutes.ARTIST]: {
         path: `${RoutePath[AppRoutes.ARTIST]}:id`,
         element: <ArtistPage />,
+        authOnly: true,
+    },
+    [AppRoutes.COLLECTION]: {
+        path: `${RoutePath[AppRoutes.COLLECTION]}:id`,
+        element: <CollectionPage />,
+        authOnly: true,
+    },
+    [AppRoutes.FAVOURITE]: {
+        path: `${RoutePath[AppRoutes.FAVOURITE]}:id`,
+        element: <CollectionPage />,
         authOnly: true,
     },
     [AppRoutes.NOT_FOUND]: {

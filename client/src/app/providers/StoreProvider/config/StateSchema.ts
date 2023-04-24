@@ -17,12 +17,14 @@ import { AlbumPageTracksSchema } from 'pages/AlbumPage';
 import { ArtistPageSchema } from 'pages/ArtistPage';
 import { AlbumsByGenreSchema } from 'pages/MainPage';
 import { NavigateOptions, To } from 'react-router-dom';
+import { rtkApi } from 'shared/api/rtkApi';
 import { PlayerSchema } from 'widgets/Player';
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     player: PlayerSchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     album?: AlbumSchema;
     albumPageTracks?: AlbumPageTracksSchema;
     profile?: ProfileSchema;

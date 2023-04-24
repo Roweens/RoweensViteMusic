@@ -1,30 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { getUserAuthData } from 'entities/User';
-import { FavouriteTrack } from '../../types/favourite';
+import { FavouriteAlbum } from '../../types/favouriteAlbum';
 
-interface removeFromFavouriteProps {
-    trackId?: string;
+interface addAlbumToFavouriteProps {
+    albumId?: string;
 }
 
-export const removeFromFavouriteList = createAsyncThunk<
-    FavouriteTrack,
-    removeFromFavouriteProps,
+export const addAlbumToFavouriteList = createAsyncThunk<
+    FavouriteAlbum,
+    addAlbumToFavouriteProps,
     ThunkConfig<string>
 >(
-    'addToFavourite/removeFromFavouriteList',
-    async ({ trackId }, { extra, rejectWithValue, getState }) => {
+    'addAlbumToFavourite/addAlbumToFavouriteList',
+    async ({ albumId }, { extra, rejectWithValue, getState }) => {
         const user = getUserAuthData(getState());
 
-        if (!user && !trackId) {
+        if (!user && !albumId) {
             return rejectWithValue('No id');
         }
 
         try {
-            const response = await extra.api.get<FavouriteTrack>('/favourite/remove/', {
+            const response = await extra.api.get<FavouriteAlbum>('/favourite/add/', {
                 params: {
                     userId: user?.id,
-                    trackId,
+                    albumId,
                 },
             });
 

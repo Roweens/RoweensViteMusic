@@ -1,2 +1,2 @@
 export { AddTrackToFavouriteButton } from './ui/AddTrackToFavouriteButton/AddTrackToFavouriteButton';
-export type { FavouriteTrack } from './model/types/favourite';
+export type { FavouriteTrack } from './model/types/favouriteTrack';

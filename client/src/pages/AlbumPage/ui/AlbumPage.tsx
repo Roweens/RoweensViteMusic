@@ -9,6 +9,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from 'widgets/Page';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { SortOrder } from 'shared/types/SortOrder';
+import { AddAlbumToFavouriteButton } from 'features/addAlbumToFavourite';
 import cls from './AlbumPage.module.scss';
 import { AlbumPageTracksSliceReducer, albumPageTracksSliceActions } from '../model/slice/AlbumPageTracksSlice';
 import { fetchTracksByAlbumId } from '../model/services/fetchTracksByAlbumId';

@@ -10,8 +10,8 @@ interface TrackListProps {
     isLoading?: boolean
     error?:string
     onFavouriteChange?: () => void
-    onTrackPlay?: (track: Track) => void;
-     onTrackPause?: (track: Track) => void;
+    onTrackPlay?: (track?: Track) => void;
+     onTrackPause?: (track?: Track) => void;
 }
 
 export const TrackList = memo((props:TrackListProps) => {

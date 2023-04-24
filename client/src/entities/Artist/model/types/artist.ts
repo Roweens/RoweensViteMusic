@@ -1,3 +1,5 @@
+import { SubscribedArtist } from 'features/subscribeToArtist';
+
 export interface Artist {
     id: number;
     name: string;
@@ -6,6 +8,7 @@ export interface Artist {
     label: string;
     listens: string;
     img: string;
+    favourite_artist: SubscribedArtist[];
     createdAt: string;
     updatedAt: string;
 }

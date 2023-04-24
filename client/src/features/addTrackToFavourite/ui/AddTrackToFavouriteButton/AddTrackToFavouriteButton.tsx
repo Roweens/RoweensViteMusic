@@ -5,11 +5,10 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Track } from 'entities/Track';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { HStack } from 'shared/ui/Stack';
-import { addToFavouriteList } from '../../model/services/addToFavouriteList/addToFavouriteList';
+import { addToFavouriteList } from '../../model/services/addTrackToFavouriteList/addTrackToFavouriteList';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
 import cls from './AddTrackToFavouriteButton.module.scss';
-import { removeFromFavouriteList } from '../../model/services/removeFromFavouriteList/removeFromFavouriteList';
+import { removeFromFavouriteList } from '../../model/services/removeTrackFromFavouriteList/removeTrackFromFavouriteList';
 
 interface addToFavouriteButtonProps {
    className?: string;
@@ -23,13 +22,17 @@ export const AddTrackToFavouriteButton = memo((props:addToFavouriteButtonProps) 
     const dispatch = useAppDispatch();
 
     const onAddToFavouriteHandle = useCallback(() => {
-        dispatch(addToFavouriteList({ trackId: String(track?.track.id) }));
-        onFavouriteChange?.();
+        dispatch(addToFavouriteList({ trackId: String(track?.track.id) }))
+            .then(() => {
+                onFavouriteChange?.();
+            });
     }, [dispatch, onFavouriteChange, track?.track.id]);
 
     const onRemoveFromFavouriteHandle = useCallback(() => {
-        dispatch(removeFromFavouriteList({ trackId: String(track?.track.id) }));
-        onFavouriteChange?.();
+        dispatch(removeFromFavouriteList({ trackId: String(track?.track.id) }))
+            .then(() => {
+                onFavouriteChange?.();
+            });
     }, [dispatch, onFavouriteChange, track?.track.id]);
 
     if (!track) {
@@ -37,7 +40,7 @@ export const AddTrackToFavouriteButton = memo((props:addToFavouriteButtonProps) 
     }
 
     return (
-        <HStack>
+        <>
             {track.track.favourite_track.length ? (
                 <Button
                     className={classNames(cls.addToFavouriteButton, {}, [className])}
@@ -56,6 +59,6 @@ export const AddTrackToFavouriteButton = memo((props:addToFavouriteButtonProps) 
                 </Button>
             )}
 
-        </HStack>
+        </>
     );
 });

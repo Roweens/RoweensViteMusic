@@ -25,7 +25,6 @@
     color: var(--secondary-color);
     position: relative;
     white-space: nowrap;
-    margin-top: 25px;
 
     .collapsed {
         filter: opacity(0.8);
@@ -78,7 +77,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    padding: 5px;
     cursor: pointer;
     border-radius: 10px;
 

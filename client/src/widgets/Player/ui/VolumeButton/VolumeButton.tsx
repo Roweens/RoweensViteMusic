@@ -13,7 +13,7 @@ interface PlayerVolumeButtonProps {
    audio: HTMLAudioElement;
 }
 
-export const PlayerVolumeButton = memo((props:PlayerVolumeButtonProps) => {
+export const VolumeButton = memo((props:PlayerVolumeButtonProps) => {
     const { className, audio } = props;
     const volume = useSelector(getPlayerVolume);
     const volumeOff = useSelector(getPlayerVolumeOff);

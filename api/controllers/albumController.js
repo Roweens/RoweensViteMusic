@@ -1,16 +1,22 @@
 const ApiError = require('../error/ApiError');
-const { Album, Artist, AlbumTrack } = require('../models/models');
+const { Album, Artist, AlbumTrack, FavouriteAlbum, Favourite } = require('../models/models');
 
 
 class AlbumController {
   async getOne(req, res, next) {
     const { id } = req.params;
+    const { userId } = req.query;
    
     if (!id) {
       return next(ApiError.badRequest('No id'));
     }
 
-    const candidate = await Album.findOne({ where: { id }, include: [Artist, {model: AlbumTrack, as: 'album_tracks'}] });
+    const favouriteList = await Favourite.findOne({where: {userId}})
+
+    const candidate = await Album.findOne({ 
+      where: { id }, 
+      include: [Artist, {model: AlbumTrack, as: 'album_tracks'}, {model: FavouriteAlbum, where: {favouriteId: favouriteList.id}, required: false, as: 'favourite_album'}] 
+    });
    
     
     if (!candidate) {

@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Text } from 'shared/ui/Text/Text';
 import { Image } from 'shared/ui/Image/Image';
 import { Link } from 'shared/ui/Link/Link';
+import { Icon } from 'shared/ui/Icon/Icon';
 import cls from './ArtistDescriptionModal.module.scss';
 import { Artist } from '../../model/types/artist';
 import { ReactComponent as FacebookIcon } from '../../assets/facebook.svg';
@@ -22,7 +22,6 @@ export const ArtistDescriptionModal = memo((props:ArtistDescriptionModalProps) =
     const {
         className, isOpen, onClose, artist,
     } = props;
-    const { t } = useTranslation();
 
     return (
         <Modal
@@ -41,9 +40,18 @@ export const ArtistDescriptionModal = memo((props:ArtistDescriptionModalProps) =
                 <div className={cls.stats}>
                     <Text title="X" text="Подписчиков" />
                     <Text title={artist?.listens} text="Слушателей" />
-                    <Link to="#" Icon={FacebookIcon} className={cls.link}>Facebook</Link>
-                    <Link to="#" Icon={YoutubeIcon} className={cls.link}>Youtube</Link>
-                    <Link to="#" Icon={TwitterIcon} className={cls.link}>Twiiter</Link>
+                    <Link to="#" className={cls.link}>
+                        <Icon Svg={FacebookIcon} />
+                        Facebook
+                    </Link>
+                    <Link to="#" className={cls.link}>
+                        <Icon Svg={YoutubeIcon} />
+                        Youtube
+                    </Link>
+                    <Link to="#" className={cls.link}>
+                        <Icon Svg={TwitterIcon} />
+                        Twiiter
+                    </Link>
                 </div>
                 <Text text={artist?.bio} />
             </div>

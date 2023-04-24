@@ -1,4 +1,5 @@
 import { Artist } from 'entities/Artist';
+import { FavouriteAlbum } from 'features/addAlbumToFavourite';
 
 export interface AlbumTracks {
     id: number;
@@ -27,4 +28,5 @@ export interface Album {
     album_tracks: AlbumTracks[];
     genreId: number;
     category: AlbumCategory;
+    favourite_album: FavouriteAlbum[];
 }

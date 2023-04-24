@@ -6,6 +6,7 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { playerReducer } from 'widgets/Player';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './ReducerManager';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -35,7 +36,7 @@ export function createReduxStore(
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }),
+            }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore

@@ -16,18 +16,17 @@ import { Text } from 'shared/ui/Text/Text';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import Avatar from '../assets/Avatar.jpg';
 import cls from './UserMenu.module.scss';
-import { UserMenuItemType } from '../model/types/userMenuItem';
+import { ReactComponent as DownArrow } from '../assets/down.svg';
 import { ReactComponent as ProfileIcon } from '../assets/profile.svg';
 import { ReactComponent as ExitIcon } from '../assets/exit.svg';
 
 interface UserMenuProps {
     className?: string;
-    username?: string;
     userIcon?: string;
 }
 
 export const UserMenu = memo((props: UserMenuProps) => {
-    const { className, username, userIcon = Avatar } = props;
+    const { className, userIcon = Avatar } = props;
 
     const auth = useSelector(getUserAuthData);
 
@@ -35,7 +34,6 @@ export const UserMenu = memo((props: UserMenuProps) => {
     const dispatch = useAppDispatch();
 
     const handleLogout = useCallback(() => {
-        console.log('13');
         dispatch(userActions.logout());
     }, [dispatch]);
 
@@ -59,17 +57,17 @@ export const UserMenu = memo((props: UserMenuProps) => {
     ], [auth?.id, handleLogout, t]);
 
     return (
-        <div className={classNames(cls.dropDown, {}, [className])}>
-            <DropDown
-                options={options}
-                theme={ThemeDropDown.FILLED}
-                trigger={(
-                    <HStack gap="8">
-                        <Image src={userIcon} width={30} height={30} />
-                        <Text text={auth?.username} />
-                    </HStack>
-                )}
-            />
-        </div>
+        <DropDown
+            options={options}
+            theme={ThemeDropDown.FILLED}
+            className={classNames(cls.dropDown, {}, [className])}
+            trigger={(
+                <HStack gap="8">
+                    <Image src={userIcon} width={30} height={30} />
+                    <Text text={auth?.username} />
+                    <Icon Svg={DownArrow} height={20} width={20} />
+                </HStack>
+            )}
+        />
     );
 });

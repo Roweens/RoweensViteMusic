@@ -18,8 +18,8 @@ interface TrackItemProps {
    track?: Track;
    isLoading?: boolean;
    onFavouriteChange?: () => void
-       onTrackPlay?: (track: Track) => void;
-     onTrackPause?: (track: Track) => void;
+       onTrackPlay?: (track?: Track) => void;
+     onTrackPause?: (track?: Track) => void;
 }
 
 export const TrackItem = memo((props:TrackItemProps) => {

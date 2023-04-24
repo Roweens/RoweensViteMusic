@@ -5,7 +5,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { Text } from 'shared/ui/Text/Text';
 import { Image } from 'shared/ui/Image/Image';
 import { useSelector } from 'react-redux';
-import { getArtistData } from 'entities/Artist/model/selectors/getArtistData';
+import { getArtistData } from '../../model/selectors/getArtistData';
 import { ArtistDescriptionModal } from '../ArtistDescriptionModal/ArtistDescriptionModal';
 import cls from './ArtistDescriptionCard.module.scss';
 
@@ -21,6 +21,7 @@ export const ArtistDescriptionCard = memo((props:ArtistDescriptionCardProps) => 
         className, isOpen, onClose, onOpen,
     } = props;
     const { t } = useTranslation();
+
     const artist = useSelector(getArtistData);
 
     return (

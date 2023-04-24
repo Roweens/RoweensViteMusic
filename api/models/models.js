@@ -31,6 +31,14 @@ const FavouriteTrack = sequelize.define('favourite_track', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
+const FavouriteArtist = sequelize.define('favourite_artist', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+});
+
+const FavouriteAlbum = sequelize.define('favourite_album', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+});
+
 const Track = sequelize.define('track', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, allowNull: false },
@@ -80,8 +88,20 @@ Favourite.belongsTo(User);
 Favourite.hasMany(FavouriteTrack)
 FavouriteTrack.belongsTo(Favourite)
 
+Favourite.hasMany(FavouriteArtist)
+FavouriteArtist.belongsTo(Favourite)
+
+Favourite.hasMany(FavouriteAlbum)
+FavouriteAlbum.belongsTo(Favourite)
+
 Track.hasMany(FavouriteTrack, {as: 'favourite_track'})
 FavouriteTrack.belongsTo(Track)
+
+Artist.hasMany(FavouriteArtist, {as: 'favourite_artist'})
+FavouriteArtist.belongsTo(Artist)
+
+Album.hasMany(FavouriteAlbum, {as: 'favourite_album'})
+FavouriteAlbum.belongsTo(Album)
 
 Artist.hasMany(Album)
 Album.belongsTo(Artist)
@@ -107,6 +127,8 @@ module.exports = {
   Track,
   Favourite,
   FavouriteTrack,
+  FavouriteArtist,
+  FavouriteAlbum,
   Profile,
   User,
   Genre

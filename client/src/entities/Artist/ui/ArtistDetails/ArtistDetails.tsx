@@ -1,14 +1,16 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { Image } from 'shared/ui/Image/Image';
-import { getArtistData, getArtistIsLoading } from 'entities/Artist/model/selectors/getArtistData';
 import { useSelector } from 'react-redux';
 import { Text } from 'shared/ui/Text/Text';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { VStack } from 'shared/ui/Stack';
+import { getUserAuthData } from 'entities/User';
+import { SubscribeToArtistButton } from 'features/subscribeToArtist';
+import { getArtistData, getArtistIsLoading } from '../../model/selectors/getArtistData';
 import { fetchArtistById } from '../../model/services/fetchArtistById/fetchArtistById';
 import { artistReducer } from '../../model/slice/artistSlice';
 import cls from './ArtistDetails.module.scss';
@@ -28,12 +30,17 @@ export const ArtistDetails = memo((props:ArtistDetailsProps) => {
     const dispatch = useAppDispatch();
     const artist = useSelector(getArtistData);
     const isLoading = useSelector(getArtistIsLoading);
+    const authData = useSelector(getUserAuthData);
 
     useEffect(() => {
         if (id) {
-            dispatch(fetchArtistById(id));
+            dispatch(fetchArtistById({ artistId: id, userId: authData?.id }));
         }
-    }, [dispatch, id]);
+    }, [authData?.id, dispatch, id]);
+
+    const onSubscribeHandle = useCallback(() => {
+        dispatch(fetchArtistById({ artistId: id, userId: authData?.id }));
+    }, [authData?.id, dispatch, id]);
 
     return (
         <DynamicReducerLoader reducers={reducers}>
@@ -51,11 +58,11 @@ export const ArtistDetails = memo((props:ArtistDetailsProps) => {
 
                     {artist?.img && <Image className={cls.img} src={`${__STATIC_URL__}${artist?.img}`} squared width="100%" height="400px" cover />}
 
-                    <div className={cls.info}>
+                    <VStack className={cls.info} gap="32">
                         <h5 className={cls.name}>{artist?.name}</h5>
                         <Text text={`${artist?.listens} прослушиваний за всё время`} />
-                        <Button theme={ButtonTheme.FILLED}> Подписаться </Button>
-                    </div>
+                        <SubscribeToArtistButton artist={artist} onSubscribe={onSubscribeHandle} />
+                    </VStack>
 
                 </div>
             )}

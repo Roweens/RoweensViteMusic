@@ -1,0 +1,14 @@
+.collectionPageFavouriteCard {
+    padding: 20px 20px 30px;
+}
+
+.favCard{
+    width: 170px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(238 174 202);
+    background: radial-gradient(circle, rgb(238 174 202 / 100%) 0%, rgb(148 187 233 / 100%) 100%);
+    margin-bottom: 18px;
+}

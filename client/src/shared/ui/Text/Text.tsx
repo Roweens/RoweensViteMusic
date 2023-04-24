@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import { CSSProperties, memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 import { Mods } from 'shared/types/Mods';
 import cls from './Text.module.scss';
 
@@ -40,7 +39,6 @@ interface TextProps {
   align?: TextAlign,
   size?: TextSize,
   classname?: string,
-  weight?: number;
   bold?: boolean
 }
 
@@ -52,7 +50,6 @@ export const Text = memo((props: TextProps) => {
         titleTheme = TitleTheme.PRIMARY,
         align = TextAlign.LEFT,
         size = TextSize.M,
-        weight = 400,
         bold = false,
         classname,
     } = props;
@@ -62,10 +59,6 @@ export const Text = memo((props: TextProps) => {
         [cls[size]]: true,
         [cls.bold]: bold,
     };
-
-    // const styles: CSSProperties = {
-    //     fontWeight: weight,
-    // };
 
     return (
         <div className={classNames(cls.TextWrapper, mods, classname)}>

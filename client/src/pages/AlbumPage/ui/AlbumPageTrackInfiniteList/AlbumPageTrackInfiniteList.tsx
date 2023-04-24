@@ -3,7 +3,6 @@ import { Track, TrackList } from 'entities/Track';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import classNames from 'classnames';
-import { useAudio } from 'shared/lib/hooks/useAudio/useAudio';
 import { getPlayerTrack, playerActions } from 'widgets/Player';
 import { getAlbumPageTracksIsLoading } from '../../model/selectors/getAlbumPageTracksIsLoading/getAlbumPageTracksIsLoading';
 import { getAlbumTracks } from '../../model/slice/AlbumPageTracksSlice';
@@ -24,17 +23,17 @@ export const AlbumPageTrackInfiniteList = memo((props:AlbumPageTrackInfiniteList
     const currentTrack = useSelector(getPlayerTrack);
 
     const onFavouriteChangeHandle = useCallback(() => {
-        dispatch(fetchTracksByAlbumId({ albumId: id }));
+        dispatch(fetchTracksByAlbumId({ albumId: id, replace: true }));
     }, [dispatch, id]);
 
-    const onPlayHandle = useCallback((track: Track) => {
+    const onPlayHandle = useCallback((track?: Track) => {
         if (track) {
             dispatch(playerActions.setTrack(track));
             dispatch(playerActions.setPaused(false));
         }
     }, [dispatch]);
 
-    const onPauseHandle = useCallback((track: Track) => {
+    const onPauseHandle = useCallback((track?: Track) => {
         if (track) {
             dispatch(playerActions.setPaused(true));
             dispatch(playerActions.setTrack(track));

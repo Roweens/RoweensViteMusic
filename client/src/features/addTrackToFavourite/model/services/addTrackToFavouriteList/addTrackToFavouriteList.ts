@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { getUserAuthData } from 'entities/User';
-import { FavouriteTrack } from '../../types/favourite';
+import { FavouriteTrack } from '../../types/favouriteTrack';
 
 interface addToFavouriteProps {
     trackId?: string;
@@ -34,5 +34,5 @@ export const addToFavouriteList = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    },
+    }
 );

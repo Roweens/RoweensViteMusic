@@ -1,0 +1,19 @@
+.addToFavouriteButton {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.favIcon, .unfavIcon{
+    transition: transform 0.2s ease;
+}
+
+.unfavIcon{
+    fill: var(--app-color);
+    stroke:  var(--app-color);
+}
+
+.favIcon:hover, .unfavIcon:hover {
+    transform: scale(1.07);
+}
+
