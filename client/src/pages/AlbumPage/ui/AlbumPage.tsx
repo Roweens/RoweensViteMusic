@@ -63,6 +63,7 @@ export const AlbumPage = memo((props:AlbumPageProps) => {
         <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
             <Page onScrollIntersection={onScrollEnd} className={classNames(cls.albumPage, {}, [className])}>
                 <AlbumDetails id={id} />
+                <AddAlbumToFavouriteButton albumId={id} />
                 <AlbumPageTrackControls id={id} />
                 <AlbumPageTrackInfiniteList id={id} />
             </Page>

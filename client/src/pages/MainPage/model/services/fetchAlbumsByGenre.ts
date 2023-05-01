@@ -19,5 +19,5 @@ export const fetchAlbumsByGenre = createAsyncThunk<Album[], string, ThunkConfig<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

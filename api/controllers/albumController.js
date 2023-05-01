@@ -94,6 +94,30 @@ class AlbumController {
 
     return res.json(albums);
   }
+
+  async getByUserId(req, res, next) {
+     const { id } = req.params;
+
+    if (!id) {
+      return next(ApiError.badRequest('No id'));
+    }
+
+    const favouriteList = await Favourite.findOne({where: {userId: id}})
+    console.log(favouriteList)
+    const favouriteAlbums = await FavouriteAlbum.findAll({where: {favouriteId: favouriteList.id}});
+
+    const albums = [];
+
+    for (const favAlbum of favouriteAlbums) {
+      albums.push(await Album.findOne({where: {id: favAlbum.albumId}, include: [Artist]}))
+    }
+      
+    if (!albums) {
+      return next(ApiError.badRequest('Albums not found'));
+    }
+
+    return await res.json(albums);
+  }
 }
 
 module.exports = new AlbumController();

@@ -12,13 +12,14 @@ interface AlbumListProps {
    isLoading?: boolean
    error?: string;
    albums: Album[]
+   compact?: boolean
 }
 
 const skeletons = () => new Array(5).fill(0).map(() => <AlbumCardSkeleton />);
 
 export const AlbumList = memo((props:AlbumListProps) => {
     const {
-        className, albums, isLoading, error,
+        className, albums, isLoading, error, compact = false,
     } = props;
     const { t } = useTranslation();
 
@@ -38,9 +39,27 @@ export const AlbumList = memo((props:AlbumListProps) => {
         );
     }
 
+    if (compact) {
+        return (
+            <div className={classNames(cls.albumListCompact, {}, [className])}>
+                {isLoading ? (skeletons()) : (albums?.map((album) => (
+                    <AlbumCard
+                        album={album}
+                        compact={compact}
+                    />
+                )))}
+            </div>
+        );
+    }
+
     return (
         <div className={classNames(cls.albumList, {}, [className])}>
-            {isLoading ? (skeletons()) : (albums?.map((album) => <AlbumCard album={album} />))}
+            {isLoading ? (skeletons()) : (albums?.map((album) => (
+                <AlbumCard
+                    album={album}
+                    compact={compact}
+                />
+            )))}
         </div>
     );
 });

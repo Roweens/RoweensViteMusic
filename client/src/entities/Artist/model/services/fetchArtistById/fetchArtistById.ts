@@ -1,19 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getUserAuthData } from 'entities/User';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Artist } from '../../types/artist';
 
 interface fetchArtistByIdProps {
-    userId?: string;
     artistId?: string;
 }
 
 export const fetchArtistById = createAsyncThunk<Artist, fetchArtistByIdProps, ThunkConfig<string>>(
     'artist/fetchArtistById',
-    async ({ artistId, userId }, { extra, rejectWithValue }) => {
+    async ({ artistId }, { extra, rejectWithValue, getState }) => {
         try {
+            const authData = getUserAuthData(getState());
             const response = await extra.api.get<Artist>(`/artist/${artistId}`, {
                 params: {
-                    userId,
+                    userId: authData?.id,
                 },
             });
 
@@ -23,5 +24,5 @@ export const fetchArtistById = createAsyncThunk<Artist, fetchArtistByIdProps, Th
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

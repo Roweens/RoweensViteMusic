@@ -19,7 +19,9 @@ export const fetchTracksByAlbumId = createAsyncThunk<
     ThunkConfig<string>
 >(
     'album/fetchTracksByAlbumId',
-    async ({ albumId }, { rejectWithValue, extra, getState, dispatch }) => {
+    async ({ albumId }, {
+        rejectWithValue, extra, getState, dispatch,
+    }) => {
         if (!albumId) {
             return rejectWithValue('no id');
         }
@@ -46,7 +48,7 @@ export const fetchTracksByAlbumId = createAsyncThunk<
                         _limit,
                         page,
                     },
-                }
+                },
             );
 
             if (!response.data) throw new Error();
@@ -55,5 +57,5 @@ export const fetchTracksByAlbumId = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

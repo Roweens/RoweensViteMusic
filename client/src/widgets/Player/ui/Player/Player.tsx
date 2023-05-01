@@ -71,6 +71,7 @@ export const Player = memo((props:PlayerProps) => {
             setAudio();
             play();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [track, isPaused]);
 
     const onChangeVolume = useCallback((value: number) => {

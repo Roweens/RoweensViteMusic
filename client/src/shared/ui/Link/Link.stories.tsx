@@ -1,9 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Themes } from 'app/providers/ThemeProvider';
 import { ReactComponent as TestIcon } from 'shared/assets/testIcon.svg';
+import { Themes } from 'shared/const/theme';
 import { Link } from './Link';
+import { Text } from '../Text/Text';
+import { Icon } from '../Icon/Icon';
 
 export default {
     title: 'shared/Link',
@@ -32,6 +34,10 @@ Dark.decorators = [ThemeDecorator(Themes.DARK)];
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-    children: 'Icon link',
-    Icon: TestIcon,
+    children:
+    <>
+        <Text text="Icon link" />
+        <Icon Svg={TestIcon} />
+    </>,
+
 };

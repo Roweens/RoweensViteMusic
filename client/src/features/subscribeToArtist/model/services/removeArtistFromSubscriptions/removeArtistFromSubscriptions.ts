@@ -34,5 +34,5 @@ export const removeArtistFromSubscriptions = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

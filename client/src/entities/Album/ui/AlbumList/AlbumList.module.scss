@@ -4,3 +4,11 @@
     max-width: 100%;
     overflow: hidden;
 }
+
+.albumListCompact{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    overflow: hidden;
+}

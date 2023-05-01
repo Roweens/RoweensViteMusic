@@ -4,7 +4,7 @@ import {
 } from 'react';
 import { Portal } from 'shared/lib/components/Portal/Portal';
 import { useMount } from 'shared/lib/hooks/useMount/useMount';
-import { useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from 'shared/lib/hooks/useTheme/useTheme';
 import cls from './Modal.module.scss';
 
 interface ModalProps {

@@ -2,9 +2,9 @@ import {
     memo, Suspense, useCallback,
 } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { CustomRouteProps, RouteConfig } from 'shared/config/routeConfig/routeConfig';
 import { PageLoader } from 'widgets/PageLoader';
 import { AuthRoute } from './AuthRoute';
+import { CustomRouteProps, RouteConfig } from '../config/routeConfig';
 
 const AppRouter = () => {
     const privateRoutes = useCallback((route: CustomRouteProps) => {

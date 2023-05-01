@@ -20,5 +20,5 @@ export const fetchAlbumById = createAsyncThunk<Album, string, ThunkConfig<string
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

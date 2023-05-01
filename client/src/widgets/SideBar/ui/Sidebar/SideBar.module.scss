@@ -3,8 +3,13 @@
     width: var(--sidebar-width);
     color: var(--secondary-color);
     padding: 50px 0 30px 30px;
+    transition: 0.25s ease width;
 }
 
 .link{
     margin-bottom: 30px;
+}
+
+.collapsed {
+    width: var(--sidebar-collapsed-width);
 }

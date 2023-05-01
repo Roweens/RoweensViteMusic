@@ -34,5 +34,5 @@ export const addAlbumToFavouriteList = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

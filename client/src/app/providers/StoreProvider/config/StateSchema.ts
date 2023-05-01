@@ -13,6 +13,7 @@ import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/authByEmail';
 import { SignUpSchema } from 'features/signUp';
+import { UserCollectionListSchema } from 'features/userCollectionList';
 import { AlbumPageTracksSchema } from 'pages/AlbumPage';
 import { ArtistPageSchema } from 'pages/ArtistPage';
 import { AlbumsByGenreSchema } from 'pages/MainPage';
@@ -24,6 +25,7 @@ export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     player: PlayerSchema;
+    userCollectionList: UserCollectionListSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     album?: AlbumSchema;
     albumPageTracks?: AlbumPageTracksSchema;

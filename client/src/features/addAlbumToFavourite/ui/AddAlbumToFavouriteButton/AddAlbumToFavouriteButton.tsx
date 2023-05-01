@@ -3,47 +3,59 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Album } from 'entities/Album';
 import { Text } from 'shared/ui/Text/Text';
-import cls from './AddAlbumToFavouriteButton.module.scss';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { getUserAuthData } from 'entities/User';
+import { useSelector } from 'react-redux';
 import { addAlbumToFavouriteList } from '../../model/services/addAlbumToFavouriteList/addAlbumToFavouriteList';
 import { removeAlbumFromFavouriteList } from '../../model/services/removeAlbumFromFavouriteList/removeAlbumFromFavouriteList';
+import { useLazyFetchAlbum } from '../../api/addAlbumToFavouriteApi';
 
 interface addAlbumToFavouriteButtonProps {
    className?: string;
-   album?: Album
+   albumId?: string
    onFavouriteChange?: () => void
 }
 
 export const AddAlbumToFavouriteButton = memo((props:addAlbumToFavouriteButtonProps) => {
-    const { className, album, onFavouriteChange } = props;
+    const { className, albumId, onFavouriteChange } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const authData = useSelector(getUserAuthData);
+
+    const [trigger, { isLoading, error, data: album }] = useLazyFetchAlbum();
+
+    useInitialEffect(() => {
+        trigger({ albumId, userId: authData?.id });
+    });
 
     const onAddAlbumToFavouriteHandle = useCallback(() => {
-        dispatch(addAlbumToFavouriteList({ albumId: String(album?.id) }))
+        dispatch(addAlbumToFavouriteList({ albumId }))
             .then(() => {
+                trigger({ albumId, userId: authData?.id });
                 onFavouriteChange?.();
             });
-    }, [album?.id, dispatch, onFavouriteChange]);
+    }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
 
     const onRemoveAlbumFromFavouriteHandle = useCallback(() => {
-        dispatch(removeAlbumFromFavouriteList({ albumId: String(album?.id) }))
+        dispatch(removeAlbumFromFavouriteList({ albumId }))
             .then(() => {
+                trigger({ albumId, userId: authData?.id });
                 onFavouriteChange?.();
             });
-    }, [album?.id, dispatch, onFavouriteChange]);
+    }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
 
-    if (!album) {
-        return null;
+    if (isLoading || error || !album) {
+        return <Skeleton width={100} height={30} />;
     }
 
     return (
         <>
-            {album.favourite_album.length ? (
+            {album?.favourite_album.length ? (
                 <Button
                     className={classNames('', {}, [className])}
-                    theme={ButtonTheme.FILLED}
+                    theme={ButtonTheme.OUTLINED}
                     onClick={onRemoveAlbumFromFavouriteHandle}
                 >
                     <Text text={t('В избранном')} />
@@ -57,7 +69,6 @@ export const AddAlbumToFavouriteButton = memo((props:addAlbumToFavouriteButtonPr
                     <Text text={t('Добавить в избранное')} />
                 </Button>
             )}
-
         </>
     );
 });

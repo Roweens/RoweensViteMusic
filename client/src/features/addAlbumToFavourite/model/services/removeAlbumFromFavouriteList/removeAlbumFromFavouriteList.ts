@@ -34,5 +34,5 @@ export const removeAlbumFromFavouriteList = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

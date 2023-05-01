@@ -1,14 +1,12 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Link } from 'shared/ui/Link/Link';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { RoutePath } from 'shared/const/router';
 import { SidebarItemType } from '../../model/types/sidebarItem';
-import cls from './SideBarItemsList.module.scss';
 import { ReactComponent as HomeIcon } from '../../assets/home.svg';
-import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { ReactComponent as AlbumIcon } from '../../assets/album.svg';
 import { ReactComponent as PlusIcon } from '../../assets/plus.svg';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';

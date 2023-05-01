@@ -34,5 +34,5 @@ export const addToFavouriteList = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

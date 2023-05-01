@@ -1,15 +1,15 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AddTrackToFavouriteButton } from './AddAlbumToFavouriteButton';
+import { AddAlbumToFavouriteButton } from './AddAlbumToFavouriteButton';
 
 export default {
-    title: 'features/addTrackToFavouriteButton',
-    component: AddTrackToFavouriteButton,
+    title: 'features/AddAlbumToFavouriteButton',
+    component: AddAlbumToFavouriteButton,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof AddTrackToFavouriteButton>;
+} as ComponentMeta<typeof AddAlbumToFavouriteButton>;
 
-const Template: ComponentStory<typeof AddTrackToFavouriteButton> = (args) => <AddTrackToFavouriteButton {...args} />;
+const Template: ComponentStory<typeof AddAlbumToFavouriteButton> = (args) => <AddAlbumToFavouriteButton {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

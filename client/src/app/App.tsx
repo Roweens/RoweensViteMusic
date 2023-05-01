@@ -1,13 +1,9 @@
 import classNames from 'classnames';
-import { getUserIsMounted } from 'entities/User/model/selectors/getUserIsMounted/getUserIsMounted';
-import { verifyToken } from 'entities/User/model/services/verifyToken/verifyToken';
 import { Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Loader } from 'shared/ui/Loader/Loader';
-import { Navbar } from 'widgets/Navbar';
-import { Player } from 'widgets/Player';
-import { SideBar } from 'widgets/SideBar';
+import { getUserIsMounted, verifyToken } from 'entities/User';
 import { AppRouter } from '../app/providers/router';
 
 export function App() {

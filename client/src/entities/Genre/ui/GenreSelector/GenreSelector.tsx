@@ -1,5 +1,4 @@
 import { memo, useMemo } from 'react';
-import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -10,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { fetchGenres } from '../../model/services/fetchGenres';
 import { Genre } from '../../model/types/genre';
 import { genreSliceReducer, getGenres } from '../../model/slice/genreSlice';
-import cls from './GenreSelector.module.scss';
 
 interface GenreSelectorProps {
    className?: string;

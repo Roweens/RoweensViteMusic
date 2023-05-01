@@ -1,7 +1,5 @@
 import { memo, useCallback, useState } from 'react';
-import classNames from 'classnames';
 import { ArtistDescriptionCard } from 'entities/Artist';
-import cls from './ArtistPageBio.module.scss';
 
 interface ArtistPageBioProps {
    className?: string;

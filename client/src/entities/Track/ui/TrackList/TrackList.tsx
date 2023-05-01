@@ -12,11 +12,12 @@ interface TrackListProps {
     onFavouriteChange?: () => void
     onTrackPlay?: (track?: Track) => void;
      onTrackPause?: (track?: Track) => void;
+     compact?: boolean;
 }
 
 export const TrackList = memo((props:TrackListProps) => {
     const {
-        className, tracks, isLoading, error, onFavouriteChange, onTrackPause, onTrackPlay,
+        className, tracks, isLoading, error, onFavouriteChange, onTrackPause, onTrackPlay, compact = false,
     } = props;
 
     return (
@@ -29,6 +30,7 @@ export const TrackList = memo((props:TrackListProps) => {
                     onFavouriteChange={onFavouriteChange}
                     onTrackPause={onTrackPause}
                     onTrackPlay={onTrackPlay}
+                    compact={compact}
                 />
             ))}
             {isLoading && (

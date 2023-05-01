@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Themes } from 'app/providers/ThemeProvider';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { Themes } from 'shared/const/theme';
 import { LoginCard } from './LoginCard';
 
 export default {
-    title: 'features/LoginCard',
+    title: 'features/authByEmail/LoginCard',
     component: LoginCard,
 
     argTypes: {

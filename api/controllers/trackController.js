@@ -61,10 +61,34 @@ class TrackController {
 
       
     if (!tracks) {
-      return next(ApiError.badRequest('Albums not found'));
+      return next(ApiError.badRequest('Tracks not found'));
     }
 
     return res.json(tracks);
+  }
+
+    async getByUserId(req, res, next) {
+     const { id } = req.params;
+
+    if (!id) {
+      return next(ApiError.badRequest('No id'));
+    }
+
+    const favouriteList = await Favourite.findOne({where: {userId: id}})
+
+    const favouriteTracks = await FavouriteTrack.findAll({where: {favouriteId: favouriteList.id}});
+
+    const tracks = [];
+
+    for (const favTrack of favouriteTracks) {
+      tracks.push(await AlbumTrack.findOne({where: {trackId: favTrack.trackId}, include: [Artist, Album, Track]}))
+    }
+      
+    if (!tracks) {
+      return next(ApiError.badRequest('Tracks not found'));
+    }
+
+    return await res.json(tracks);
   }
 }
 

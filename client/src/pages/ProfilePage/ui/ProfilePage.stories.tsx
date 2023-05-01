@@ -1,15 +1,15 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Themes } from 'app/providers/ThemeProvider';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Profile } from 'entities/Profile';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Language } from 'entities/Language';
+import { Themes } from 'shared/const/theme';
 import ProfilePage from './ProfilePage';
 
 export default {
-    title: 'pages/ProfilePage',
+    title: 'pages/ProfilePage/ProfilePage',
     component: ProfilePage,
 
     argTypes: {

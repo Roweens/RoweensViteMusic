@@ -10,7 +10,7 @@ const albumTracksAdapter = createEntityAdapter<Track>({
 });
 
 export const getAlbumTracks = albumTracksAdapter.getSelectors<StateSchema>(
-    (state) => state.albumPageTracks || albumTracksAdapter.getInitialState()
+    (state) => state.albumPageTracks || albumTracksAdapter.getInitialState(),
 );
 
 export const albumPageTracksSlice = createSlice({

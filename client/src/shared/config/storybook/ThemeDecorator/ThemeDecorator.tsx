@@ -1,5 +1,7 @@
 import { Story } from '@storybook/react';
-import { ThemeProvider, Themes } from 'app/providers/ThemeProvider';
+// eslint-disable-next-line roweens-plugin/upper-layer-imports
+import { ThemeProvider } from 'app/providers/ThemeProvider';
+import { Themes } from 'shared/const/theme';
 
 export const ThemeDecorator = (theme: Themes) => (StoryComponent: Story) => (
     <ThemeProvider initialTheme={theme}>

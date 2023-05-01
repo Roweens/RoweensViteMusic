@@ -35,5 +35,5 @@ export const loginByEmail = createAsyncThunk<User, LoginByUsernameProps, ThunkCo
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

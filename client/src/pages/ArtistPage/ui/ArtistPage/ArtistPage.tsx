@@ -8,6 +8,7 @@ import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/Dynami
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { playerActions } from 'widgets/Player';
+import { SubscribeToArtistButton } from 'features/subscribeToArtist';
 import { artistPageReducer } from '../../model/slice';
 import cls from './ArtistPage.module.scss';
 import { getArtistTracks } from '../../model/slice/artistPageTracksSlice';
@@ -64,6 +65,10 @@ export const ArtistPage = memo((props:ArtistPageProps) => {
         <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
             <Page className={classNames(cls.artistPage, {}, [className])}>
                 <ArtistDetails id={id} />
+                <SubscribeToArtistButton
+                    artistId={id}
+                    className={cls.subButton}
+                />
                 <div className={cls.mainBlock}>
                     <TrackList
                         isLoading={isLoading}

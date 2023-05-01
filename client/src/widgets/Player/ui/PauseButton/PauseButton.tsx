@@ -1,9 +1,7 @@
 import { memo, useCallback } from 'react';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Track } from 'entities/Track';
 import { ReactComponent as PauseIcon } from '../../assets/pause.svg';
-import { playerActions } from '../../model/slice/playerSlice';
 
 interface PauseButtonProps {
    className?: string;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Themes } from 'app/providers/ThemeProvider';
-import { ReactComponent as IconTest } from 'widgets/SideBar/assets/heart.svg';
+import { Themes } from 'shared/const/theme';
+import { ReactComponent as IconTest } from './assets/down.svg';
 import { DropDown, DropdownItem, ThemeDropDown } from './DropDown';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
@@ -26,10 +26,11 @@ const valuesArray: DropdownItem[] = [
     },
     {
         id: 2,
-        content: <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Icon Svg={IconTest} width={25} height={25} />
-            Button item
-                 </div>,
+        content:
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <Icon Svg={IconTest} width={25} height={25} />
+        Button item
+    </div>,
         disabled: true,
     },
     {

@@ -12,6 +12,31 @@
     }
 }
 
+.trackItemCompact {
+    margin-top: 20px;
+    padding: 7px 12px 7px 10px;
+    border-radius: 10px;
+
+    &:hover{
+        background-color: var(--bg-color);
+    }
+
+    .name{
+        h5{
+            max-width: 160px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        p{
+            filter: brightness(0.8);
+        }
+    }
+}
+
+
+
 .info{
     display: flex;
     align-items: center;
@@ -40,6 +65,13 @@
 }
 
 .name{
+    h5{
+        max-width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
     p{
         filter: brightness(0.8);
     }

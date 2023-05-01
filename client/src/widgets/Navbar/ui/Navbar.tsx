@@ -1,8 +1,8 @@
-import { FC, memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import classNames from 'classnames';
-import { UserMenu } from 'widgets/UserMenu';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { UserMenu } from 'features/userMenu';
 import cls from './Navbar.module.scss';
 import { ReactComponent as BackArrow } from '../assets/backArrow.svg';
 import { ReactComponent as NextArrow } from '../assets/nextArrow.svg';

@@ -1,15 +1,15 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SideBarItemsList } from './SidebarItemsList';
+import { SidebarItemsList } from './SidebarItemsList';
 
 export default {
-   title: 'shared/SideBarItemsList',
-   component: SideBarItemsList,
-   argTypes: {
-      backgroundColor: { control: 'color' },
-   },
-} as ComponentMeta<typeof SideBarItemsList>;
+    title: 'shared/SidebarItemsList',
+    component: SidebarItemsList,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof SidebarItemsList>;
 
-const Template: ComponentStory<typeof SideBarItemsList> = (args) => <SideBarItemsList { ...args } />;
+const Template: ComponentStory<typeof SidebarItemsList> = (args) => <SidebarItemsList {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

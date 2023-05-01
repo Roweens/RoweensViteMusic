@@ -5,6 +5,16 @@
     max-height: 288px;
 }
 
+.albumItemCompact{
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: var(--bg-color);
+    }
+}
+
 .info{
     overflow-y: hidden;
 

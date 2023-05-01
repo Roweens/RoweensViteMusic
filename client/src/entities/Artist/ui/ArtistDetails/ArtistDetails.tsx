@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { VStack } from 'shared/ui/Stack';
-import { getUserAuthData } from 'entities/User';
-import { SubscribeToArtistButton } from 'features/subscribeToArtist';
 import { getArtistData, getArtistIsLoading } from '../../model/selectors/getArtistData';
 import { fetchArtistById } from '../../model/services/fetchArtistById/fetchArtistById';
 import { artistReducer } from '../../model/slice/artistSlice';
@@ -30,17 +28,12 @@ export const ArtistDetails = memo((props:ArtistDetailsProps) => {
     const dispatch = useAppDispatch();
     const artist = useSelector(getArtistData);
     const isLoading = useSelector(getArtistIsLoading);
-    const authData = useSelector(getUserAuthData);
 
     useEffect(() => {
         if (id) {
-            dispatch(fetchArtistById({ artistId: id, userId: authData?.id }));
+            dispatch(fetchArtistById({ artistId: id }));
         }
-    }, [authData?.id, dispatch, id]);
-
-    const onSubscribeHandle = useCallback(() => {
-        dispatch(fetchArtistById({ artistId: id, userId: authData?.id }));
-    }, [authData?.id, dispatch, id]);
+    }, [dispatch, id]);
 
     return (
         <DynamicReducerLoader reducers={reducers}>
@@ -55,15 +48,11 @@ export const ArtistDetails = memo((props:ArtistDetailsProps) => {
                 </div>
             ) : (
                 <div className={classNames(cls.artistDetails, {}, [className])}>
-
                     {artist?.img && <Image className={cls.img} src={`${__STATIC_URL__}${artist?.img}`} squared width="100%" height="400px" cover />}
-
                     <VStack className={cls.info} gap="32">
                         <h5 className={cls.name}>{artist?.name}</h5>
                         <Text text={`${artist?.listens} прослушиваний за всё время`} />
-                        <SubscribeToArtistButton artist={artist} onSubscribe={onSubscribeHandle} />
                     </VStack>
-
                 </div>
             )}
         </DynamicReducerLoader>

@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AlbumList } from 'entities/Album';
 import { useSelector } from 'react-redux';
 import { Text } from 'shared/ui/Text/Text';
-import { getArtistPageAlbumsIsLoading } from 'pages/ArtistPage/model/selectors/getArtistPageAlbums';
+import { getArtistPageAlbumsIsLoading } from '../../model/selectors/getArtistPageAlbums';
 import { fetchAlbumsByArtistId } from '../../model/services/fetchAlbumsByArtistId/fetchAlbumsByArtistId';
 import cls from './ArtistPageAlbums.module.scss';
 import { getArtistAlbums } from '../../model/slice/artistPageAlbumsSlice';

@@ -4,9 +4,10 @@ import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { playerReducer } from 'widgets/Player';
+import { rtkApi } from 'shared/api/rtkApi';
+import { userCollectionListReducer } from 'features/userCollectionList';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './ReducerManager';
-import { rtkApi } from 'shared/api/rtkApi';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -18,6 +19,8 @@ export function createReduxStore(
         login: loginReducer,
         user: userReducer,
         player: playerReducer,
+        userCollectionList: userCollectionListReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
     const extraArg: ThunkExtraArg = {

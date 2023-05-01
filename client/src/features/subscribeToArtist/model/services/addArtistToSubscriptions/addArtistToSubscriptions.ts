@@ -34,5 +34,5 @@ export const addArtistToSubscriptions = createAsyncThunk<
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

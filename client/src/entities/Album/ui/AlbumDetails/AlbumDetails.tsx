@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -8,8 +8,7 @@ import { Image } from 'shared/ui/Image/Image';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Link } from 'shared/ui/Link/Link';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { AddAlbumToFavouriteButton } from 'features/addAlbumToFavourite';
+import { RoutePath } from 'shared/const/router';
 import { getAlbumData, getAlbumIsLoading } from '../../model/selectors/getAlbumData';
 import { albumReducer } from '../../model/slice/albumSlice';
 import cls from './AlbumDetails.module.scss';
@@ -33,10 +32,6 @@ export const AlbumDetails = memo((props:AlbumDetailsProps) => {
     const isLoading = useSelector(getAlbumIsLoading);
 
     useEffect(() => {
-        dispatch(fetchAlbumById(id));
-    }, [dispatch, id]);
-
-    const onAddToFavouriteHandle = useCallback(() => {
         dispatch(fetchAlbumById(id));
     }, [dispatch, id]);
 
@@ -86,7 +81,6 @@ export const AlbumDetails = memo((props:AlbumDetailsProps) => {
                                 </Link>
                                 <Text text={`${album?.album_tracks.length} треков`} />
                                 <Text text={album?.date} />
-                                <AddAlbumToFavouriteButton onFavouriteChange={onAddToFavouriteHandle} album={album} />
                             </div>
                         </div>
                     </div>

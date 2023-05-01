@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { getPlayerTrack, playerActions } from 'widgets/Player';
 import { getAlbumPageTracksIsLoading } from '../../model/selectors/getAlbumPageTracksIsLoading/getAlbumPageTracksIsLoading';
 import { getAlbumTracks } from '../../model/slice/AlbumPageTracksSlice';
-import cls from './AlbumPageTrackInfiniteList.module.scss';
 import { fetchTracksByAlbumId } from '../../model/services/fetchTracksByAlbumId';
 
 interface AlbumPageTrackInfiniteListProps {

@@ -2,19 +2,17 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Text } from 'shared/ui/Text/Text';
-import { GenreSelector } from 'entities/Genre';
+import { GenreSelector, getGenres } from 'entities/Genre';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { AlbumList } from 'entities/Album';
 import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { getGenres } from 'entities/Genre/model/slice/genreSlice';
 import { getAlbumsByGenreGenreId } from '../../model/selectors/getAlbumsByGenreData/getAlbumsByGenreGenreId';
 import { mainPageAlbumsByGenreActions, mainPageAlbumsByGenreReducer } from '../../model/slices/mainPageAlbumsByGenreSlice';
 import { getAlbumsByGenreIsLoading } from '../../model/selectors/getAlbumsByGenreData/getAlbumsByGenreIsLoading';
 import { getAlbumsByGenreData } from '../../model/selectors/getAlbumsByGenreData/getAlbumsByGenreData';
-
 import cls from './MainPageAlbumsByGenre.module.scss';
 import { fetchAlbumsByGenre } from '../../model/services/fetchAlbumsByGenre';
 

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';

@@ -9,7 +9,7 @@ const artistTracksAdapter = createEntityAdapter<Track>({
 });
 
 export const getArtistTracks = artistTracksAdapter.getSelectors<StateSchema>(
-    (state) => state.artistPage?.tracks || artistTracksAdapter.getInitialState()
+    (state) => state.artistPage?.tracks || artistTracksAdapter.getInitialState(),
 );
 
 export const artistPageTracksSlice = createSlice({
@@ -27,7 +27,7 @@ export const artistPageTracksSlice = createSlice({
             (state, action: PayloadAction<Track[]>) => {
                 state.isLoading = false;
                 artistTracksAdapter.setAll(state, action.payload);
-            }
+            },
         );
         builder.addCase(fetchTracksByArtistId.pending, (state) => {
             state.error = undefined;

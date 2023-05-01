@@ -7,8 +7,8 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import {
     getPlayerPaused, getPlayerTrack, PauseButton, PlayButton,
 } from 'widgets/Player';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useSelector } from 'react-redux';
+import { RoutePath } from 'shared/const/router';
 import { AddTrackToFavouriteButton } from 'features/addTrackToFavourite';
 import cls from './TrackItem.module.scss';
 import { Track } from '../../model/types/track';
@@ -18,13 +18,14 @@ interface TrackItemProps {
    track?: Track;
    isLoading?: boolean;
    onFavouriteChange?: () => void
-       onTrackPlay?: (track?: Track) => void;
-     onTrackPause?: (track?: Track) => void;
+   compact?: boolean;
+onTrackPlay?: (track?: Track) => void;
+onTrackPause?: (track?: Track) => void;
 }
 
 export const TrackItem = memo((props:TrackItemProps) => {
     const {
-        className, track, isLoading, onFavouriteChange, onTrackPause, onTrackPlay,
+        className, track, isLoading, onFavouriteChange, onTrackPause, onTrackPlay, compact = false,
     } = props;
     const currentTrack = useSelector(getPlayerTrack);
     const paused = useSelector(getPlayerPaused);
@@ -41,6 +42,29 @@ export const TrackItem = memo((props:TrackItemProps) => {
                 <Skeleton width={200} height={50} className={cls.album} border="5px" />
                 <Skeleton width={200} height={50} className={cls.listens} border="5px" />
                 <Skeleton width={200} height={50} className={cls.time} border="5px" />
+            </div>
+        );
+    }
+
+    if (compact) {
+        return (
+            <div className={classNames(cls.trackItemCompact, {}, [className])}>
+                <div className={cls.info}>
+                    {currentTrack?.id === track?.id && !paused
+                        ? <PauseButton onPause={onTrackPause} track={track} />
+                        : <PlayButton onPlay={onTrackPlay} track={track} />}
+                    <div className={cls.image}>
+                        {track?.album?.img && (
+                            <Image
+                                width={50}
+                                height={50}
+                                src={`${__STATIC_URL__}${track?.album.img}`}
+                                squared
+                            />
+                        )}
+                    </div>
+                    <Text title={track?.track.name} text={track?.artist?.name} classname={cls.name} />
+                </div>
             </div>
         );
     }

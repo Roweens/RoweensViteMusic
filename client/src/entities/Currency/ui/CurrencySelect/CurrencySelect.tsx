@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { DropDown, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
 import { Selector, SelectorTheme } from 'shared/ui/Selector/Selector';
 import { OptionsType } from 'shared/types/OptionsType';
 import { useTranslation } from 'react-i18next';

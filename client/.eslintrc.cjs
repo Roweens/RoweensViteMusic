@@ -12,14 +12,16 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'react-hooks', 'roweens-plugin'],
+    plugins: ['react', '@typescript-eslint', 'react-hooks', 'roweens-plugin', 'unused-imports'],
     rules: {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
+        'unused-imports/no-unused-imports': 'error',
         indent: [2, 4],
         'react/jsx-filename-extension': [2, {
             extensions: ['.js', '.jsx', '.tsx', '.ts'],
         }],
+        'consistent-return': 'warn',
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         'no-unused-vars': 'warn',
@@ -47,9 +49,19 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
-        'react/jsx-no-useless-fragment': 'warn',
+        'react/jsx-no-useless-fragment': 'off',
         'roweens-plugin/path-checker': 'error',
+        'roweens-plugin/fsd-public-api-imports': ['error', {
+            testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
+        }],
+        'roweens-plugin/upper-layer-imports': [
+            'error',
+            {
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
         'react/no-array-index-key': 'warn',
+        'no-nested-ternary': 'warn',
     },
     // globals: {
     //       __IS_DEV__: true,

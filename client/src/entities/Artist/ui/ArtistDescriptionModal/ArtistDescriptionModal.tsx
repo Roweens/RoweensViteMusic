@@ -40,15 +40,15 @@ export const ArtistDescriptionModal = memo((props:ArtistDescriptionModalProps) =
                 <div className={cls.stats}>
                     <Text title="X" text="Подписчиков" />
                     <Text title={artist?.listens} text="Слушателей" />
-                    <Link to="#" className={cls.link}>
+                    <Link to="twitter.com" className={cls.link}>
                         <Icon Svg={FacebookIcon} />
                         Facebook
                     </Link>
-                    <Link to="#" className={cls.link}>
+                    <Link to="youtube.com" className={cls.link}>
                         <Icon Svg={YoutubeIcon} />
                         Youtube
                     </Link>
-                    <Link to="#" className={cls.link}>
+                    <Link to="facebook.com" className={cls.link}>
                         <Icon Svg={TwitterIcon} />
                         Twiiter
                     </Link>

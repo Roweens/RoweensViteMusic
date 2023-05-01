@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { User, userActions } from 'entities/User';
-import { AUTH_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { User } from 'entities/User';
 
 interface SignUpProps {
     email?: string;
@@ -13,7 +12,9 @@ interface SignUpProps {
 export const signUp = createAsyncThunk<User, SignUpProps, ThunkConfig<string>>(
     'signUp',
     async (authData, { extra, dispatch, rejectWithValue }) => {
-        const { email, password, username, firstname } = authData;
+        const {
+            email, password, username, firstname,
+        } = authData;
 
         if (!email && !password && !username && !firstname) {
             return rejectWithValue('No data');
@@ -30,5 +31,5 @@ export const signUp = createAsyncThunk<User, SignUpProps, ThunkConfig<string>>(
         } catch (error) {
             return rejectWithValue('error');
         }
-    }
+    },
 );

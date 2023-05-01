@@ -30,6 +30,5 @@ export const verifyToken = createAsyncThunk<User | void, void, ThunkConfig<strin
                 return rejectWithValue('error');
             }
         }
-        return;
-    }
+    },
 );

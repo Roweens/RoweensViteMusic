@@ -1,7 +1,5 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import SearchIcon from '@/../../public/search.svg';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Switch } from './Switch';
 
 export default {

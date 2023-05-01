@@ -3,46 +3,59 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Artist } from 'entities/Artist';
 import { Text } from 'shared/ui/Text/Text';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useLazyFetchArtist } from '../../api/subscribeToArtistApi';
 import { removeArtistFromSubscriptions } from '../../model/services/removeArtistFromSubscriptions/removeArtistFromSubscriptions';
 import { addArtistToSubscriptions } from '../../model/services/addArtistToSubscriptions/addArtistToSubscriptions';
 import cls from './SubscribeToArtistButton.module.scss';
 
 interface addToFavouriteButtonProps {
    className?: string;
-   artist?: Artist
+   artistId?: string;
    onSubscribe?: () => void
 }
 
 export const SubscribeToArtistButton = memo((props:addToFavouriteButtonProps) => {
-    const { className, artist, onSubscribe } = props;
+    const { className, artistId, onSubscribe } = props;
+    const authData = useSelector(getUserAuthData);
+
+    const [trigger, { isLoading, error, data: artist }] = useLazyFetchArtist();
+
+    useInitialEffect(() => {
+        trigger({ artistId, userId: authData?.id });
+    });
 
     const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
 
     const onSubscribeHandle = useCallback(() => {
-        dispatch(addArtistToSubscriptions({ artistId: String(artist?.id) }))
+        dispatch(addArtistToSubscriptions({ artistId }))
             .then(() => {
+                trigger({ artistId, userId: authData?.id });
                 onSubscribe?.();
             });
-    }, [artist?.id, dispatch, onSubscribe]);
+    }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
 
     const onUnsubscribeHandle = useCallback(() => {
-        dispatch(removeArtistFromSubscriptions({ artistId: String(artist?.id) }))
+        dispatch(removeArtistFromSubscriptions({ artistId }))
             .then(() => {
+                trigger({ artistId, userId: authData?.id });
                 onSubscribe?.();
             });
-    }, [artist?.id, dispatch, onSubscribe]);
+    }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
 
-    if (!artist) {
-        return null;
+    if (isLoading || error || !artist) {
+        return <Skeleton width={100} height={30} />;
     }
 
     return (
         <>
-            {artist.favourite_artist.length ? (
+            {artist?.favourite_artist.length ? (
                 <Button
                     className={classNames(cls.addToFavouriteButton, {}, [className])}
                     theme={ButtonTheme.OUTLINED}

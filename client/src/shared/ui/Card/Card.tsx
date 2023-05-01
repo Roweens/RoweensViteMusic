@@ -1,19 +1,27 @@
 import classNames from 'classnames';
 import {
-    CSSProperties, HtmlHTMLAttributes, memo, ReactNode,
+    CSSProperties, HTMLAttributes, memo, ReactNode,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import cls from './Card.module.scss';
 
-interface CardProps extends HtmlHTMLAttributes<HTMLDivElement>{
+export enum CardTheme {
+    CLEAN = 'clean',
+    OUTLINED = 'outlined',
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+}
+
+interface CardProps extends HTMLAttributes<HTMLDivElement>{
   className?: string;
   border?: string;
   children: ReactNode;
+  theme?: CardTheme;
 }
 
 export const Card = memo((props: CardProps) => {
     const {
-        className, children, border, ...otherProps
+        className, children, border, theme = CardTheme.CLEAN, ...otherProps
     } = props;
     const { t } = useTranslation();
 
@@ -23,7 +31,7 @@ export const Card = memo((props: CardProps) => {
 
     return (
         <div
-            className={classNames(cls.cardWrapper, [className])}
+            className={classNames(cls.cardWrapper, [className, cls[theme]])}
             style={styles}
             {...otherProps}
         >

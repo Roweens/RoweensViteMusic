@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 
 interface useScrollObserverProps {
     wrapperRef: MutableRefObject<HTMLElement>;
