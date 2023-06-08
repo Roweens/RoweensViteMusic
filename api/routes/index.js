@@ -8,6 +8,7 @@ const trackRouter = require('./trackRouter');
 const userRouter = require('./userRouter');
 const favouriteRouter = require('./favouriteRouter');
 const genreRouter = require('./genreRouter');
+const searchRouter = require('./searchRouter');
 
 router.use('/user', userRouter);
 router.use('/album', albumRouter);
@@ -16,5 +17,6 @@ router.use('/profile', profileRouter);
 router.use('/tracks', trackRouter);
 router.use('/favourite', favouriteRouter);
 router.use('/genre', genreRouter);
+router.use('/search', searchRouter);
 
 module.exports = router;

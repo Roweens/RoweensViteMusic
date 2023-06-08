@@ -6,7 +6,7 @@ class TrackController {
   async getByAlbumId(req, res, next) {
     const { id } = req.params;
     const { userId, sort, order, _limit, page } = req.query;
-    console.log(req.params)
+
     let offset = page * _limit - _limit
 
     if (!id) {
