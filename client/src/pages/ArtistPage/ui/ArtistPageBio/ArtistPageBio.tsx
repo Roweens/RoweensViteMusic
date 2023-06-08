@@ -2,10 +2,10 @@ import { memo, useCallback, useState } from 'react';
 import { ArtistDescriptionCard } from 'entities/Artist';
 
 interface ArtistPageBioProps {
-   className?: string;
+    className?: string;
 }
 
-export const ArtistPageBio = memo((props:ArtistPageBioProps) => {
+export const ArtistPageBio = memo((props: ArtistPageBioProps) => {
     const { className } = props;
 
     const [isBioOpen, setIsBioOpen] = useState(false);
@@ -19,6 +19,10 @@ export const ArtistPageBio = memo((props:ArtistPageBioProps) => {
     }, []);
 
     return (
-        <ArtistDescriptionCard isOpen={isBioOpen} onClose={onCloseModal} onOpen={onOpenModal} />
+        <ArtistDescriptionCard
+            isOpen={isBioOpen}
+            onClose={onCloseModal}
+            onOpen={onOpenModal}
+        />
     );
 });

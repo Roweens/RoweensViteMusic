@@ -1,13 +1,13 @@
 {
-  "Поиск": "Search",
-  "Главная":"Main page",
-  "Мои альбомы":"My albums",
-  "Создать плейлист":"Create playlist",
-  "Избранные треки":"Favourite tracks",
-  "Язык": "Language",
-  "Профиль": "Profile",
-  "Настройки":"Settings",
-  "Войти":"Login",
-  "Выйти":"Logout",
-  "Неверные данные для входа":"Wrong credentials"
+    "Поиск": "Search",
+    "Главная": "Main page",
+    "Мои альбомы": "My albums",
+    "Создать плейлист": "Create playlist",
+    "Избранные треки": "Favourite tracks",
+    "Язык": "Language",
+    "Профиль": "Profile",
+    "Настройки": "Settings",
+    "Войти": "Login",
+    "Выйти": "Logout",
+    "Неверные данные для входа": "Wrong credentials"
 }

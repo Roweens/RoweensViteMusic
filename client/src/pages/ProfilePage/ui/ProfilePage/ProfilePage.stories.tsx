@@ -39,4 +39,7 @@ Primary.decorators = [StoreDecorator({ profile: { form: data } })];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ profile: { form: data } })];
+Dark.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({ profile: { form: data } }),
+];

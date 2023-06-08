@@ -7,23 +7,29 @@ export const fetchTracksByArtistId = createAsyncThunk<
     Track[],
     string | undefined,
     ThunkConfig<string>
->('artist/fetchTracksByArtistId', async (artistId, { rejectWithValue, extra, getState }) => {
-    if (!artistId) {
-        return rejectWithValue('error');
-    }
+>(
+    'artist/fetchTracksByArtistId',
+    async (artistId, { rejectWithValue, extra, getState }) => {
+        if (!artistId) {
+            return rejectWithValue('error');
+        }
 
-    try {
-        const user = getUserAuthData(getState());
-        const response = await extra.api.get<Track[]>(`/tracks/artist/${artistId}`, {
-            params: {
-                userId: user?.id,
-            },
-        });
+        try {
+            const user = getUserAuthData(getState());
+            const response = await extra.api.get<Track[]>(
+                `/tracks/artist/${artistId}`,
+                {
+                    params: {
+                        userId: user?.id,
+                    },
+                },
+            );
 
-        if (!response.data) throw new Error();
+            if (!response.data) throw new Error();
 
-        return response.data;
-    } catch (error) {
-        return rejectWithValue('error');
-    }
-});
+            return response.data;
+        } catch (error) {
+            return rejectWithValue('error');
+        }
+    },
+);

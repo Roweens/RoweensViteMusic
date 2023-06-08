@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof VolumeButton>;
 
-const Template: ComponentStory<typeof VolumeButton> = (args) => <VolumeButton {...args} />;
+const Template: ComponentStory<typeof VolumeButton> = (args) => (
+    <VolumeButton {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

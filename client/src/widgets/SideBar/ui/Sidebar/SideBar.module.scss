@@ -1,15 +1,17 @@
 .sideBar {
     background-color: var(--secondary-bg-color);
-    width: var(--sidebar-width);
+    width: var(--sidebar-full-width);
     color: var(--secondary-color);
     padding: 50px 0 30px 30px;
     transition: 0.25s ease width;
+    height: calc(100vh - var(--player-heigth));
 }
 
-.link{
+.link {
     margin-bottom: 30px;
 }
 
 .collapsed {
-    width: var(--sidebar-collapsed-width);
+    width: var(--sidebar-compact-width);
+    padding: 50px 0 0;
 }

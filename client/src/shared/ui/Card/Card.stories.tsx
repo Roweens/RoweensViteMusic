@@ -20,20 +20,22 @@ const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 export const Normal = Template.bind({});
 
 Normal.args = {
-    children:
-    <>
-        <Image src={testImage} />
-        <Text text="Some interesting text" />
-    </>,
+    children: (
+        <>
+            <Image src={testImage} />
+            <Text text="Some interesting text" />
+        </>
+    ),
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
-    children:
-    <>
-        <Image src={testImage} />
-        <Text text="Some interesting text" />
-    </>,
+    children: (
+        <>
+            <Image src={testImage} />
+            <Text text="Some interesting text" />
+        </>
+    ),
 };
 
 Dark.decorators = [ThemeDecorator(Themes.DARK)];

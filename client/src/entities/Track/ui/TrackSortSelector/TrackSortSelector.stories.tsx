@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof TrackSortSelector>;
 
-const Template: ComponentStory<typeof TrackSortSelector> = (args) => <TrackSortSelector {...args} />;
+const Template: ComponentStory<typeof TrackSortSelector> = (args) => (
+    <TrackSortSelector {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

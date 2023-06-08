@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof CurrencySelect>;
 
-const Template: ComponentStory<typeof CurrencySelect> = (args) => <CurrencySelect {...args} />;
+const Template: ComponentStory<typeof CurrencySelect> = (args) => (
+    <CurrencySelect {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

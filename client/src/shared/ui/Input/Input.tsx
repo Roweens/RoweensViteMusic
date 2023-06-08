@@ -1,6 +1,10 @@
 import classNames from 'classnames';
 import {
-    ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef,
+    ChangeEvent,
+    InputHTMLAttributes,
+    memo,
+    useEffect,
+    useRef,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import cls from './Input.module.scss';
@@ -11,16 +15,19 @@ export enum InputTheme {
     FILLED = 'filled',
 }
 
-type BasicInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>
+type BasicInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'value'
+>;
 
-interface InputProps extends BasicInputProps{
-  className?: string,
-  value?: string | number,
-  onChange?: (value: string) => void,
-  theme?: InputTheme,
-  focused?: boolean,
-  placeholder?:string,
-  readOnly?: boolean
+interface InputProps extends BasicInputProps {
+    className?: string;
+    value?: string | number;
+    onChange?: (value: string) => void;
+    theme?: InputTheme;
+    focused?: boolean;
+    placeholder?: string;
+    readOnly?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -77,7 +84,11 @@ export const Input = memo((props: InputProps) => {
                 disabled={readOnly}
                 {...otherProps}
             />
-            {placeholder && <span className={cls.placeholder} ref={placeHolderRef}>{t(placeholder)}</span>}
+            {placeholder && (
+                <span className={cls.placeholder} ref={placeHolderRef}>
+                    {t(placeholder)}
+                </span>
+            )}
         </div>
     );
 });

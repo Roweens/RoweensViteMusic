@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Track } from 'entities/Track';
 import { fetchTracksByArtistId } from '../services/fetchTracksByArtistId/fetchTracksByArtistId';
@@ -9,7 +13,8 @@ const artistTracksAdapter = createEntityAdapter<Track>({
 });
 
 export const getArtistTracks = artistTracksAdapter.getSelectors<StateSchema>(
-    (state) => state.artistPage?.tracks || artistTracksAdapter.getInitialState(),
+    (state) =>
+        state.artistPage?.tracks || artistTracksAdapter.getInitialState(),
 );
 
 export const artistPageTracksSlice = createSlice({

@@ -21,12 +21,15 @@ export const addToFavouriteList = createAsyncThunk<
         }
 
         try {
-            const response = await extra.api.get<FavouriteTrack>('/favourite/add/', {
-                params: {
-                    userId: user?.id,
-                    trackId,
+            const response = await extra.api.get<FavouriteTrack>(
+                '/favourite/add/',
+                {
+                    params: {
+                        userId: user?.id,
+                        trackId,
+                    },
                 },
-            });
+            );
 
             if (!response.data) throw new Error();
 

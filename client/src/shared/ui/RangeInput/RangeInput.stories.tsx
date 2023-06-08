@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof RangeInput>;
 
-const Template: ComponentStory<typeof RangeInput> = (args) => <RangeInput {...args} />;
+const Template: ComponentStory<typeof RangeInput> = (args) => (
+    <RangeInput {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

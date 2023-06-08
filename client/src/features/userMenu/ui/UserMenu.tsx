@@ -1,14 +1,16 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import classNames from 'classnames';
-import {
-    memo, useCallback, useMemo,
-} from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData, userActions } from 'entities/User';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { DropDown, DropdownItem, ThemeDropDown } from 'shared/ui/DropDown/DropDown';
+import {
+    DropDown,
+    DropdownItem,
+    ThemeDropDown,
+} from 'shared/ui/DropDown/DropDown';
 import { HStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Image } from 'shared/ui/Image/Image';
@@ -37,39 +39,44 @@ export const UserMenu = memo((props: UserMenuProps) => {
         dispatch(userActions.logout());
     }, [dispatch]);
 
-    const options = useMemo<DropdownItem[]>(() => [
-        {
-            id: 0,
-            content:
-    <HStack gap="8" className={cls.menuItem}>
-        <Icon Svg={ProfileIcon} width={30} height={30} />
-        <Text text={t('Профиль')} />
-    </HStack>,
-            href: `${RoutePath.profile}${auth?.id}`,
-        },
-        {
-            id: 1,
-            content:
-    <HStack gap="8" className={cls.menuItem}>
-        <Icon Svg={ExitIcon} width={30} height={30} />
-        <Text text={t('Выход')} />
-    </HStack>,
-            onClick: handleLogout,
-        },
-    ], [auth?.id, handleLogout, t]);
+    const options = useMemo<DropdownItem[]>(
+        () => [
+            {
+                id: 0,
+                content: (
+                    <HStack gap="8" className={cls.menuItem}>
+                        <Icon Svg={ProfileIcon} width={30} height={30} />
+                        <Text text={t('Профиль')} />
+                    </HStack>
+                ),
+                href: `${RoutePath.profile}${auth?.id}`,
+            },
+            {
+                id: 1,
+                content: (
+                    <HStack gap="8" className={cls.menuItem}>
+                        <Icon Svg={ExitIcon} width={30} height={30} />
+                        <Text text={t('Выход')} />
+                    </HStack>
+                ),
+                onClick: handleLogout,
+            },
+        ],
+        [auth?.id, handleLogout, t],
+    );
 
     return (
         <DropDown
             options={options}
             theme={ThemeDropDown.FILLED}
             className={classNames(cls.dropDown, {}, [className])}
-            trigger={(
+            trigger={
                 <HStack gap="8">
                     <Image src={userIcon} width={30} height={30} />
                     <Text text={auth?.username} />
                     <Icon Svg={DownArrow} height={20} width={20} />
                 </HStack>
-            )}
+            }
         />
     );
 });

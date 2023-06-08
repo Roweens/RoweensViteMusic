@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Track } from 'entities/Track';
-import { addQueryParams } from 'shared/url/addQueryParams/addQueryParams';
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
 import { getUserAuthData } from 'entities/User';
 import { getAlbumPageTracksSort } from '../selectors/getAlbumPageTracksSort/getAlbumPageTracksSort';
 import { getAlbumPageTracksOrder } from '../selectors/getAlbumPageTracksOrder/getAlbumPageTracksOrder';
@@ -19,9 +19,7 @@ export const fetchTracksByAlbumId = createAsyncThunk<
     ThunkConfig<string>
 >(
     'album/fetchTracksByAlbumId',
-    async ({ albumId }, {
-        rejectWithValue, extra, getState, dispatch,
-    }) => {
+    async ({ albumId }, { rejectWithValue, extra, getState, dispatch }) => {
         if (!albumId) {
             return rejectWithValue('no id');
         }
@@ -38,18 +36,18 @@ export const fetchTracksByAlbumId = createAsyncThunk<
             });
 
             const user = getUserAuthData(getState());
-            const response = await extra.api.get<{ count: number; rows: Track[] }>(
-                `/tracks/album/${albumId}`,
-                {
-                    params: {
-                        userId: user?.id,
-                        sort,
-                        order,
-                        _limit,
-                        page,
-                    },
+            const response = await extra.api.get<{
+                count: number;
+                rows: Track[];
+            }>(`/tracks/album/${albumId}`, {
+                params: {
+                    userId: user?.id,
+                    sort,
+                    order,
+                    _limit,
+                    page,
                 },
-            );
+            });
 
             if (!response.data) throw new Error();
 

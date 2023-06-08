@@ -21,12 +21,15 @@ export const removeAlbumFromFavouriteList = createAsyncThunk<
         }
 
         try {
-            const response = await extra.api.get<FavouriteAlbum>('/favourite/remove/', {
-                params: {
-                    userId: user?.id,
-                    albumId,
+            const response = await extra.api.get<FavouriteAlbum>(
+                '/favourite/remove/',
+                {
+                    params: {
+                        userId: user?.id,
+                        albumId,
+                    },
                 },
-            });
+            );
 
             if (!response.data) throw new Error();
 

@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof AddTrackToFavouriteButton>;
 
-const Template: ComponentStory<typeof AddTrackToFavouriteButton> = (args) => <AddTrackToFavouriteButton {...args} />;
+const Template: ComponentStory<typeof AddTrackToFavouriteButton> = (args) => (
+    <AddTrackToFavouriteButton {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

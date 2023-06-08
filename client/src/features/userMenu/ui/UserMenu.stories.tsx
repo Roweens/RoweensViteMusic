@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof UserMenu>;
 
-const Template: ComponentStory<typeof UserMenu> = (args) => <UserMenu {...args} />;
+const Template: ComponentStory<typeof UserMenu> = (args) => (
+    <UserMenu {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

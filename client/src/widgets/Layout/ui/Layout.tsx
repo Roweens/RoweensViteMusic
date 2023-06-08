@@ -16,7 +16,6 @@ export const Layout: FC<LayoutProps> = (props) => {
     const dispatch = useAppDispatch();
 
     return (
-
         <div className={classNames(cls.layout, {}, [className])}>
             <SideBar />
             <div className={cls.content}>

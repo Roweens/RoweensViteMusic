@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof TrackItem>;
 
-const Template: ComponentStory<typeof TrackItem> = (args) => <TrackItem {...args} />;
+const Template: ComponentStory<typeof TrackItem> = (args) => (
+    <TrackItem {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

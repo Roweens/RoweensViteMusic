@@ -6,10 +6,10 @@ import { Card } from 'shared/ui/Card/Card';
 import cls from './AlbumCardSkeleton.module.scss';
 
 interface AlbumCardSkeletonProps {
-   className?: string;
+    className?: string;
 }
 
-export const AlbumCardSkeleton = memo((props:AlbumCardSkeletonProps) => {
+export const AlbumCardSkeleton = memo((props: AlbumCardSkeletonProps) => {
     const { className } = props;
     const { t } = useTranslation();
 

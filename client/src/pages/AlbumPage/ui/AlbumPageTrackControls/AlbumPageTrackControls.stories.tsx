@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof AlbumPageTrackControls>;
 
-const Template: ComponentStory<typeof AlbumPageTrackControls> = (args) => <AlbumPageTrackControls {...args} />;
+const Template: ComponentStory<typeof AlbumPageTrackControls> = (args) => (
+    <AlbumPageTrackControls {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

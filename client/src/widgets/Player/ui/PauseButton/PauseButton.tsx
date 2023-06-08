@@ -4,12 +4,12 @@ import { Track } from 'entities/Track';
 import { ReactComponent as PauseIcon } from '../../assets/pause.svg';
 
 interface PauseButtonProps {
-   className?: string;
-   onPause?: (track?: Track) => void;
-      track?: Track;
+    className?: string;
+    onPause?: (track?: Track) => void;
+    track?: Track;
 }
 
-export const PauseButton = memo((props:PauseButtonProps) => {
+export const PauseButton = memo((props: PauseButtonProps) => {
     const { className, onPause, track } = props;
 
     const onPauseHandle = useCallback(() => {

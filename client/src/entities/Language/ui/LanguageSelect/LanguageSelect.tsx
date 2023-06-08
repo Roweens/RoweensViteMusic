@@ -8,7 +8,7 @@ interface LanguageSelectProps {
     className?: string;
     onChange?: (value: Language) => void;
     value?: Language;
-    readOnly?: boolean
+    readOnly?: boolean;
 }
 
 const LanguageOptions: OptionsType[] = [
@@ -30,9 +30,7 @@ const LanguageOptions: OptionsType[] = [
 ];
 
 export const LanguageSelect: FC<LanguageSelectProps> = (props) => {
-    const {
-        className, onChange, value, readOnly,
-    } = props;
+    const { className, onChange, value, readOnly } = props;
 
     const { t } = useTranslation();
 

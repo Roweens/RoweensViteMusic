@@ -2,7 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Album } from 'entities/Album';
 
-export const fetchAlbumsByGenre = createAsyncThunk<Album[], string, ThunkConfig<string>>(
+export const fetchAlbumsByGenre = createAsyncThunk<
+    Album[],
+    string,
+    ThunkConfig<string>
+>(
     'mainPage/fetchAlbumsByGenre',
     async (genreId, { rejectWithValue, extra }) => {
         try {

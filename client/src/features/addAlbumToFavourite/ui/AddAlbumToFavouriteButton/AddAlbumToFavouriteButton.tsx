@@ -13,62 +13,63 @@ import { removeAlbumFromFavouriteList } from '../../model/services/removeAlbumFr
 import { useLazyFetchAlbum } from '../../api/addAlbumToFavouriteApi';
 
 interface addAlbumToFavouriteButtonProps {
-   className?: string;
-   albumId?: string
-   onFavouriteChange?: () => void
+    className?: string;
+    albumId?: string;
+    onFavouriteChange?: () => void;
 }
 
-export const AddAlbumToFavouriteButton = memo((props:addAlbumToFavouriteButtonProps) => {
-    const { className, albumId, onFavouriteChange } = props;
-    const { t } = useTranslation();
-    const dispatch = useAppDispatch();
-    const authData = useSelector(getUserAuthData);
+export const AddAlbumToFavouriteButton = memo(
+    (props: addAlbumToFavouriteButtonProps) => {
+        const { className, albumId, onFavouriteChange } = props;
+        const { t } = useTranslation();
+        const dispatch = useAppDispatch();
+        const authData = useSelector(getUserAuthData);
 
-    const [trigger, { isLoading, error, data: album }] = useLazyFetchAlbum();
+        const [trigger, { isLoading, error, data: album }] =
+            useLazyFetchAlbum();
 
-    useInitialEffect(() => {
-        trigger({ albumId, userId: authData?.id });
-    });
+        useInitialEffect(() => {
+            trigger({ albumId, userId: authData?.id });
+        });
 
-    const onAddAlbumToFavouriteHandle = useCallback(() => {
-        dispatch(addAlbumToFavouriteList({ albumId }))
-            .then(() => {
+        const onAddAlbumToFavouriteHandle = useCallback(() => {
+            dispatch(addAlbumToFavouriteList({ albumId })).then(() => {
                 trigger({ albumId, userId: authData?.id });
                 onFavouriteChange?.();
             });
-    }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
+        }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
 
-    const onRemoveAlbumFromFavouriteHandle = useCallback(() => {
-        dispatch(removeAlbumFromFavouriteList({ albumId }))
-            .then(() => {
+        const onRemoveAlbumFromFavouriteHandle = useCallback(() => {
+            dispatch(removeAlbumFromFavouriteList({ albumId })).then(() => {
                 trigger({ albumId, userId: authData?.id });
                 onFavouriteChange?.();
             });
-    }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
+        }, [albumId, authData?.id, dispatch, onFavouriteChange, trigger]);
 
-    if (isLoading || error || !album) {
-        return <Skeleton width={100} height={30} />;
-    }
+        if (isLoading || error || !album) {
+            return <Skeleton width={100} height={30} />;
+        }
 
-    return (
-        <>
-            {album?.favourite_album.length ? (
-                <Button
-                    className={classNames('', {}, [className])}
-                    theme={ButtonTheme.OUTLINED}
-                    onClick={onRemoveAlbumFromFavouriteHandle}
-                >
-                    <Text text={t('В избранном')} />
-                </Button>
-            ) : (
-                <Button
-                    className={classNames('', {}, [className])}
-                    theme={ButtonTheme.FILLED}
-                    onClick={onAddAlbumToFavouriteHandle}
-                >
-                    <Text text={t('Добавить в избранное')} />
-                </Button>
-            )}
-        </>
-    );
-});
+        return (
+            <>
+                {album?.favourite_album.length ? (
+                    <Button
+                        className={classNames('', {}, [className])}
+                        theme={ButtonTheme.OUTLINED}
+                        onClick={onRemoveAlbumFromFavouriteHandle}
+                    >
+                        <Text text={t('В избранном')} />
+                    </Button>
+                ) : (
+                    <Button
+                        className={classNames('', {}, [className])}
+                        theme={ButtonTheme.FILLED}
+                        onClick={onAddAlbumToFavouriteHandle}
+                    >
+                        <Text text={t('Добавить в избранное')} />
+                    </Button>
+                )}
+            </>
+        );
+    },
+);

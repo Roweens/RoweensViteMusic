@@ -33,14 +33,17 @@ const userSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        builder.addCase(verifyToken.fulfilled, (state, action: PayloadAction<User | void>) => {
-            if (action.payload) {
-                state.authData = action.payload;
-            }
-            state.mounted = true;
-            state.isLoading = false;
-            state.error = undefined;
-        });
+        builder.addCase(
+            verifyToken.fulfilled,
+            (state, action: PayloadAction<User | void>) => {
+                if (action.payload) {
+                    state.authData = action.payload;
+                }
+                state.mounted = true;
+                state.isLoading = false;
+                state.error = undefined;
+            },
+        );
         builder.addCase(verifyToken.pending, (state) => {
             state.isLoading = true;
         });

@@ -1,3 +1,4 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getUserCollectionListCategory = (state: StateSchema) => state.userCollectionList.category || 'Tracks';
+export const getUserCollectionListCategory = (state: StateSchema) =>
+    state.userCollectionList.category || 'Tracks';

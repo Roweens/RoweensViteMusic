@@ -12,12 +12,12 @@ export default {
     },
 } as ComponentMeta<typeof SideBar>;
 
-const Template: ComponentStory<typeof SideBar> = (args) => <SideBar {...args} />;
+const Template: ComponentStory<typeof SideBar> = (args) => (
+    <SideBar {...args} />
+);
 
 export const Light = Template.bind({});
-Light.args = {
-
-};
+Light.args = {};
 Light.parameters = {
     nextRouter: {
         path: '/',
@@ -27,8 +27,7 @@ Light.parameters = {
 };
 
 export const Dark = Template.bind({});
-Dark.args = {
-};
+Dark.args = {};
 
 Dark.decorators = [ThemeDecorator(Themes.DARK)];
 Dark.parameters = {

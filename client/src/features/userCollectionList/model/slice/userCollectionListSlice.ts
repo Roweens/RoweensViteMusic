@@ -18,7 +18,10 @@ const userCollectionListSlice = createSlice({
     name: 'userCollectionListSlice',
     initialState,
     reducers: {
-        setCategory: (state, action: PayloadAction<UserCollectionListCategory>) => {
+        setCategory: (
+            state,
+            action: PayloadAction<UserCollectionListCategory>,
+        ) => {
             state.category = action.payload;
         },
     },
@@ -28,7 +31,7 @@ const userCollectionListSlice = createSlice({
             (state, action: PayloadAction<Artist[] | Album[] | Track[]>) => {
                 state.items = action.payload;
                 state.isLoading = false;
-            }
+            },
         );
         builder.addCase(fetchCollectionCategory.pending, (state) => {
             state.error = undefined;

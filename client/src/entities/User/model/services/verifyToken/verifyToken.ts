@@ -6,29 +6,32 @@ import { AUTH_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { User } from '../../types/user';
 import { userActions } from '../../slice/userSlice';
 
-export const verifyToken = createAsyncThunk<User | void, void, ThunkConfig<string>>(
-    'user/verifyToken',
-    async (_, { rejectWithValue, dispatch }) => {
-        dispatch(userActions.setIsMounted(false));
-        const user = localStorage.getItem(AUTH_LOCALSTORAGE_KEY);
-        if (user) {
-            try {
-                const response = await $authApi.get<{ token: string }>('user/verify');
+export const verifyToken = createAsyncThunk<
+    User | void,
+    void,
+    ThunkConfig<string>
+>('user/verifyToken', async (_, { rejectWithValue, dispatch }) => {
+    dispatch(userActions.setIsMounted(false));
+    const user = localStorage.getItem(AUTH_LOCALSTORAGE_KEY);
+    if (user) {
+        try {
+            const response = await $authApi.get<{ token: string }>(
+                'user/verify',
+            );
 
-                if (!response.data) throw new Error();
+            if (!response.data) throw new Error();
 
-                const { token } = response.data;
+            const { token } = response.data;
 
-                localStorage.setItem(AUTH_LOCALSTORAGE_KEY, token);
-                const data: User = jwtDecode(token);
+            localStorage.setItem(AUTH_LOCALSTORAGE_KEY, token);
+            const data: User = jwtDecode(token);
 
-                const { username, id } = data;
+            const { username, id } = data;
 
-                return { username: 'CognusZxc', token, id };
-            } catch (error) {
-                dispatch(userActions.logout());
-                return rejectWithValue('error');
-            }
+            return { username: 'CognusZxc', token, id };
+        } catch (error) {
+            dispatch(userActions.logout());
+            return rejectWithValue('error');
         }
-    },
-);
+    }
+});

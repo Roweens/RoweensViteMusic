@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof SignUpCard>;
 
-const Template: ComponentStory<typeof SignUpCard> = (args) => <SignUpCard {...args} />;
+const Template: ComponentStory<typeof SignUpCard> = (args) => (
+    <SignUpCard {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

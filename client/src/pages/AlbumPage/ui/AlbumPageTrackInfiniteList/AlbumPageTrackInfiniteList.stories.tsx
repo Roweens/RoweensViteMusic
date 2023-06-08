@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof AlbumPageTrackInfiniteList>;
 
-const Template: ComponentStory<typeof AlbumPageTrackInfiniteList> = (args) => <AlbumPageTrackInfiniteList {...args} />;
+const Template: ComponentStory<typeof AlbumPageTrackInfiniteList> = (args) => (
+    <AlbumPageTrackInfiniteList {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

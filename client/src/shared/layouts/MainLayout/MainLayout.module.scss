@@ -1,0 +1,35 @@
+.mainLayout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: 'sidebar content';
+    grid-template-columns: min-content 1fr;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    grid-area: content;
+    justify-self: center;
+    padding: 32px;
+    width: 100%;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    max-width: 800px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+}
+
+.bottom {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    max-height: 144px;
+}

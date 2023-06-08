@@ -21,12 +21,15 @@ export const addAlbumToFavouriteList = createAsyncThunk<
         }
 
         try {
-            const response = await extra.api.get<FavouriteAlbum>('/favourite/add/', {
-                params: {
-                    userId: user?.id,
-                    albumId,
+            const response = await extra.api.get<FavouriteAlbum>(
+                '/favourite/add/',
+                {
+                    params: {
+                        userId: user?.id,
+                        albumId,
+                    },
                 },
-            });
+            );
 
             if (!response.data) throw new Error();
 

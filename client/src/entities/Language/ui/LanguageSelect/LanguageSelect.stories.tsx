@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof LanguageSelect>;
 
-const Template: ComponentStory<typeof LanguageSelect> = (args) => <LanguageSelect {...args} />;
+const Template: ComponentStory<typeof LanguageSelect> = (args) => (
+    <LanguageSelect {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

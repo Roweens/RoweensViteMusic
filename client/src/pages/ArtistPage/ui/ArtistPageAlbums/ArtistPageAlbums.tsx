@@ -12,11 +12,11 @@ import cls from './ArtistPageAlbums.module.scss';
 import { getArtistAlbums } from '../../model/slice/artistPageAlbumsSlice';
 
 interface ArtistPageAlbumsProps {
-   className?: string;
-   id: string
+    className?: string;
+    id: string;
 }
 
-export const ArtistPageAlbums = memo((props:ArtistPageAlbumsProps) => {
+export const ArtistPageAlbums = memo((props: ArtistPageAlbumsProps) => {
     const { className, id } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();

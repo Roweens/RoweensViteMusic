@@ -1,17 +1,21 @@
 import { Reducer } from '@reduxjs/toolkit';
-import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from 'app/providers/StoreProvider';
+import {
+    ReduxStoreWithManager,
+    StateSchema,
+    StateSchemaKey,
+} from 'app/providers/StoreProvider';
 import { ReactNode, useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { useAppDispatch } from '../../hooks/useAppDispatch/useAppDispatch';
 
 export type ReducersList = {
-  [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>
-}
+    [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
+};
 
 interface DynamicReducerLoaderProps {
-  children?: ReactNode;
-  reducers: ReducersList;
-  removeAfterUnmount?: boolean;
+    children?: ReactNode;
+    reducers: ReducersList;
+    removeAfterUnmount?: boolean;
 }
 
 export const DynamicReducerLoader = (props: DynamicReducerLoaderProps) => {
@@ -35,12 +39,8 @@ export const DynamicReducerLoader = (props: DynamicReducerLoaderProps) => {
             }
         };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    return <>{children}</>;
 };

@@ -7,15 +7,13 @@ import { ReactComponent as PlayIcon } from '../../assets/play.svg';
 import cls from './PlayButton.module.scss';
 
 interface PlayerPlayButtonProps {
-   className?: string;
-   onPlay?: (track?: Track) => void;
-   track: Track | null;
+    className?: string;
+    onPlay?: (track?: Track) => void;
+    track: Track | null;
 }
 
-export const PlayButton = memo((props:PlayerPlayButtonProps) => {
-    const {
-        className, onPlay, track,
-    } = props;
+export const PlayButton = memo((props: PlayerPlayButtonProps) => {
+    const { className, onPlay, track } = props;
 
     const onPlayHandle = useCallback(() => {
         onPlay?.(track);

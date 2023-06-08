@@ -19,4 +19,5 @@ const addAlbumToFavouriteApi = rtkApi.injectEndpoints({
     }),
 });
 
-export const useLazyFetchAlbum = addAlbumToFavouriteApi.useLazyFetchAlbumDetailsQuery;
+export const useLazyFetchAlbum =
+    addAlbumToFavouriteApi.useLazyFetchAlbumDetailsQuery;

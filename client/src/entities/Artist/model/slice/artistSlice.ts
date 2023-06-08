@@ -13,10 +13,13 @@ const artistSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder) {
-        builder.addCase(fetchArtistById.fulfilled, (state, action: PayloadAction<Artist>) => {
-            state.isLoading = false;
-            state.data = action.payload;
-        });
+        builder.addCase(
+            fetchArtistById.fulfilled,
+            (state, action: PayloadAction<Artist>) => {
+                state.isLoading = false;
+                state.data = action.payload;
+            },
+        );
         builder.addCase(fetchArtistById.pending, (state) => {
             state.error = undefined;
             state.isLoading = true;

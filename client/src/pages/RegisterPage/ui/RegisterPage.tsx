@@ -5,7 +5,7 @@ import { Page } from 'widgets/Page';
 import cls from './RegisterPage.module.scss';
 
 interface RegisterPageProps {
-  className?: string;
+    className?: string;
 }
 
 export const RegisterPage = memo((props: RegisterPageProps) => {

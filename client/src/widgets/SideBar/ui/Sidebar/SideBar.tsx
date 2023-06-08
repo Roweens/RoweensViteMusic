@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { memo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { VStack } from 'shared/ui/Stack';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LangSwitcher } from 'features/LangSwitcher';
@@ -14,20 +13,26 @@ interface SideBarProps {
 
 export const SideBar = memo((props: SideBarProps) => {
     const { className } = props;
-    const { t } = useTranslation();
-    const [isCollapsed, setIsCollapsed] = useState(true);
+
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
         <VStack
-            className={classNames(cls.sideBar, { [cls.collapsed]: isCollapsed }, className)}
+            className={classNames(
+                cls.sideBar,
+                { [cls.collapsed]: isCollapsed },
+                className,
+            )}
             data-testid="sidebar"
             justify="between"
         >
-            <VStack gap="32" max>
-                <SidebarItemsList />
-                <UserCollectionList isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+            <VStack gap="32" max align={isCollapsed ? 'center' : 'start'}>
+                <SidebarItemsList isCollapsed={isCollapsed} />
+                <UserCollectionList
+                    isCollapsed={isCollapsed}
+                    setIsCollapsed={setIsCollapsed}
+                />
             </VStack>
-
             <VStack align="center" max gap="8">
                 <ThemeSwitcher />
                 <LangSwitcher />

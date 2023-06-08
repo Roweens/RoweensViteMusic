@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Genre, GenresSliceSchema } from '../types/genre';
 import { fetchGenres } from '../services/fetchGenres';
@@ -21,10 +25,13 @@ export const genresSlice = createSlice({
     }),
     reducers: {},
     extraReducers(builder) {
-        builder.addCase(fetchGenres.fulfilled, (state, action: PayloadAction<Genre[]>) => {
-            state.isLoading = false;
-            genreAdapter.setAll(state, action.payload);
-        });
+        builder.addCase(
+            fetchGenres.fulfilled,
+            (state, action: PayloadAction<Genre[]>) => {
+                state.isLoading = false;
+                genreAdapter.setAll(state, action.payload);
+            },
+        );
         builder.addCase(fetchGenres.pending, (state) => {
             state.error = undefined;
             state.isLoading = true;

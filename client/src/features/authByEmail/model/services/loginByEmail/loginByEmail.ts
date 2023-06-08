@@ -9,7 +9,11 @@ interface LoginByUsernameProps {
     password?: string;
 }
 
-export const loginByEmail = createAsyncThunk<User, LoginByUsernameProps, ThunkConfig<string>>(
+export const loginByEmail = createAsyncThunk<
+    User,
+    LoginByUsernameProps,
+    ThunkConfig<string>
+>(
     'login/loginByEmail',
     async (authData, { extra, dispatch, rejectWithValue }) => {
         const { email, password } = authData;
@@ -19,7 +23,10 @@ export const loginByEmail = createAsyncThunk<User, LoginByUsernameProps, ThunkCo
         }
 
         try {
-            const response = await extra.api.post<User>('user/signin', authData);
+            const response = await extra.api.post<User>(
+                'user/signin',
+                authData,
+            );
 
             if (!response.data) throw new Error();
             const { token } = response.data;
@@ -27,9 +34,9 @@ export const loginByEmail = createAsyncThunk<User, LoginByUsernameProps, ThunkCo
             const data: User = jwtDecode(token);
             const { username, id } = data;
 
-            dispatch(userActions.setAuthData({ id, token, username: 'CognusZxc' }));
-
-            extra.navigate('/');
+            dispatch(
+                userActions.setAuthData({ id, token, username: 'CognusZxc' }),
+            );
 
             return response.data;
         } catch (error) {

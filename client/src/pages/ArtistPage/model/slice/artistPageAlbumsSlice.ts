@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Album } from 'entities/Album';
 import { ArtistPageAlbumsSchema } from '../types/artistPageAlbumsSchema';
@@ -9,7 +13,8 @@ const artistAlbumsAdapter = createEntityAdapter<Album>({
 });
 
 export const getArtistAlbums = artistAlbumsAdapter.getSelectors<StateSchema>(
-    (state) => state.artistPage?.albums || artistAlbumsAdapter.getInitialState(),
+    (state) =>
+        state.artistPage?.albums || artistAlbumsAdapter.getInitialState(),
 );
 
 export const artistPageAlbumsSlice = createSlice({

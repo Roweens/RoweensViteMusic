@@ -13,21 +13,50 @@ export default {
     },
 } as ComponentMeta<typeof LoginCard>;
 
-const Template: ComponentStory<typeof LoginCard> = (args) => <LoginCard {...args} />;
+const Template: ComponentStory<typeof LoginCard> = (args) => (
+    <LoginCard {...args} />
+);
 
 export const Primary = Template.bind({});
 
 Primary.args = {};
-Primary.decorators = [StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Primary.decorators = [
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Dark.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
 
 export const Error = Template.bind({});
 Error.args = {};
-Error.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword', error: 'true' } })];
+Error.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: {
+            email: 'testEmail@gmail.com',
+            password: 'testpassword',
+            error: 'true',
+        },
+    }),
+];
 
 export const Loading = Template.bind({});
 Loading.args = {};
-Loading.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword', isLoading: true } })];
+Loading.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: {
+            email: 'testEmail@gmail.com',
+            password: 'testpassword',
+            isLoading: true,
+        },
+    }),
+];

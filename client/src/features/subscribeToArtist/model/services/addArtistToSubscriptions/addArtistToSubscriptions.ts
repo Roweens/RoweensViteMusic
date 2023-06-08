@@ -21,12 +21,15 @@ export const addArtistToSubscriptions = createAsyncThunk<
         }
 
         try {
-            const response = await extra.api.get<SubscribedArtist>('/favourite/add/', {
-                params: {
-                    userId: user?.id,
-                    artistId,
+            const response = await extra.api.get<SubscribedArtist>(
+                '/favourite/add/',
+                {
+                    params: {
+                        userId: user?.id,
+                        artistId,
+                    },
                 },
-            });
+            );
 
             if (!response.data) throw new Error();
 

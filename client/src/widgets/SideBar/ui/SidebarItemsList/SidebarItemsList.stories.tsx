@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof SidebarItemsList>;
 
-const Template: ComponentStory<typeof SidebarItemsList> = (args) => <SidebarItemsList {...args} />;
+const Template: ComponentStory<typeof SidebarItemsList> = (args) => (
+    <SidebarItemsList {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

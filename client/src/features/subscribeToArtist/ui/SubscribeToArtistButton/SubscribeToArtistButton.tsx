@@ -14,65 +14,69 @@ import { addArtistToSubscriptions } from '../../model/services/addArtistToSubscr
 import cls from './SubscribeToArtistButton.module.scss';
 
 interface addToFavouriteButtonProps {
-   className?: string;
-   artistId?: string;
-   onSubscribe?: () => void
+    className?: string;
+    artistId?: string;
+    onSubscribe?: () => void;
 }
 
-export const SubscribeToArtistButton = memo((props:addToFavouriteButtonProps) => {
-    const { className, artistId, onSubscribe } = props;
-    const authData = useSelector(getUserAuthData);
+export const SubscribeToArtistButton = memo(
+    (props: addToFavouriteButtonProps) => {
+        const { className, artistId, onSubscribe } = props;
+        const authData = useSelector(getUserAuthData);
 
-    const [trigger, { isLoading, error, data: artist }] = useLazyFetchArtist();
+        const [trigger, { isLoading, error, data: artist }] =
+            useLazyFetchArtist();
 
-    useInitialEffect(() => {
-        trigger({ artistId, userId: authData?.id });
-    });
+        useInitialEffect(() => {
+            trigger({ artistId, userId: authData?.id });
+        });
 
-    const { t } = useTranslation();
+        const { t } = useTranslation();
 
-    const dispatch = useAppDispatch();
+        const dispatch = useAppDispatch();
 
-    const onSubscribeHandle = useCallback(() => {
-        dispatch(addArtistToSubscriptions({ artistId }))
-            .then(() => {
+        const onSubscribeHandle = useCallback(() => {
+            dispatch(addArtistToSubscriptions({ artistId })).then(() => {
                 trigger({ artistId, userId: authData?.id });
                 onSubscribe?.();
             });
-    }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
+        }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
 
-    const onUnsubscribeHandle = useCallback(() => {
-        dispatch(removeArtistFromSubscriptions({ artistId }))
-            .then(() => {
+        const onUnsubscribeHandle = useCallback(() => {
+            dispatch(removeArtistFromSubscriptions({ artistId })).then(() => {
                 trigger({ artistId, userId: authData?.id });
                 onSubscribe?.();
             });
-    }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
+        }, [artistId, authData?.id, dispatch, onSubscribe, trigger]);
 
-    if (isLoading || error || !artist) {
-        return <Skeleton width={100} height={30} />;
-    }
+        if (isLoading || error || !artist) {
+            return <Skeleton width={100} height={30} />;
+        }
 
-    return (
-        <>
-            {artist?.favourite_artist.length ? (
-                <Button
-                    className={classNames(cls.addToFavouriteButton, {}, [className])}
-                    theme={ButtonTheme.OUTLINED}
-                    onClick={onUnsubscribeHandle}
-                >
-                    <Text text={t('Вы подписаны')} />
-                </Button>
-            ) : (
-                <Button
-                    className={classNames(cls.addToFavouriteButton, {}, [className])}
-                    theme={ButtonTheme.FILLED}
-                    onClick={onSubscribeHandle}
-                >
-                    <Text text={t('Подписаться')} />
-                </Button>
-            )}
-
-        </>
-    );
-});
+        return (
+            <>
+                {artist?.favourite_artist.length ? (
+                    <Button
+                        className={classNames(cls.addToFavouriteButton, {}, [
+                            className,
+                        ])}
+                        theme={ButtonTheme.OUTLINED}
+                        onClick={onUnsubscribeHandle}
+                    >
+                        <Text text={t('Вы подписаны')} />
+                    </Button>
+                ) : (
+                    <Button
+                        className={classNames(cls.addToFavouriteButton, {}, [
+                            className,
+                        ])}
+                        theme={ButtonTheme.FILLED}
+                        onClick={onSubscribeHandle}
+                    >
+                        <Text text={t('Подписаться')} />
+                    </Button>
+                )}
+            </>
+        );
+    },
+);

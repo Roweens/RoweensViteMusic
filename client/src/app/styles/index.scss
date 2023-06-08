@@ -4,8 +4,7 @@
 @import './themes/light';
 @import 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap';
 
-
-body{
+body {
     font: var(--font-l);
 }
 
@@ -16,22 +15,10 @@ body{
     flex-direction: column;
     max-height: 100vh;
     overflow: hidden;
-
 }
 
-.main-container{
-    display: flex;
-    height: calc(100vh - 122px);
-}
-
-.page-container{
-    width: calc(100% - var(--sidebar-width));
-    display: flex;
-    flex-direction: column;
-}
-
-
-p, h5{
+p,
+h5 {
     margin-block-start: 0;
     margin-block-end: 0;
 }

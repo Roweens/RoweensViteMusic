@@ -14,9 +14,7 @@ export const fetchNextTracksByAlbumIdPage = createAsyncThunk<
     ThunkConfig<string>
 >(
     'album/fetchNextTracksByAlbumIdPage',
-    async (albumId, {
-        rejectWithValue, extra, getState, dispatch,
-    }) => {
+    async (albumId, { rejectWithValue, extra, getState, dispatch }) => {
         if (!albumId) {
             return rejectWithValue('no id');
         }

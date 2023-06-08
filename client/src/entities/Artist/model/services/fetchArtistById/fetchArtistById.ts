@@ -7,16 +7,23 @@ interface fetchArtistByIdProps {
     artistId?: string;
 }
 
-export const fetchArtistById = createAsyncThunk<Artist, fetchArtistByIdProps, ThunkConfig<string>>(
+export const fetchArtistById = createAsyncThunk<
+    Artist,
+    fetchArtistByIdProps,
+    ThunkConfig<string>
+>(
     'artist/fetchArtistById',
     async ({ artistId }, { extra, rejectWithValue, getState }) => {
         try {
             const authData = getUserAuthData(getState());
-            const response = await extra.api.get<Artist>(`/artist/${artistId}`, {
-                params: {
-                    userId: authData?.id,
+            const response = await extra.api.get<Artist>(
+                `/artist/${artistId}`,
+                {
+                    params: {
+                        userId: authData?.id,
+                    },
                 },
-            });
+            );
 
             if (!response.data) throw new Error();
 

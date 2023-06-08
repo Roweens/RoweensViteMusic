@@ -16,7 +16,7 @@ import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLo
 import { getLoginIsError } from '../../model/selectors/getLoginError/getLoginError';
 
 interface LoginCardProps {
-  className?: string;
+    className?: string;
 }
 
 export const LoginCard = memo((props: LoginCardProps) => {
@@ -29,13 +29,19 @@ export const LoginCard = memo((props: LoginCardProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
 
-    const onChangeEmail = useCallback((value: string) => {
-        dispatch(loginActions.setEmail(value));
-    }, [dispatch]);
+    const onChangeEmail = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setEmail(value));
+        },
+        [dispatch],
+    );
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(loginActions.setPassword(value));
-    }, [dispatch]);
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setPassword(value));
+        },
+        [dispatch],
+    );
 
     const onLoginSubmit = useCallback(() => {
         dispatch(loginByEmail({ email, password }));
@@ -54,7 +60,11 @@ export const LoginCard = memo((props: LoginCardProps) => {
     return (
         <div className={classNames(cls.loginCard, {}, [className])}>
             <div className={cls.card}>
-                <Text title="Войти" align={TextAlign.CENTER} classname={cls.titleText} />
+                <Text
+                    title="Войти"
+                    align={TextAlign.CENTER}
+                    classname={cls.titleText}
+                />
 
                 <Input
                     focused
@@ -70,7 +80,9 @@ export const LoginCard = memo((props: LoginCardProps) => {
                     value={password}
                     className={cls.passwordInput}
                 />
-                <Button theme={ButtonTheme.SHADOW} onClick={onLoginSubmit}>{t('Войти')}</Button>
+                <Button theme={ButtonTheme.SHADOW} onClick={onLoginSubmit}>
+                    {t('Войти')}
+                </Button>
                 {error && (
                     <Text
                         text="Неверные данные для входа"

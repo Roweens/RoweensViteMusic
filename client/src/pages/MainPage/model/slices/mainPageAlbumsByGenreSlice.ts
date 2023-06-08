@@ -19,10 +19,13 @@ export const mainPageAlbumsByGenreSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        builder.addCase(fetchAlbumsByGenre.fulfilled, (state, action: PayloadAction<Album[]>) => {
-            state.isLoading = false;
-            state.data = action.payload;
-        });
+        builder.addCase(
+            fetchAlbumsByGenre.fulfilled,
+            (state, action: PayloadAction<Album[]>) => {
+                state.isLoading = false;
+                state.data = action.payload;
+            },
+        );
         builder.addCase(fetchAlbumsByGenre.pending, (state) => {
             state.error = undefined;
             state.isLoading = true;
@@ -34,5 +37,7 @@ export const mainPageAlbumsByGenreSlice = createSlice({
     },
 });
 
-export const { actions: mainPageAlbumsByGenreActions } = mainPageAlbumsByGenreSlice;
-export const { reducer: mainPageAlbumsByGenreReducer } = mainPageAlbumsByGenreSlice;
+export const { actions: mainPageAlbumsByGenreActions } =
+    mainPageAlbumsByGenreSlice;
+export const { reducer: mainPageAlbumsByGenreReducer } =
+    mainPageAlbumsByGenreSlice;

@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof PlayButton>;
 
-const Template: ComponentStory<typeof PlayButton> = (args) => <PlayButton {...args} />;
+const Template: ComponentStory<typeof PlayButton> = (args) => (
+    <PlayButton {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

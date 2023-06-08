@@ -8,7 +8,7 @@ import { ReactComponent as BackArrow } from '../assets/backArrow.svg';
 import { ReactComponent as NextArrow } from '../assets/nextArrow.svg';
 
 interface NavbarProps {
-  className?: string;
+    className?: string;
 }
 
 export const Navbar = memo((props: NavbarProps) => {
@@ -26,8 +26,16 @@ export const Navbar = memo((props: NavbarProps) => {
     return (
         <div className={classNames(cls.navbar, {}, [className])}>
             <div className={cls.controls}>
-                <Button theme={ButtonTheme.CLEAN} className={cls.button} onClick={handleGoBack}><BackArrow /></Button>
-                <Button theme={ButtonTheme.CLEAN} onClick={handleGoForward}><NextArrow /></Button>
+                <Button
+                    theme={ButtonTheme.CLEAN}
+                    className={cls.button}
+                    onClick={handleGoBack}
+                >
+                    <BackArrow />
+                </Button>
+                <Button theme={ButtonTheme.CLEAN} onClick={handleGoForward}>
+                    <NextArrow />
+                </Button>
             </div>
             <UserMenu username="Cognus" />
         </div>

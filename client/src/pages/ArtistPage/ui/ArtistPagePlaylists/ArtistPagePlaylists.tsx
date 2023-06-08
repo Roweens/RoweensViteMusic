@@ -12,11 +12,11 @@ import { getArtistPagePlaylistsIsLoading } from '../../model/selectors/getArtist
 import cls from './ArtistPagePlaylists.module.scss';
 
 interface ArtistPagePlaylistsProps {
-   className?: string;
-   id: string;
+    className?: string;
+    id: string;
 }
 
-export const ArtistPagePlaylists = memo((props:ArtistPagePlaylistsProps) => {
+export const ArtistPagePlaylists = memo((props: ArtistPagePlaylistsProps) => {
     const { className, id } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
@@ -28,7 +28,10 @@ export const ArtistPagePlaylists = memo((props:ArtistPagePlaylistsProps) => {
 
     return (
         <div className={classNames(cls.artistPagePlaylists, {}, [className])}>
-            <Text title={t('Плейлисты с этим исполнителем')} classname={cls.text} />
+            <Text
+                title={t('Плейлисты с этим исполнителем')}
+                classname={cls.text}
+            />
             <AlbumList albums={playlists} isLoading={isLoading} />
         </div>
     );

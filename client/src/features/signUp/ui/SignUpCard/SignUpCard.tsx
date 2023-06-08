@@ -7,16 +7,24 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { useTranslation } from 'react-i18next';
-import { DynamicReducerLoader, ReducersList } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
+import {
+    DynamicReducerLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { signUpActions, signUpReducer } from '../../model/slice/signUpSlice';
 import {
-    getSignUpEmail, getSignUpError, getSignUpFirstname, getSignUpIsLoading, getSignUpPassword, getSignUpUsername,
+    getSignUpEmail,
+    getSignUpError,
+    getSignUpFirstname,
+    getSignUpIsLoading,
+    getSignUpPassword,
+    getSignUpUsername,
 } from '../../model/selectors/getSignUpData';
 import { signUp } from '../../model/services/signUp/signUp';
 import cls from './SignUpCard.module.scss';
 
 interface LoginCardProps {
-  className?: string;
+    className?: string;
 }
 
 const reducers: ReducersList = {
@@ -36,26 +44,43 @@ export const SignUpCard: FC<LoginCardProps> = (props) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
 
-    const onChangeEmail = useCallback((value: string) => {
-        dispatch(signUpActions.setEmail(value));
-    }, [dispatch]);
+    const onChangeEmail = useCallback(
+        (value: string) => {
+            dispatch(signUpActions.setEmail(value));
+        },
+        [dispatch],
+    );
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(signUpActions.setPassword(value));
-    }, [dispatch]);
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(signUpActions.setPassword(value));
+        },
+        [dispatch],
+    );
 
-    const onChangeUsername = useCallback((value: string) => {
-        dispatch(signUpActions.setUsername(value));
-    }, [dispatch]);
+    const onChangeUsername = useCallback(
+        (value: string) => {
+            dispatch(signUpActions.setUsername(value));
+        },
+        [dispatch],
+    );
 
-    const onChangeFirstname = useCallback((value: string) => {
-        dispatch(signUpActions.setFirstname(value));
-    }, [dispatch]);
+    const onChangeFirstname = useCallback(
+        (value: string) => {
+            dispatch(signUpActions.setFirstname(value));
+        },
+        [dispatch],
+    );
 
     const onSignUpSubmit = useCallback(() => {
-        dispatch(signUp({
-            email, password, username, firstname,
-        }));
+        dispatch(
+            signUp({
+                email,
+                password,
+                username,
+                firstname,
+            }),
+        );
     }, [dispatch, email, password, username, firstname]);
 
     return (
@@ -69,7 +94,11 @@ export const SignUpCard: FC<LoginCardProps> = (props) => {
             ) : (
                 <div className={classNames(cls.loginCard, {}, [className])}>
                     <div className={cls.card}>
-                        <Text title="Войти" align={TextAlign.CENTER} classname={cls.titleText} />
+                        <Text
+                            title="Войти"
+                            align={TextAlign.CENTER}
+                            classname={cls.titleText}
+                        />
 
                         <Input
                             focused
@@ -100,7 +129,12 @@ export const SignUpCard: FC<LoginCardProps> = (props) => {
                             className={cls.passwordInput}
                         />
 
-                        <Button theme={ButtonTheme.SHADOW} onClick={onSignUpSubmit}>{t('Зарегистрироваться')}</Button>
+                        <Button
+                            theme={ButtonTheme.SHADOW}
+                            onClick={onSignUpSubmit}
+                        >
+                            {t('Зарегистрироваться')}
+                        </Button>
                         {error && (
                             <Text
                                 text="Неверные данные для входа"
@@ -111,7 +145,6 @@ export const SignUpCard: FC<LoginCardProps> = (props) => {
                     </div>
                 </div>
             )}
-
         </DynamicReducerLoader>
     );
 };

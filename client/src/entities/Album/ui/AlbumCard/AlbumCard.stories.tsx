@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof AlbumCard>;
 
-const Template: ComponentStory<typeof AlbumCard> = (args) => <AlbumCard {...args} />;
+const Template: ComponentStory<typeof AlbumCard> = (args) => (
+    <AlbumCard {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

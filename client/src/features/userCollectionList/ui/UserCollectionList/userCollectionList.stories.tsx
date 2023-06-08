@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof UserCollectionList>;
 
-const Template: ComponentStory<typeof UserCollectionList> = (args) => <UserCollectionList {...args} />;
+const Template: ComponentStory<typeof UserCollectionList> = (args) => (
+    <UserCollectionList {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

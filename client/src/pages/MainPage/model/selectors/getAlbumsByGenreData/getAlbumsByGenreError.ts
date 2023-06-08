@@ -1,3 +1,4 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getAlbumsByGenreError = (state: StateSchema) => state.mainPageAlbumsByGenre?.error;
+export const getAlbumsByGenreError = (state: StateSchema) =>
+    state.mainPageAlbumsByGenre?.error;

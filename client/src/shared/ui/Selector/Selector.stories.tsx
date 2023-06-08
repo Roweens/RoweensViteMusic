@@ -11,13 +11,18 @@ export default {
     },
 } as ComponentMeta<typeof Selector>;
 
-const Template: ComponentStory<typeof Selector> = (args) => <Selector {...args} />;
+const Template: ComponentStory<typeof Selector> = (args) => (
+    <Selector {...args} />
+);
 
 export const NormalClean = Template.bind({});
 NormalClean.args = {
     options: [
         {
-            id: 1, label: 'Label 1', value: 'Value 1', disabled: true,
+            id: 1,
+            label: 'Label 1',
+            value: 'Value 1',
+            disabled: true,
         },
         { id: 2, label: 'Label 2', value: 'Value 2' },
         { id: 3, label: 'Label 3', value: 'Value 3' },
@@ -43,7 +48,10 @@ export const NormalOutlined = Template.bind({});
 NormalOutlined.args = {
     options: [
         {
-            id: 1, label: 'Label 1', value: 'Value 1', disabled: true,
+            id: 1,
+            label: 'Label 1',
+            value: 'Value 1',
+            disabled: true,
         },
         { id: 2, label: 'Label 2', value: 'Value 2' },
         { id: 3, label: 'Label 3', value: 'Value 3' },
@@ -69,7 +77,10 @@ export const NormalFilled = Template.bind({});
 NormalFilled.args = {
     options: [
         {
-            id: 1, label: 'Label 1', value: 'Value 1', disabled: true,
+            id: 1,
+            label: 'Label 1',
+            value: 'Value 1',
+            disabled: true,
         },
         { id: 2, label: 'Label 2', value: 'Value 2' },
         { id: 3, label: 'Label 3', value: 'Value 3' },

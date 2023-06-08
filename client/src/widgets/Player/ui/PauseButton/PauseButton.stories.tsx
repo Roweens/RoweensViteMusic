@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof PauseButton>;
 
-const Template: ComponentStory<typeof PauseButton> = (args) => <PauseButton {...args} />;
+const Template: ComponentStory<typeof PauseButton> = (args) => (
+    <PauseButton {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

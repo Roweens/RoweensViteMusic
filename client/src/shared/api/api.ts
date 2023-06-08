@@ -10,7 +10,9 @@ export const $authApi = axios.create({
 });
 
 const authInterceptor = (config: InternalAxiosRequestConfig) => {
-    config!.headers!.authorization = `Bearer ${localStorage.getItem(AUTH_LOCALSTORAGE_KEY)}`;
+    config!.headers!.authorization = `Bearer ${localStorage.getItem(
+        AUTH_LOCALSTORAGE_KEY,
+    )}`;
     return config;
 };
 

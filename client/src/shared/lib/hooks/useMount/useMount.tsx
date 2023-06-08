@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 const UNMOUNT_DELAY_TIME = 250;
 
 interface useMountProps {
-  opened: boolean;
-  setState?: (value: boolean) => void
+    opened: boolean;
+    setState?: (value: boolean) => void;
 }
 
 export const useMount = ({ opened, setState }: useMountProps) => {

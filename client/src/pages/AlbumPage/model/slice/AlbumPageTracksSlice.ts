@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Track, TrackSortField } from 'entities/Track';
 import { SortOrder } from 'shared/types/SortOrder';

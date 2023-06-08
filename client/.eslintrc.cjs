@@ -3,7 +3,12 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
+    extends: [
+        'plugin:react/recommended',
+        'airbnb',
+        'plugin:storybook/recommended',
+        'prettier',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -12,15 +17,21 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'react-hooks', 'roweens-plugin', 'unused-imports'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'react-hooks',
+        'roweens-plugin',
+        'unused-imports',
+    ],
     rules: {
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
         'unused-imports/no-unused-imports': 'error',
-        indent: [2, 4],
-        'react/jsx-filename-extension': [2, {
-            extensions: ['.js', '.jsx', '.tsx', '.ts'],
-        }],
+        'react/jsx-filename-extension': [
+            2,
+            {
+                extensions: ['.js', '.jsx', '.tsx', '.ts'],
+            },
+        ],
         'consistent-return': 'warn',
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
@@ -40,10 +51,13 @@ module.exports = {
         //         ignoreAttribute: ['data-testid', 'to', 'name'],
         //     },
         // ],
-        'max-len': ['error', {
-            ignoreComments: true,
-            code: 170,
-        }],
+        'max-len': [
+            'error',
+            {
+                ignoreComments: true,
+                code: 170,
+            },
+        ],
         // 'jsx-a11y/no-static-element-interactions': 'off',
         // 'jsx-a11y/click-events-have-key-events': 'off',
         'react-hooks/rules-of-hooks': 'error',
@@ -51,9 +65,16 @@ module.exports = {
         'no-param-reassign': 'off',
         'react/jsx-no-useless-fragment': 'off',
         'roweens-plugin/path-checker': 'error',
-        'roweens-plugin/fsd-public-api-imports': ['error', {
-            testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
-        }],
+        'roweens-plugin/fsd-public-api-imports': [
+            'error',
+            {
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.stories.*',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
         'roweens-plugin/upper-layer-imports': [
             'error',
             {
@@ -62,25 +83,27 @@ module.exports = {
         ],
         'react/no-array-index-key': 'warn',
         'no-nested-ternary': 'warn',
+        'arrow-body-style': 'off',
     },
     // globals: {
     //       __IS_DEV__: true,
     //       __API__: true,
     //       __PROJECT__: true,
     // },
-    overrides: [{
-        files: ['*.ts', '*.tsx'],
-        rules: {
-            'no-undef': 'off',
+    overrides: [
+        {
+            files: ['*.ts', '*.tsx'],
+            rules: {
+                'no-undef': 'off',
+            },
         },
-    },
-    {
-        files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
-        rules: {
-            'i18next/no-literal-string': 'off',
-            'max-len': 'off',
-            camelcase: 'off',
+        {
+            files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+                'max-len': 'off',
+                camelcase: 'off',
+            },
         },
-    },
     ],
 };

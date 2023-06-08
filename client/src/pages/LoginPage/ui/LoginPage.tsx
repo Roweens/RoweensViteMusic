@@ -5,10 +5,10 @@ import { Page } from 'widgets/Page';
 import cls from './LoginPage.module.scss';
 
 interface LoginPageProps {
-  className?: string;
+    className?: string;
 }
 
-export const LoginPage = memo((props: LoginPageProps) => {
+const LoginPage = memo((props: LoginPageProps) => {
     const { className } = props;
 
     return (
@@ -17,3 +17,5 @@ export const LoginPage = memo((props: LoginPageProps) => {
         </Page>
     );
 });
+
+export default LoginPage;

@@ -19,4 +19,5 @@ const subscribeToArtistApi = rtkApi.injectEndpoints({
     }),
 });
 
-export const useLazyFetchArtist = subscribeToArtistApi.useLazyFetchArtistDetailsQuery;
+export const useLazyFetchArtist =
+    subscribeToArtistApi.useLazyFetchArtistDetailsQuery;

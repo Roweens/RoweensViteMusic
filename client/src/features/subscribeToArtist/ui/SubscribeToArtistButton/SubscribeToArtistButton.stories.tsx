@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof SubscribeToArtistButton>;
 
-const Template: ComponentStory<typeof SubscribeToArtistButton> = (args) => <SubscribeToArtistButton {...args} />;
+const Template: ComponentStory<typeof SubscribeToArtistButton> = (args) => (
+    <SubscribeToArtistButton {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

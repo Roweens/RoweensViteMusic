@@ -14,62 +14,84 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { HStack } from 'shared/ui/Stack';
 import cls from './UserCollectionTracksList.module.scss';
 import { ReactComponent as FavIcon } from '../../assets/heart.svg';
+import { getUserCollectionListViewType } from '../../model/selectors/getUserCollectionListViewType';
 
 interface UserCollectionTracksListProps {
-   className?: string;
-   items?: Track[];
-   isLoading: boolean;
+    className?: string;
+    items?: Track[];
+    isLoading: boolean;
+    compact: boolean;
 }
 
-export const UserCollectionTracksList = memo((props:UserCollectionTracksListProps) => {
-    const { className, items, isLoading } = props;
-    const { t } = useTranslation();
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    const authData = useSelector(getUserAuthData);
+export const UserCollectionTracksList = memo(
+    (props: UserCollectionTracksListProps) => {
+        const { className, items, isLoading, compact } = props;
+        const { t } = useTranslation();
+        const viewType = useSelector(getUserCollectionListViewType);
+        const dispatch = useAppDispatch();
+        const navigate = useNavigate();
+        const authData = useSelector(getUserAuthData);
 
-    const onPlayHandle = useCallback((track?: Track) => {
-        if (track) {
-            dispatch(playerActions.setTrack(track));
-            dispatch(playerActions.setPaused(false));
+        const onPlayHandle = useCallback(
+            (track?: Track) => {
+                if (track) {
+                    dispatch(playerActions.setTrack(track));
+                    dispatch(playerActions.setPaused(false));
+                }
+            },
+            [dispatch],
+        );
+
+        const onPauseHandle = useCallback(
+            (track?: Track) => {
+                if (track) {
+                    dispatch(playerActions.setPaused(true));
+                    dispatch(playerActions.setTrack(track));
+                }
+            },
+            [dispatch],
+        );
+
+        const onFavouriteCardNavigate = useCallback(() => {
+            navigate(`${RoutePath.favourite}${authData?.id}`);
+        }, [authData?.id, navigate]);
+
+        if (!items) {
+            return null;
         }
-    }, [dispatch]);
 
-    const onPauseHandle = useCallback((track?: Track) => {
-        if (track) {
-            dispatch(playerActions.setPaused(true));
-            dispatch(playerActions.setTrack(track));
-        }
-    }, [dispatch]);
-
-    const onFavouriteCardNavigate = useCallback(() => {
-        navigate(`${RoutePath.favourite}${authData?.id}`);
-    }, [authData?.id, navigate]);
-
-    if (!items) {
-        return null;
-    }
-
-    return (
-        <div className={classNames(cls.userCollectionTracksList, {}, [className])}>
-            <HStack
-                className={classNames(cls.favItem, {}, [className])}
-                onClick={onFavouriteCardNavigate}
-                gap="16"
+        return (
+            <div
+                className={classNames(cls.userCollectionTracksList, {}, [
+                    className,
+                ])}
             >
-                <Card className={cls.favCard}>
-                    <Icon Svg={FavIcon} fill height={30} width={30} />
-                </Card>
-                <Text title={t('Любимые треки')} text={t('Плейлист')} size={TextSize.M} />
-            </HStack>
-            <TrackList
-                tracks={items}
-                isLoading={isLoading}
-                compact
-                onTrackPlay={onPlayHandle}
-                onTrackPause={onPauseHandle}
-                className={cls.list}
-            />
-        </div>
-    );
-});
+                {!compact && (
+                    <HStack
+                        className={classNames(cls.favItem, {}, [className])}
+                        onClick={onFavouriteCardNavigate}
+                        gap="16"
+                    >
+                        <Card className={cls.favCard}>
+                            <Icon Svg={FavIcon} fill height={30} width={30} />
+                        </Card>
+                        <Text
+                            title={t('Любимые треки')}
+                            text={t('Плейлист')}
+                            size={TextSize.M}
+                        />
+                    </HStack>
+                )}
+                <TrackList
+                    tracks={items}
+                    isLoading={isLoading}
+                    viewType={compact ? 'mini' : 'compact'}
+                    onTrackPlay={onPlayHandle}
+                    onTrackPause={onPauseHandle}
+                    className={cls.list}
+                    shortTitle
+                />
+            </div>
+        );
+    },
+);

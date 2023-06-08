@@ -10,25 +10,32 @@ import { ReactComponent as FavIcon } from '../../assets/heart.svg';
 import cls from './CollectionPageFavouriteCard.module.scss';
 
 interface CollectionPageFavouriteCardProps {
-   className?: string;
-   id?: string;
+    className?: string;
+    id?: string;
 }
 
-export const UserCollectionFavourite = memo((props:CollectionPageFavouriteCardProps) => {
-    const { className, id } = props;
-    const { t } = useTranslation();
-    const navigate = useNavigate();
+export const UserCollectionFavourite = memo(
+    (props: CollectionPageFavouriteCardProps) => {
+        const { className, id } = props;
+        const { t } = useTranslation();
+        const navigate = useNavigate();
 
-    const onFavouriteCardNavigate = useCallback(() => {
-        navigate(RoutePath.favourite + id);
-    }, [id, navigate]);
+        const onFavouriteCardNavigate = useCallback(() => {
+            navigate(RoutePath.favourite + id);
+        }, [id, navigate]);
 
-    return (
-        <Card className={classNames(cls.collectionPageFavouriteCard, {}, [className])} onClick={onFavouriteCardNavigate}>
-            <Card className={cls.favCard}>
-                <Icon Svg={FavIcon} fill height={70} width={70} />
+        return (
+            <Card
+                className={classNames(cls.collectionPageFavouriteCard, {}, [
+                    className,
+                ])}
+                onClick={onFavouriteCardNavigate}
+            >
+                <Card className={cls.favCard}>
+                    <Icon Svg={FavIcon} fill height={70} width={70} />
+                </Card>
+                <Text title={t('Любимые треки')} />
             </Card>
-            <Text title={t('Любимые треки')} />
-        </Card>
-    );
-});
+        );
+    },
+);

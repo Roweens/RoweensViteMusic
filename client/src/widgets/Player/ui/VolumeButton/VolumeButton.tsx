@@ -9,11 +9,11 @@ import { ReactComponent as VolumeIcon } from '../../assets/volume.svg';
 import { ReactComponent as VolumeOffIcon } from '../../assets/volumeoff.svg';
 
 interface PlayerVolumeButtonProps {
-   className?: string;
-   audio: HTMLAudioElement;
+    className?: string;
+    audio: HTMLAudioElement;
 }
 
-export const VolumeButton = memo((props:PlayerVolumeButtonProps) => {
+export const VolumeButton = memo((props: PlayerVolumeButtonProps) => {
     const { className, audio } = props;
     const volume = useSelector(getPlayerVolume);
     const volumeOff = useSelector(getPlayerVolumeOff);

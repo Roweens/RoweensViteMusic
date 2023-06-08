@@ -1,6 +1,4 @@
-import {
-    memo, useCallback, useEffect, useMemo,
-} from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { Image } from 'shared/ui/Image/Image';
@@ -30,7 +28,7 @@ interface PlayerProps {
     className?: string;
 }
 
-export const Player = memo((props:PlayerProps) => {
+export const Player = memo((props: PlayerProps) => {
     const { className } = props;
     const { t } = useTranslation();
 
@@ -43,7 +41,7 @@ export const Player = memo((props:PlayerProps) => {
 
     const dispatch = useAppDispatch();
 
-    const audio: HTMLAudioElement = useMemo(() => (new Audio()), []);
+    const audio: HTMLAudioElement = useMemo(() => new Audio(), []);
 
     const play = useCallback(() => {
         if (!isPaused) {
@@ -61,7 +59,9 @@ export const Player = memo((props:PlayerProps) => {
                 dispatch(playerActions.setDuration(Math.ceil(audio.duration)));
             };
             audio.ontimeupdate = () => {
-                dispatch(playerActions.setPlayTime(Math.ceil(audio.currentTime)));
+                dispatch(
+                    playerActions.setPlayTime(Math.ceil(audio.currentTime)),
+                );
             };
         }
     }, [audio, dispatch, track, volume]);
@@ -71,18 +71,24 @@ export const Player = memo((props:PlayerProps) => {
             setAudio();
             play();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [track, isPaused]);
 
-    const onChangeVolume = useCallback((value: number) => {
-        audio.volume = value / 100;
-        dispatch(playerActions.setVolume(value));
-    }, [audio, dispatch]);
+    const onChangeVolume = useCallback(
+        (value: number) => {
+            audio.volume = value / 100;
+            dispatch(playerActions.setVolume(value));
+        },
+        [audio, dispatch],
+    );
 
-    const onChangePlayTime = useCallback((value: number) => {
-        audio.currentTime = value;
-        dispatch(playerActions.setPlayTime(value));
-    }, [audio, dispatch]);
+    const onChangePlayTime = useCallback(
+        (value: number) => {
+            audio.currentTime = value;
+            dispatch(playerActions.setPlayTime(value));
+        },
+        [audio, dispatch],
+    );
 
     const onPlayHandle = useCallback(() => {
         if (track) {
@@ -101,9 +107,17 @@ export const Player = memo((props:PlayerProps) => {
             justify="between"
             align="center"
         >
-
             <HStack gap="16">
-                <Image src={track ? `${__STATIC_URL__}${track?.album.img}` : DefaultAlbum} squared height={60} width={60} />
+                <Image
+                    src={
+                        track
+                            ? `${__STATIC_URL__}${track?.album.img}`
+                            : DefaultAlbum
+                    }
+                    squared
+                    height={60}
+                    width={60}
+                />
                 <Text
                     title={track?.track.name ?? t('Трек не выбран')}
                     text={track?.album.title ?? t('')}
@@ -112,21 +126,41 @@ export const Player = memo((props:PlayerProps) => {
 
             <VStack className={classNames(cls.controls)} align="center" gap="4">
                 <HStack className={classNames(cls.controlsIcons)}>
-                    <Button squared size={ButtonSize.EXTRA_LARGE} theme={ButtonTheme.CLEAN}>
+                    <Button
+                        squared
+                        size={ButtonSize.EXTRA_LARGE}
+                        theme={ButtonTheme.CLEAN}
+                    >
                         <PlayBack />
                     </Button>
-                    {!isPaused
-                        ? <PauseButton onPause={onPauseHandle} />
-                        : <PlayButton onPlay={onPlayHandle} track={track} />}
-                    <Button squared size={ButtonSize.EXTRA_LARGE} theme={ButtonTheme.CLEAN}>
+                    {!isPaused ? (
+                        <PauseButton onPause={onPauseHandle} />
+                    ) : (
+                        <PlayButton onPlay={onPlayHandle} track={track} />
+                    )}
+                    <Button
+                        squared
+                        size={ButtonSize.EXTRA_LARGE}
+                        theme={ButtonTheme.CLEAN}
+                    >
                         <PlayNext />
                     </Button>
                 </HStack>
-                <RangeInput left={playTime} right={duration} onChange={onChangePlayTime} className={cls.duration} width={500} />
+                <RangeInput
+                    left={playTime}
+                    right={duration}
+                    onChange={onChangePlayTime}
+                    className={cls.duration}
+                    width={500}
+                />
             </VStack>
 
             <HStack gap="16">
-                <Button squared size={ButtonSize.LARGE} theme={ButtonTheme.CLEAN}>
+                <Button
+                    squared
+                    size={ButtonSize.LARGE}
+                    theme={ButtonTheme.CLEAN}
+                >
                     <QueueIcon />
                 </Button>
                 <VolumeButton audio={audio} />
@@ -139,7 +173,6 @@ export const Player = memo((props:PlayerProps) => {
                     disabled={volumeOff}
                 />
             </HStack>
-
         </HStack>
     );
 });

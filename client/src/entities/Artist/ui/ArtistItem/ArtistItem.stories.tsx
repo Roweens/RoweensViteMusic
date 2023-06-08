@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof ArtistItem>;
 
-const Template: ComponentStory<typeof ArtistItem> = (args) => <ArtistItem {...args} />;
+const Template: ComponentStory<typeof ArtistItem> = (args) => (
+    <ArtistItem {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

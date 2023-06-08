@@ -19,4 +19,5 @@ const addTrackToFavouriteApi = rtkApi.injectEndpoints({
     }),
 });
 
-export const useLazyFetchTrack = addTrackToFavouriteApi.useLazyFetchTrackDetailsQuery;
+export const useLazyFetchTrack =
+    addTrackToFavouriteApi.useLazyFetchTrackDetailsQuery;

@@ -1,0 +1,31 @@
+.profileItem {
+}
+
+.info {
+    overflow-y: hidden;
+
+    .title {
+        font-weight: 700;
+        font-size: 18px;
+        max-width: 170px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .text {
+        font-size: 16px;
+        filter: brightness(0.7);
+        max-width: 170px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 288px;
+}

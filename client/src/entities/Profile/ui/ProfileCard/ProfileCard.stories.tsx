@@ -17,7 +17,9 @@ export default {
     },
 } as ComponentMeta<typeof ProfileCard>;
 
-const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
+const Template: ComponentStory<typeof ProfileCard> = (args) => (
+    <ProfileCard {...args} />
+);
 
 const data: Profile = {
     firstname: 'Тимур',
@@ -37,10 +39,19 @@ export const Primary = Template.bind({});
 Primary.args = {
     form: data,
 };
-Primary.decorators = [StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Primary.decorators = [
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {
     form: data,
 };
-Dark.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Dark.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];

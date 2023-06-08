@@ -4,7 +4,7 @@ import { Page } from 'widgets/Page';
 import cls from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
-  className?: string;
+    className?: string;
 }
 
 export const NotFoundPage = memo((props: NotFoundPageProps) => {

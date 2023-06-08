@@ -1,6 +1,4 @@
-import {
-    memo, useCallback, useMemo,
-} from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { TabItem, Tabs } from 'shared/ui/Tabs';
@@ -12,7 +10,7 @@ import { Track } from 'entities/Track';
 import { Artist } from 'entities/Artist';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { HStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { getUserCollectionListIsLoading } from '../../model/selectors/getUserCollectionListIsLoading';
 import { getUserCollectionListItems } from '../../model/selectors/getUserCollectionListItems';
@@ -28,12 +26,12 @@ import { ReactComponent as LeftArrow } from '../../assets/leftArr.svg';
 import { ReactComponent as RightArrow } from '../../assets/rightArr.svg';
 
 interface userCollectionListProps {
-   className?: string;
-   isCollapsed: boolean
-   setIsCollapsed: (isCollapsed: boolean) => void
+    className?: string;
+    isCollapsed: boolean;
+    setIsCollapsed: (isCollapsed: boolean) => void;
 }
 
-export const UserCollectionList = memo((props:userCollectionListProps) => {
+export const UserCollectionList = memo((props: userCollectionListProps) => {
     const { className, isCollapsed, setIsCollapsed } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
@@ -42,31 +40,82 @@ export const UserCollectionList = memo((props:userCollectionListProps) => {
         dispatch(fetchCollectionCategory());
     });
 
-    const tabItems: TabItem<UserCollectionListCategory>[] = useMemo(() => ([
-        { id: 1, content: <Text text={t('Альбомы')} />, value: 'Albums' },
-        { id: 2, content: <Text text={t('Исполнители')} />, value: 'Artists' },
-        { id: 3, content: <Text text={t('Треки')} />, value: 'Tracks' },
-    ]), [t]);
+    const tabItems: TabItem<UserCollectionListCategory>[] = useMemo(
+        () => [
+            { id: 1, content: <Text text={t('Альбомы')} />, value: 'Albums' },
+            {
+                id: 2,
+                content: <Text text={t('Исполнители')} />,
+                value: 'Artists',
+            },
+            { id: 3, content: <Text text={t('Треки')} />, value: 'Tracks' },
+        ],
+        [t],
+    );
 
     const category = useSelector(getUserCollectionListCategory);
     const items = useSelector(getUserCollectionListItems);
     const isLoading = useSelector(getUserCollectionListIsLoading);
 
-    const onCategoryChangeHandle = useCallback((tab: TabItem<UserCollectionListCategory>) => {
-        dispatch(userCollectionListActions.setCategory(tab.value));
-        dispatch(fetchCollectionCategory());
-    }, [dispatch]);
+    const onCategoryChangeHandle = useCallback(
+        (tab: TabItem<UserCollectionListCategory>) => {
+            dispatch(userCollectionListActions.setCategory(tab.value));
+            dispatch(fetchCollectionCategory());
+        },
+        [dispatch],
+    );
 
-    const onToggle = () => {
+    const onSizeToggle = useCallback(() => {
         setIsCollapsed(!isCollapsed);
-    };
+    }, [isCollapsed, setIsCollapsed]);
 
-    const content = category === 'Albums' ? <UserCollectionAlbumsList items={items as Album[]} isLoading={isLoading} />
-        : category === 'Tracks' ? <UserCollectionTracksList items={items as Track[]} isLoading={isLoading} />
-            : <UserCollectionArtistList items={items as Artist[]} isLoading={isLoading} />;
+    const content =
+        category === 'Albums' ? (
+            <UserCollectionAlbumsList
+                items={items as Album[]}
+                isLoading={isLoading}
+                compact={isCollapsed}
+            />
+        ) : category === 'Tracks' ? (
+            <UserCollectionTracksList
+                items={items as Track[]}
+                isLoading={isLoading}
+                compact={isCollapsed}
+            />
+        ) : (
+            <UserCollectionArtistList
+                items={items as Artist[]}
+                isLoading={isLoading}
+                compact={isCollapsed}
+            />
+        );
 
     if (isLoading) {
         return null;
+    }
+
+    if (isCollapsed) {
+        return (
+            <VStack className={cls.userCollectionWrapper} max align="center">
+                <HStack justify="between">
+                    <Button
+                        type="button"
+                        onClick={onSizeToggle}
+                        data-testid="sidebar-toggle"
+                        className={cls.collapsedBtn}
+                        theme={ButtonTheme.CLEAN}
+                        size={ButtonSize.LARGE}
+                    >
+                        {isCollapsed ? (
+                            <Icon Svg={RightArrow} height={26} width={26} />
+                        ) : (
+                            <Icon Svg={LeftArrow} height={26} width={26} />
+                        )}
+                    </Button>
+                </HStack>
+                {content}
+            </VStack>
+        );
     }
 
     return (
@@ -75,24 +124,16 @@ export const UserCollectionList = memo((props:userCollectionListProps) => {
                 <Text title={t('Моя медиатека')} />
                 <Button
                     type="button"
-                    onClick={onToggle}
+                    onClick={onSizeToggle}
                     data-testid="sidebar-toggle"
                     className={cls.collapsedBtn}
                     theme={ButtonTheme.CLEAN}
                     size={ButtonSize.LARGE}
                 >
                     {isCollapsed ? (
-                        <Icon
-                            Svg={RightArrow}
-                            height={26}
-                            width={26}
-                        />
+                        <Icon Svg={RightArrow} height={26} width={26} />
                     ) : (
-                        <Icon
-                            Svg={LeftArrow}
-                            height={26}
-                            width={26}
-                        />
+                        <Icon Svg={LeftArrow} height={26} width={26} />
                     )}
                 </Button>
             </HStack>

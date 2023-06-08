@@ -7,10 +7,11 @@ import { AlbumPage } from 'pages/AlbumPage';
 import { ArtistPage } from 'pages/ArtistPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { AppRoutes, RoutePath } from 'shared/const/router';
+import { SearchPage } from 'pages/SearchPage';
 
 export type CustomRouteProps = RouteProps & {
-    authOnly?: boolean
-}
+    authOnly?: boolean;
+};
 
 export const RouteConfig: Record<AppRoutes, CustomRouteProps> = {
     [AppRoutes.MAIN]: {
@@ -41,6 +42,11 @@ export const RouteConfig: Record<AppRoutes, CustomRouteProps> = {
         element: <ArtistPage />,
         authOnly: true,
     },
+    [AppRoutes.SEARCH]: {
+        path: RoutePath[AppRoutes.SEARCH],
+        element: <SearchPage />,
+        authOnly: true,
+    },
     [AppRoutes.FAVOURITE]: {
         path: `${RoutePath[AppRoutes.FAVOURITE]}:id`,
         element: <NotFoundPage />,
@@ -50,5 +56,4 @@ export const RouteConfig: Record<AppRoutes, CustomRouteProps> = {
         path: RoutePath[AppRoutes.NOT_FOUND],
         element: <NotFoundPage />,
     },
-
 };

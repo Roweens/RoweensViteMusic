@@ -8,14 +8,14 @@ import { TrackSortField } from '../../model/types/track';
 import cls from './TrackSortSelector.module.scss';
 
 interface TrackSortSelectorProps {
-   className?: string;
-   order: SortOrder;
-   sort: TrackSortField;
-   onOrderChange: (newOrder: SortOrder) => void;
-   onSortChange: (newSort: TrackSortField) => void;
+    className?: string;
+    order: SortOrder;
+    sort: TrackSortField;
+    onOrderChange: (newOrder: SortOrder) => void;
+    onSortChange: (newSort: TrackSortField) => void;
 }
 
-const orderOptions:OptionsType[] = [
+const orderOptions: OptionsType[] = [
     {
         id: 1,
         value: 'ASC',
@@ -28,7 +28,7 @@ const orderOptions:OptionsType[] = [
     },
 ];
 
-const sortOptions:OptionsType[] = [
+const sortOptions: OptionsType[] = [
     {
         id: 1,
         value: TrackSortField.ALBUM,
@@ -56,16 +56,26 @@ const sortOptions:OptionsType[] = [
     },
 ];
 
-export const TrackSortSelector = memo((props:TrackSortSelectorProps) => {
-    const {
-        className, onOrderChange, onSortChange, order, sort,
-    } = props;
+export const TrackSortSelector = memo((props: TrackSortSelectorProps) => {
+    const { className, onOrderChange, onSortChange, order, sort } = props;
     const { t } = useTranslation();
 
     return (
         <div className={classNames(cls.trackSortSelector, {}, [className])}>
-            <Selector options={orderOptions} value={order} onChange={onOrderChange} theme={SelectorTheme.FILLED} label={t('Порядок сортировки')} />
-            <Selector options={sortOptions} value={sort} onChange={onSortChange} theme={SelectorTheme.FILLED} label={t('Значение для сортировки')} />
+            <Selector
+                options={orderOptions}
+                value={order}
+                onChange={onOrderChange}
+                theme={SelectorTheme.FILLED}
+                label={t('Порядок сортировки')}
+            />
+            <Selector
+                options={sortOptions}
+                value={sort}
+                onChange={onSortChange}
+                theme={SelectorTheme.FILLED}
+                label={t('Значение для сортировки')}
+            />
         </div>
     );
 });

@@ -14,10 +14,13 @@ export const albumSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder) {
-        builder.addCase(fetchAlbumById.fulfilled, (state, action: PayloadAction<Album>) => {
-            state.isLoading = false;
-            state.data = action.payload;
-        });
+        builder.addCase(
+            fetchAlbumById.fulfilled,
+            (state, action: PayloadAction<Album>) => {
+                state.isLoading = false;
+                state.data = action.payload;
+            },
+        );
         builder.addCase(fetchAlbumById.pending, (state) => {
             state.error = undefined;
             state.isLoading = true;

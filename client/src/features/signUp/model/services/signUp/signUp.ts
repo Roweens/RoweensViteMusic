@@ -12,16 +12,17 @@ interface SignUpProps {
 export const signUp = createAsyncThunk<User, SignUpProps, ThunkConfig<string>>(
     'signUp',
     async (authData, { extra, dispatch, rejectWithValue }) => {
-        const {
-            email, password, username, firstname,
-        } = authData;
+        const { email, password, username, firstname } = authData;
 
         if (!email && !password && !username && !firstname) {
             return rejectWithValue('No data');
         }
 
         try {
-            const response = await extra.api.post<User>('user/signup', authData);
+            const response = await extra.api.post<User>(
+                'user/signup',
+                authData,
+            );
 
             if (!response.data) throw new Error();
 

@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof GenreSelector>;
 
-const Template: ComponentStory<typeof GenreSelector> = (args) => <GenreSelector {...args} />;
+const Template: ComponentStory<typeof GenreSelector> = (args) => (
+    <GenreSelector {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

@@ -34,10 +34,10 @@ Dark.decorators = [ThemeDecorator(Themes.DARK)];
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-    children:
-    <>
-        <Text text="Icon link" />
-        <Icon Svg={TestIcon} />
-    </>,
-
+    children: (
+        <>
+            <Text text="Icon link" />
+            <Icon Svg={TestIcon} />
+        </>
+    ),
 };

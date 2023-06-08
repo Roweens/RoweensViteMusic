@@ -4,18 +4,18 @@ import { Text } from '../../ui/Text/Text';
 import cls from './RangeInput.module.scss';
 
 interface RangeInputProps {
-   className?: string;
-   left: number;
-   right: number;
-   rightLabel?: string;
-   leftLabel?: string;
-   step?: number;
-   width?: number | string;
-   disabled?:boolean;
-   onChange?: (value: number) => void
+    className?: string;
+    left: number;
+    right: number;
+    rightLabel?: string;
+    leftLabel?: string;
+    step?: number;
+    width?: number | string;
+    disabled?: boolean;
+    onChange?: (value: number) => void;
 }
 
-export const RangeInput = memo((props:RangeInputProps) => {
+export const RangeInput = memo((props: RangeInputProps) => {
     const {
         className,
         width,

@@ -1,8 +1,12 @@
-import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+    CombinedState,
+    configureStore,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit';
 import { loginReducer } from 'features/authByEmail';
 import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
-import { NavigateOptions, To } from 'react-router-dom';
 import { playerReducer } from 'widgets/Player';
 import { rtkApi } from 'shared/api/rtkApi';
 import { userCollectionListReducer } from 'features/userCollectionList';
@@ -12,7 +16,6 @@ import { createReducerManager } from './ReducerManager';
 export function createReduxStore(
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
-    navigate?: (to: To, options?: NavigateOptions) => void
 ) {
     const rootReducer: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
@@ -25,7 +28,6 @@ export function createReduxStore(
 
     const extraArg: ThunkExtraArg = {
         api: $api,
-        navigate,
     };
 
     const reducerManager = createReducerManager(rootReducer);

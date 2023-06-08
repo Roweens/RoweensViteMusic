@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof UserCollectionFavourite>;
 
-const Template: ComponentStory<typeof UserCollectionFavourite> = (args) => <UserCollectionFavourite {...args} />;
+const Template: ComponentStory<typeof UserCollectionFavourite> = (args) => (
+    <UserCollectionFavourite {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

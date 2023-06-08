@@ -8,7 +8,7 @@ interface CurrencySelectProps {
     className?: string;
     onChange?: (value: Currency) => void;
     value?: Currency;
-    readOnly?:boolean;
+    readOnly?: boolean;
 }
 
 const CurrencyOptions: OptionsType[] = [
@@ -30,9 +30,7 @@ const CurrencyOptions: OptionsType[] = [
 ];
 
 export const CurrencySelect: FC<CurrencySelectProps> = (props) => {
-    const {
-        className, onChange, value, readOnly,
-    } = props;
+    const { className, onChange, value, readOnly } = props;
 
     const { t } = useTranslation();
 

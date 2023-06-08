@@ -16,7 +16,9 @@ export default {
     },
 } as ComponentMeta<typeof DropDown>;
 
-const Template: ComponentStory<typeof DropDown> = (args) => <DropDown {...args} />;
+const Template: ComponentStory<typeof DropDown> = (args) => (
+    <DropDown {...args} />
+);
 
 const valuesArray: DropdownItem[] = [
     {
@@ -26,11 +28,12 @@ const valuesArray: DropdownItem[] = [
     },
     {
         id: 2,
-        content:
-    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-        <Icon Svg={IconTest} width={25} height={25} />
-        Button item
-    </div>,
+        content: (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Icon Svg={IconTest} width={25} height={25} />
+                Button item
+            </div>
+        ),
         disabled: true,
     },
     {

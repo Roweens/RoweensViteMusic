@@ -1,78 +1,84 @@
 .trackItem {
     display: grid;
     align-items: center;
-    grid-template-columns: minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    grid-template-columns:
+        minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr)
+        minmax(100px, 1fr) minmax(100px, 1fr);
     margin-top: 20px;
     background-color: var(--secondary-bg-color);
     padding: 7px 12px 7px 10px;
     border-radius: 10px;
 
-    &:hover{
+    &:hover {
         background-color: var(--secondary-bg-hover-color);
     }
-}
 
-.trackItemCompact {
-    margin-top: 20px;
-    padding: 7px 12px 7px 10px;
-    border-radius: 10px;
-
-    &:hover{
-        background-color: var(--bg-color);
-    }
-
-    .name{
-        h5{
-            max-width: 160px;
+    .name {
+        h5 {
+            max-width: 300px;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
 
-        p{
+        p {
             filter: brightness(0.8);
         }
     }
 }
 
+.trackItemCompact {
+    padding: 7px 12px 7px 10px;
+    border-radius: 10px;
+    width: 100%;
 
+    &:hover {
+        background-color: var(--bg-color);
+    }
 
-.info{
+    .name {
+        p {
+            filter: brightness(0.8);
+        }
+    }
+
+    .shortTitle {
+        h5 {
+            max-width: 200px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
+.info {
     display: flex;
     align-items: center;
     gap: 20px;
 
-    svg{
+    svg {
         fill: var(--primary-color);
     }
 }
 
-.album{
+.album {
     font: var(--font-m);
     justify-self: start;
 }
 
-.image{
+.image {
     height: 50px;
 }
 
-.listens{
+.listens {
     justify-self: end;
 }
 
-.time{
+.time {
     justify-self: end;
 }
 
-.name{
-    h5{
-        max-width: 300px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    p{
-        filter: brightness(0.8);
-    }
+.trackItemMini {
+    margin-top: 20px;
 }

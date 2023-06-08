@@ -11,54 +11,71 @@ import cls from './AddTrackToFavouriteButton.module.scss';
 import { removeFromFavouriteList } from '../../model/services/removeTrackFromFavouriteList/removeTrackFromFavouriteList';
 
 interface addToFavouriteButtonProps {
-   className?: string;
-   track?: Track
-   onFavouriteChange?: () => void
+    className?: string;
+    track?: Track;
+    onFavouriteChange?: () => void;
 }
 
-export const AddTrackToFavouriteButton = memo((props:addToFavouriteButtonProps) => {
-    const { className, track, onFavouriteChange } = props;
-    const { t } = useTranslation();
-    const dispatch = useAppDispatch();
+export const AddTrackToFavouriteButton = memo(
+    (props: addToFavouriteButtonProps) => {
+        const { className, track, onFavouriteChange } = props;
+        const { t } = useTranslation();
+        const dispatch = useAppDispatch();
 
-    const onAddToFavouriteHandle = useCallback(() => {
-        dispatch(addToFavouriteList({ trackId: String(track?.track.id) }))
-            .then(() => {
+        const onAddToFavouriteHandle = useCallback(() => {
+            dispatch(
+                addToFavouriteList({ trackId: String(track?.track.id) }),
+            ).then(() => {
                 onFavouriteChange?.();
             });
-    }, [dispatch, onFavouriteChange, track?.track.id]);
+        }, [dispatch, onFavouriteChange, track?.track.id]);
 
-    const onRemoveFromFavouriteHandle = useCallback(() => {
-        dispatch(removeFromFavouriteList({ trackId: String(track?.track.id) }))
-            .then(() => {
+        const onRemoveFromFavouriteHandle = useCallback(() => {
+            dispatch(
+                removeFromFavouriteList({ trackId: String(track?.track.id) }),
+            ).then(() => {
                 onFavouriteChange?.();
             });
-    }, [dispatch, onFavouriteChange, track?.track.id]);
+        }, [dispatch, onFavouriteChange, track?.track.id]);
 
-    if (!track) {
-        return null;
-    }
+        if (!track) {
+            return null;
+        }
 
-    return (
-        <>
-            {track.track.favourite_track.length ? (
-                <Button
-                    className={classNames(cls.addToFavouriteButton, {}, [className])}
-                    theme={ButtonTheme.CLEAN}
-                    onClick={onRemoveFromFavouriteHandle}
-                >
-                    <Icon Svg={HeartIcon} height={30} width={30} className={cls.unfavIcon} />
-                </Button>
-            ) : (
-                <Button
-                    className={classNames(cls.addToFavouriteButton, {}, [className])}
-                    theme={ButtonTheme.CLEAN}
-                    onClick={onAddToFavouriteHandle}
-                >
-                    <Icon Svg={HeartIcon} height={30} width={30} className={cls.favIcon} />
-                </Button>
-            )}
-
-        </>
-    );
-});
+        return (
+            <>
+                {track.track.favourite_track.length ? (
+                    <Button
+                        className={classNames(cls.addToFavouriteButton, {}, [
+                            className,
+                        ])}
+                        theme={ButtonTheme.CLEAN}
+                        onClick={onRemoveFromFavouriteHandle}
+                    >
+                        <Icon
+                            Svg={HeartIcon}
+                            height={30}
+                            width={30}
+                            className={cls.unfavIcon}
+                        />
+                    </Button>
+                ) : (
+                    <Button
+                        className={classNames(cls.addToFavouriteButton, {}, [
+                            className,
+                        ])}
+                        theme={ButtonTheme.CLEAN}
+                        onClick={onAddToFavouriteHandle}
+                    >
+                        <Icon
+                            Svg={HeartIcon}
+                            height={30}
+                            width={30}
+                            className={cls.favIcon}
+                        />
+                    </Button>
+                )}
+            </>
+        );
+    },
+);

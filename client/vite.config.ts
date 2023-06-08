@@ -22,7 +22,9 @@ export default defineConfig(({ mode }) => {
         },
         plugins: [svgr(), react(), tsconfigPaths()],
         define: {
-            __IS_DEV__: process.env.VITE_IS_DEV ? JSON.stringify(true) : JSON.stringify(false),
+            __IS_DEV__: process.env.VITE_IS_DEV
+                ? JSON.stringify(true)
+                : JSON.stringify(false),
             __API_URL__: process.env.VITE_IS_DEV
                 ? JSON.stringify('http://localhost:5000/api/')
                 : JSON.stringify('http://production-url.com'),

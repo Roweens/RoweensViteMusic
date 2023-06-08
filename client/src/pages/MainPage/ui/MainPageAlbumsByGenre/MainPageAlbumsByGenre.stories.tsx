@@ -9,9 +9,9 @@ export default {
     },
 } as ComponentMeta<typeof MainPageAlbumsByGenre>;
 
-const Template: ComponentStory<typeof MainPageAlbumsByGenre> = (args) => <MainPageAlbumsByGenre {...args} />;
+const Template: ComponentStory<typeof MainPageAlbumsByGenre> = (args) => (
+    <MainPageAlbumsByGenre {...args} />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
+Normal.args = {};

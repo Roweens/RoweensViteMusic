@@ -30,7 +30,9 @@ const data: Profile = {
     avatar: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg',
 };
 
-const Template: ComponentStory<typeof ProfilePageHeader> = () => <ProfilePageHeader />;
+const Template: ComponentStory<typeof ProfilePageHeader> = () => (
+    <ProfilePageHeader />
+);
 
 export const ReadOnly = Template.bind({});
 
@@ -39,4 +41,7 @@ ReadOnly.decorators = [StoreDecorator({ profile: { readonly: true } })];
 
 export const Editing = Template.bind({});
 Editing.args = {};
-Editing.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ profile: { readonly: false } })];
+Editing.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({ profile: { readonly: false } }),
+];

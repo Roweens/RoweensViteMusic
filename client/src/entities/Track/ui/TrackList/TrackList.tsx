@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames';
+import { ItemView } from 'shared/types/ItemView';
+import { VStack } from 'shared/ui/Stack';
 import cls from './TrackList.module.scss';
 import { Track } from '../../model/types/track';
 import { TrackItem } from '../TrackItem/TrackItem';
@@ -7,21 +9,34 @@ import { TrackItem } from '../TrackItem/TrackItem';
 interface TrackListProps {
     className?: string;
     tracks: Track[];
-    isLoading?: boolean
-    error?:string
-    onFavouriteChange?: () => void
+    isLoading?: boolean;
+    error?: string;
+    onFavouriteChange?: () => void;
     onTrackPlay?: (track?: Track) => void;
-     onTrackPause?: (track?: Track) => void;
-     compact?: boolean;
+    onTrackPause?: (track?: Track) => void;
+    viewType?: ItemView;
+    shortTitle?: boolean;
 }
 
-export const TrackList = memo((props:TrackListProps) => {
+export const TrackList = memo((props: TrackListProps) => {
     const {
-        className, tracks, isLoading, error, onFavouriteChange, onTrackPause, onTrackPlay, compact = false,
+        className,
+        tracks,
+        isLoading,
+        error,
+        onFavouriteChange,
+        onTrackPause,
+        onTrackPlay,
+        viewType = 'full',
+        shortTitle = false,
     } = props;
 
     return (
-        <div className={classNames(cls.trackList, {}, [className])}>
+        <VStack
+            className={classNames(cls.trackList, {}, [className])}
+            gap="16"
+            max
+        >
             {tracks.map((track) => (
                 <TrackItem
                     track={track}
@@ -30,7 +45,8 @@ export const TrackList = memo((props:TrackListProps) => {
                     onFavouriteChange={onFavouriteChange}
                     onTrackPause={onTrackPause}
                     onTrackPlay={onTrackPlay}
-                    compact={compact}
+                    viewType={viewType}
+                    shortTitle={shortTitle}
                 />
             ))}
             {isLoading && (
@@ -40,6 +56,6 @@ export const TrackList = memo((props:TrackListProps) => {
                     <TrackItem isLoading />
                 </div>
             )}
-        </div>
+        </VStack>
     );
 });

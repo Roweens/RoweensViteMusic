@@ -18,8 +18,17 @@ const Template: ComponentStory<typeof LoginPage> = () => <LoginPage />;
 export const Primary = Template.bind({});
 
 Primary.args = {};
-Primary.decorators = [StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Primary.decorators = [
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Themes.DARK), StoreDecorator({ login: { email: 'testEmail@gmail.com', password: 'testpassword' } })];
+Dark.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
