@@ -3,6 +3,9 @@
     background-color: var(--player-color);
     color: var(--player-text-color);
     padding: 15px 35px;
+    display: grid;
+    grid-template-columns: 30% 1fr 20%;
+    height: var(--player-heigth);
 
     .info {
         display: flex;
@@ -31,5 +34,9 @@
 
     input {
         color: beige;
+    }
+
+    .volume {
+        justify-self: end;
     }
 }

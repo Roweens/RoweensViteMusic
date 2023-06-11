@@ -13,9 +13,10 @@ import {
 } from 'shared/ui/DropDown/DropDown';
 import { HStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Image } from 'shared/ui/Image/Image';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { RoutePath } from 'shared/const/router';
+import { AppImage } from 'shared/ui/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import Avatar from '../assets/Avatar.jpg';
 import cls from './UserMenu.module.scss';
 import { ReactComponent as DownArrow } from '../assets/down.svg';
@@ -46,7 +47,7 @@ export const UserMenu = memo((props: UserMenuProps) => {
                 content: (
                     <HStack gap="8" className={cls.menuItem}>
                         <Icon Svg={ProfileIcon} width={30} height={30} />
-                        <Text text={t('Профиль')} />
+                        <Text title={t('Профиль')} size={TextSize.S} />
                     </HStack>
                 ),
                 href: `${RoutePath.profile}${auth?.id}`,
@@ -56,7 +57,7 @@ export const UserMenu = memo((props: UserMenuProps) => {
                 content: (
                     <HStack gap="8" className={cls.menuItem}>
                         <Icon Svg={ExitIcon} width={30} height={30} />
-                        <Text text={t('Выход')} />
+                        <Text title={t('Выход')} size={TextSize.S} />
                     </HStack>
                 ),
                 onClick: handleLogout,
@@ -72,8 +73,18 @@ export const UserMenu = memo((props: UserMenuProps) => {
             className={classNames(cls.dropDown, {}, [className])}
             trigger={
                 <HStack gap="8">
-                    <Image src={userIcon} width={30} height={30} />
-                    <Text text={auth?.username} />
+                    <AppImage
+                        src={userIcon}
+                        width={30}
+                        height={30}
+                        fallback={
+                            <Skeleton width={30} height={30} border="5px" />
+                        }
+                        // errorFallback={
+                        //     <Icon Svg={userIcon} width={30} height={30} />
+                        // }
+                    />
+                    <Text title={auth?.username} size={TextSize.S} bold />
                     <Icon Svg={DownArrow} height={20} width={20} />
                 </HStack>
             }

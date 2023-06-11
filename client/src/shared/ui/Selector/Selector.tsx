@@ -9,6 +9,7 @@ import { ReactComponent as SelectIcon } from './assets/select.svg';
 import cls from './Selector.module.scss';
 import { Button, ButtonTheme } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
+import { Text, TextSize } from '../Text/Text';
 
 export enum SelectorTheme {
     CLEAR = 'clear',
@@ -193,7 +194,7 @@ export const Selector = memo((props: SelectorProps) => {
                                         fill={false}
                                     />
                                 )}
-                                {option.label}
+                                <Text title={option.label} size={TextSize.S} />
                             </li>
                         ))}
                     </ul>

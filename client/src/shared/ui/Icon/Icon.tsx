@@ -10,10 +10,19 @@ interface IconProps {
     height?: string | number;
     stroke?: boolean;
     fill?: boolean;
+    inverted?: boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
-    const { className, Svg, height, width, fill = true, stroke } = props;
+    const {
+        className,
+        Svg,
+        height,
+        width,
+        fill = true,
+        stroke,
+        inverted,
+    } = props;
 
     const styles: CSSProperties = {
         width: width || 40,
@@ -23,6 +32,7 @@ export const Icon = memo((props: IconProps) => {
     const mods: Mods = {
         [cls.fill]: fill,
         [cls.stroke]: stroke,
+        [cls.inverted]: inverted,
     };
 
     return (

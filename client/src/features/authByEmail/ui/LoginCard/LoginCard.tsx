@@ -7,6 +7,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cls from './LoginCard.module.scss';
 import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
@@ -29,6 +30,10 @@ export const LoginCard = memo((props: LoginCardProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const onChangeEmail = useCallback(
         (value: string) => {
             dispatch(loginActions.setEmail(value));
@@ -44,8 +49,12 @@ export const LoginCard = memo((props: LoginCardProps) => {
     );
 
     const onLoginSubmit = useCallback(() => {
-        dispatch(loginByEmail({ email, password }));
-    }, [dispatch, email, password]);
+        dispatch(loginByEmail({ email, password }))
+            .unwrap()
+            .then(() => {
+                navigate(from, { replace: true });
+            });
+    }, [dispatch, email, from, navigate, password]);
 
     if (isLoading) {
         return (

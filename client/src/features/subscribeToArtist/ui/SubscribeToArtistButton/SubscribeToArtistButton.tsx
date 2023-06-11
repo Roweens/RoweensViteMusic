@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
@@ -63,7 +63,7 @@ export const SubscribeToArtistButton = memo(
                         theme={ButtonTheme.OUTLINED}
                         onClick={onUnsubscribeHandle}
                     >
-                        <Text text={t('Вы подписаны')} />
+                        <Text title={t('Вы подписаны')} size={TextSize.S} />
                     </Button>
                 ) : (
                     <Button
@@ -73,7 +73,7 @@ export const SubscribeToArtistButton = memo(
                         theme={ButtonTheme.FILLED}
                         onClick={onSubscribeHandle}
                     >
-                        <Text text={t('Подписаться')} />
+                        <Text title={t('Подписаться')} size={TextSize.S} />
                     </Button>
                 )}
             </>

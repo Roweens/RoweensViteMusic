@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { getUserAuthData } from 'entities/User';
@@ -58,7 +58,7 @@ export const AddAlbumToFavouriteButton = memo(
                         theme={ButtonTheme.OUTLINED}
                         onClick={onRemoveAlbumFromFavouriteHandle}
                     >
-                        <Text text={t('В избранном')} />
+                        <Text title={t('В избранном')} size={TextSize.S} />
                     </Button>
                 ) : (
                     <Button
@@ -66,7 +66,10 @@ export const AddAlbumToFavouriteButton = memo(
                         theme={ButtonTheme.FILLED}
                         onClick={onAddAlbumToFavouriteHandle}
                     >
-                        <Text text={t('Добавить в избранное')} />
+                        <Text
+                            title={t('Добавить в избранное')}
+                            size={TextSize.S}
+                        />
                     </Button>
                 )}
             </>

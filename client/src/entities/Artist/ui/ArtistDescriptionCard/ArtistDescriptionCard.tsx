@@ -2,9 +2,10 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Card } from 'shared/ui/Card/Card';
-import { Text } from 'shared/ui/Text/Text';
-import { Image } from 'shared/ui/Image/Image';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { AppImage } from 'shared/ui/AppImage';
 import { getArtistData } from '../../model/selectors/getArtistData';
 import { ArtistDescriptionModal } from '../ArtistDescriptionModal/ArtistDescriptionModal';
 import cls from './ArtistDescriptionCard.module.scss';
@@ -36,16 +37,34 @@ export const ArtistDescriptionCard = memo(
                             classname={cls.title}
                         />
                         <div className={cls.bioCard} onClick={onOpen}>
-                            <Image
+                            <AppImage
                                 src={`${__STATIC_URL__}${artist?.img}`}
-                                height="auto"
                                 width={600}
+                                height="auto"
                                 squared
                                 className={cls.img}
+                                errorFallback={
+                                    <Skeleton
+                                        width={600}
+                                        height="auto"
+                                        border="5px"
+                                    />
+                                }
+                                fallback={
+                                    <Skeleton
+                                        width={600}
+                                        height="auto"
+                                        border="5px"
+                                    />
+                                }
                             />
                             <div className={cls.textWrapper}>
-                                <Text text={t('X слушателей')} bold />
-                                <Text text={artist?.label} />
+                                <Text
+                                    title={t('X слушателей')}
+                                    bold
+                                    size={TextSize.S}
+                                />
+                                <Text title={artist?.label} size={TextSize.S} />
                             </div>
                         </div>
                     </>
@@ -56,11 +75,26 @@ export const ArtistDescriptionCard = memo(
                             classname={cls.title}
                         />
                         <Card>
-                            <Image
+                            <AppImage
                                 src={`${__STATIC_URL__}${artist?.img}`}
                                 width={200}
                                 height={200}
                                 squared
+                                className={cls.img}
+                                errorFallback={
+                                    <Skeleton
+                                        width={200}
+                                        height={200}
+                                        border="5px"
+                                    />
+                                }
+                                fallback={
+                                    <Skeleton
+                                        width={200}
+                                        height={200}
+                                        border="5px"
+                                    />
+                                }
                             />
                             <Text text={t('X слушателей')} bold />
                             <Text text={artist?.label} />

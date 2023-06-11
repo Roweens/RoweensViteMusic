@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     position: sticky;
     top: 0;
     display: flex;
@@ -8,18 +8,8 @@
     width: 100%;
     height: var(--navbar-height);
     background-color: var(--bg-color);
-
-    svg{
-        fill: var(--secondary-bg-color);
-        stroke: var(--player-text-color);
-    }
-
-
 }
 
-.button{
+.button {
     margin-right: 20px;
-
-
 }
-

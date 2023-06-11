@@ -24,7 +24,7 @@ export const SideBar = memo((props: SideBarProps) => {
                 className,
             )}
             data-testid="sidebar"
-            justify="between"
+            gap="8"
         >
             <VStack gap="32" max align={isCollapsed ? 'center' : 'start'}>
                 <SidebarItemsList isCollapsed={isCollapsed} />
@@ -33,7 +33,7 @@ export const SideBar = memo((props: SideBarProps) => {
                     setIsCollapsed={setIsCollapsed}
                 />
             </VStack>
-            <VStack align="center" max gap="8">
+            <VStack align="center" max gap="8" className={cls.switchers}>
                 <ThemeSwitcher />
                 <LangSwitcher />
             </VStack>

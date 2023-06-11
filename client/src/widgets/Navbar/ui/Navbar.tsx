@@ -26,7 +26,7 @@ export const Navbar = memo((props: NavbarProps) => {
     return (
         <div className={classNames(cls.navbar, {}, [className])}>
             <div className={cls.controls}>
-                <Button
+                {/* <Button
                     theme={ButtonTheme.CLEAN}
                     className={cls.button}
                     onClick={handleGoBack}
@@ -35,7 +35,7 @@ export const Navbar = memo((props: NavbarProps) => {
                 </Button>
                 <Button theme={ButtonTheme.CLEAN} onClick={handleGoForward}>
                     <NextArrow />
-                </Button>
+                </Button> */}
             </div>
             <UserMenu username="Cognus" />
         </div>

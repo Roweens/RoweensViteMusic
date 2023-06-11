@@ -2,12 +2,13 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { Card } from 'shared/ui/Card/Card';
 import { Link } from 'shared/ui/Link/Link';
-import { Image } from 'shared/ui/Image/Image';
 import { RoutePath } from 'shared/const/router';
 import { HStack } from 'shared/ui/Stack';
 import { ItemView } from 'shared/types/ItemView';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
+import { AppImage } from 'shared/ui/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Album } from '../../model/types/album';
 import cls from './AlbumCard.module.scss';
 
@@ -30,11 +31,15 @@ export const AlbumCard = memo((props: AlbumCardProps) => {
                 gap="16"
             >
                 {album.img && (
-                    <Image
+                    <AppImage
+                        src={`${__STATIC_URL__}${album.img}`}
                         width={50}
                         height={50}
-                        src={`${__STATIC_URL__}${album.img}`}
                         squared
+                        cover
+                        fallback={
+                            <Skeleton width={50} height={50} border="5px" />
+                        }
                     />
                 )}
             </HStack>
@@ -49,19 +54,25 @@ export const AlbumCard = memo((props: AlbumCardProps) => {
                 align="center"
                 gap="16"
             >
-                {album.img && (
-                    <Image
-                        width={50}
-                        height={50}
-                        src={`${__STATIC_URL__}${album.img}`}
-                        squared
+                <Link to={`${RoutePath.album}${album.id}`}>
+                    {album.img && (
+                        <AppImage
+                            src={`${__STATIC_URL__}${album.img}`}
+                            width={50}
+                            height={50}
+                            squared
+                            cover
+                            fallback={
+                                <Skeleton width={50} height={50} border="5px" />
+                            }
+                        />
+                    )}
+                    <Text
+                        title={album.title}
+                        text={`${t('Альбом')}   ${album.artist.name}`}
+                        classname={cls.name}
                     />
-                )}
-                <Text
-                    title={album.title}
-                    text={`${t('Альбом')}   ${album.artist.name}`}
-                    classname={cls.name}
-                />
+                </Link>
             </HStack>
         );
     }
@@ -70,16 +81,26 @@ export const AlbumCard = memo((props: AlbumCardProps) => {
         <Link to={`${RoutePath.album}${album.id}`}>
             <Card>
                 <div className={cls.card}>
-                    <Image
+                    <AppImage
                         src={`${__STATIC_URL__}${album.img}`}
-                        alt="card image"
+                        width={170}
+                        height={190}
                         squared
-                        width="170px"
-                        height="170px"
+                        errorFallback={
+                            <Skeleton width={170} height={170} border="5px" />
+                        }
+                        fallback={
+                            <Skeleton width={170} height={170} border="5px" />
+                        }
                     />
-                    <div className={cls.info}>
-                        <h5 className={cls.title}>{album.title}</h5>
-                        <p className={cls.text}>{album.description}</p>
+                    <div>
+                        <Text
+                            title={album.title}
+                            text={album.description}
+                            classname={cls.info}
+                            size={TextSize.M}
+                            bold
+                        />
                     </div>
                 </div>
             </Card>

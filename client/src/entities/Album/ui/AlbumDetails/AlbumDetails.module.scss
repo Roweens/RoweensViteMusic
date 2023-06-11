@@ -1,42 +1,14 @@
 .albumDetails {
     display: flex;
-
 }
 
-.info{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-left: 30px;
-}
-
-
-
-.titleWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.title{
+.title {
     color: var(--primary-color);
     font-size: var(--title-font-size);
     margin: 20px 0;
 }
 
-
-
-.bio{
-    margin-bottom: 16px;
-    margin-top: 30px;
-
-    p{
-        filter: brightness(0.8);
-    }
-
-}
-
-.additional{
+.additional {
     display: flex;
     align-items: center;
     gap: 20px;

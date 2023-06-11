@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { AlbumList } from 'entities/Album';
 import { useSelector } from 'react-redux';
 import { fetchPlaylistsByArtistId } from '../../model/services/fetchPlaylistsForArtist/fetchPlaylistsForArtist';
 import { getArtistPlaylists } from '../../model/slice/artistPagePlaylistsSlice';
 import { getArtistPagePlaylistsIsLoading } from '../../model/selectors/getArtistPagePlaylists';
 import cls from './ArtistPagePlaylists.module.scss';
+import { VStack } from 'shared/ui/Stack';
 
 interface ArtistPagePlaylistsProps {
     className?: string;
@@ -27,12 +28,16 @@ export const ArtistPagePlaylists = memo((props: ArtistPagePlaylistsProps) => {
     });
 
     return (
-        <div className={classNames(cls.artistPagePlaylists, {}, [className])}>
+        <VStack
+            className={classNames(cls.artistPagePlaylists, {}, [className])}
+            gap="16"
+        >
             <Text
                 title={t('Плейлисты с этим исполнителем')}
-                classname={cls.text}
+                bold
+                size={TextSize.M}
             />
             <AlbumList albums={playlists} isLoading={isLoading} />
-        </div>
+        </VStack>
     );
 });

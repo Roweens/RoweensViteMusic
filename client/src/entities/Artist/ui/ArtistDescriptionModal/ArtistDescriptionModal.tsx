@@ -2,9 +2,11 @@ import { memo } from 'react';
 import classNames from 'classnames';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Text } from 'shared/ui/Text/Text';
-import { Image } from 'shared/ui/Image/Image';
 import { Link } from 'shared/ui/Link/Link';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { AppImage } from 'shared/ui/AppImage';
+
 import cls from './ArtistDescriptionModal.module.scss';
 import { Artist } from '../../model/types/artist';
 import { ReactComponent as FacebookIcon } from '../../assets/facebook.svg';
@@ -30,12 +32,15 @@ export const ArtistDescriptionModal = memo(
                 isVisible={isOpen}
                 onClose={onClose}
             >
-                <Image
+                <AppImage
                     src={`${__STATIC_URL__}${artist?.bioImg}`}
                     width="100%"
                     height={250}
                     squared
                     className={cls.img}
+                    fallback={
+                        <Skeleton width="100%" height={250} border="5px" />
+                    }
                 />
                 <div className={cls.info}>
                     <div className={cls.stats}>

@@ -1,5 +1,4 @@
 import { memo, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
@@ -7,11 +6,14 @@ import {
     DynamicReducerLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
-import { Image } from 'shared/ui/Image/Image';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Link } from 'shared/ui/Link/Link';
 import { RoutePath } from 'shared/const/router';
+import { AppImage } from 'shared/ui/AppImage';
+import { useTranslation } from 'react-i18next';
+import { HStack, VStack } from 'shared/ui/Stack';
+import { Card } from 'shared/ui/Card/Card';
 import {
     getAlbumData,
     getAlbumIsLoading,
@@ -34,6 +36,7 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
     const { className, id } = props;
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
+
     const album = useSelector(getAlbumData);
     const isLoading = useSelector(getAlbumIsLoading);
 
@@ -44,7 +47,11 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
     return (
         <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
             {isLoading ? (
-                <div className={classNames(cls.albumDetails, {}, [className])}>
+                <Card
+                    className={classNames(cls.albumDetails, {}, [className])}
+                    fullWidth
+                    withHoverEffect={false}
+                >
                     <Skeleton width={250} height={250} border="15px" />
                     <div className={cls.info}>
                         <div className={cls.titleWrapper}>
@@ -88,41 +95,93 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
                             />
                         </div>
                     </div>
-                </div>
+                </Card>
             ) : (
-                <div className={classNames(cls.albumDetails, {}, [className])}>
-                    <Image
-                        src={`${__STATIC_URL__}${album?.img}` || defaultAlbum}
-                        squared
-                        width={250}
-                        height={250}
-                    />
-                    <div className={cls.info}>
-                        <div className={cls.titleWrapper}>
-                            <Text text="Альбом" classname={cls.type} />
-                            <h2 className={cls.title}>{album?.title}</h2>
-                        </div>
-                        <Text classname={cls.bio} text={album?.description} />
-                        <div className={cls.additional}>
-                            <Image
-                                src={
-                                    `${__STATIC_URL__}${album?.artist.img}` ||
-                                    defaultAlbum
-                                }
-                                width={40}
-                                height={40}
-                            />
+                <Card fullWidth withHoverEffect={false} padding="24">
+                    <HStack
+                        className={classNames(cls.albumDetails, {}, [
+                            className,
+                        ])}
+                        gap="32"
+                        max
+                    >
+                        <AppImage
+                            src={
+                                `${__STATIC_URL__}${album?.img}` || defaultAlbum
+                            }
+                            width={250}
+                            height={250}
+                            squared
+                            errorFallback={
+                                <Skeleton
+                                    width={250}
+                                    height={250}
+                                    border="50%"
+                                />
+                            }
+                            fallback={
+                                <Skeleton
+                                    width={250}
+                                    height={250}
+                                    border="50%"
+                                />
+                            }
+                        />
+                        <VStack gap="16">
+                            <VStack gap="16">
+                                <Text
+                                    title={t('Альбом')}
+                                    classname={cls.type}
+                                />
+                                <h2 className={cls.title}>{album?.title}</h2>
+                                <Text
+                                    classname={cls.bio}
+                                    text={album?.description}
+                                />
+                            </VStack>
 
-                            <Link to={`${RoutePath.artist}${album?.artist.id}`}>
-                                <Text text={album?.artist.name} bold />
-                            </Link>
-                            <Text
-                                text={`${album?.album_tracks.length} треков`}
-                            />
-                            <Text text={album?.date} />
-                        </div>
-                    </div>
-                </div>
+                            <div className={cls.additional}>
+                                <AppImage
+                                    src={
+                                        `${__STATIC_URL__}${album?.artist.img}` ||
+                                        defaultAlbum
+                                    }
+                                    width={40}
+                                    height={40}
+                                    cover
+                                    errorFallback={
+                                        <Skeleton
+                                            width={40}
+                                            height={40}
+                                            border="50%"
+                                        />
+                                    }
+                                    fallback={
+                                        <Skeleton
+                                            width={40}
+                                            height={40}
+                                            border="50%"
+                                        />
+                                    }
+                                />
+
+                                <Link
+                                    to={`${RoutePath.artist}${album?.artist.id}`}
+                                >
+                                    <Text
+                                        title={album?.artist.name}
+                                        bold
+                                        size={TextSize.S}
+                                    />
+                                </Link>
+                                <Text
+                                    text={`${album?.album_tracks.length} треков`}
+                                />
+                                <Text text={album?.date} />
+                            </div>
+                        </VStack>
+                    </HStack>
+                </Card>
             )}
         </DynamicReducerLoader>
     );

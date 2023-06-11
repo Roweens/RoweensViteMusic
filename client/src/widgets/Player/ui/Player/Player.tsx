@@ -1,13 +1,15 @@
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { Image } from 'shared/ui/Image/Image';
 import { RangeInput } from 'shared/ui/RangeInput/RangeInput';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
+import { AppImage } from 'shared/ui/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { formatAudioDuration } from 'shared/lib/utils/formatAudioDuration';
 import { getPlayerTrack } from '../../model/selectors/getPlayerTrack/getPlayerTrack';
 import { getPlayerPaused } from '../../model/selectors/getPlayerPaused/getPlayerPaused';
 import { getPlayerDuration } from '../../model/selectors/getPlayerDuration/getPlayerDuration';
@@ -43,6 +45,11 @@ export const Player = memo((props: PlayerProps) => {
 
     const audio: HTMLAudioElement = useMemo(() => new Audio(), []);
 
+    const formattedDuration = track ? formatAudioDuration(audio.duration) : '';
+    const formattedPlayTime = track
+        ? formatAudioDuration(audio.currentTime)
+        : '';
+
     const play = useCallback(() => {
         if (!isPaused) {
             audio.play();
@@ -65,14 +72,6 @@ export const Player = memo((props: PlayerProps) => {
             };
         }
     }, [audio, dispatch, track, volume]);
-
-    useEffect(() => {
-        if (track) {
-            setAudio();
-            play();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [track, isPaused]);
 
     const onChangeVolume = useCallback(
         (value: number) => {
@@ -100,23 +99,27 @@ export const Player = memo((props: PlayerProps) => {
         dispatch(playerActions.setPaused(true));
     }, [dispatch]);
 
+    useEffect(() => {
+        if (track) {
+            setAudio();
+            play();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [track, isPaused]);
+
     return (
-        <HStack
-            className={classNames(cls.player, {}, [className])}
-            max
-            justify="between"
-            align="center"
-        >
+        <div className={classNames(cls.player, {}, [className])}>
             <HStack gap="16">
-                <Image
+                <AppImage
                     src={
                         track
                             ? `${__STATIC_URL__}${track?.album.img}`
                             : DefaultAlbum
                     }
-                    squared
                     height={60}
                     width={60}
+                    squared
+                    fallback={<Skeleton width={30} height={30} border="5px" />}
                 />
                 <Text
                     title={track?.track.name ?? t('Трек не выбран')}
@@ -124,7 +127,12 @@ export const Player = memo((props: PlayerProps) => {
                 />
             </HStack>
 
-            <VStack className={classNames(cls.controls)} align="center" gap="4">
+            <VStack
+                className={classNames(cls.controls)}
+                align="center"
+                gap="4"
+                justify="center"
+            >
                 <HStack className={classNames(cls.controlsIcons)}>
                     <Button
                         squared
@@ -149,13 +157,15 @@ export const Player = memo((props: PlayerProps) => {
                 <RangeInput
                     left={playTime}
                     right={duration}
+                    leftLabel={formattedPlayTime}
+                    rightLabel={formattedDuration}
                     onChange={onChangePlayTime}
                     className={cls.duration}
                     width={500}
                 />
             </VStack>
 
-            <HStack gap="16">
+            <HStack gap="16" className={cls.volume}>
                 <Button
                     squared
                     size={ButtonSize.LARGE}
@@ -173,6 +183,6 @@ export const Player = memo((props: PlayerProps) => {
                     disabled={volumeOff}
                 />
             </HStack>
-        </HStack>
+        </div>
     );
 });

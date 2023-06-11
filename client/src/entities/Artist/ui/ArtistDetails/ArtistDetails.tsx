@@ -6,17 +6,18 @@ import {
     DynamicReducerLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
-import { Image } from 'shared/ui/Image/Image';
 import { useSelector } from 'react-redux';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { VStack } from 'shared/ui/Stack';
+import { AppImage } from 'shared/ui/AppImage';
 import {
     getArtistData,
     getArtistIsLoading,
 } from '../../model/selectors/getArtistData';
 import { fetchArtistById } from '../../model/services/fetchArtistById/fetchArtistById';
 import { artistReducer } from '../../model/slice/artistSlice';
+
 import cls from './ArtistDetails.module.scss';
 
 interface ArtistDetailsProps {
@@ -60,13 +61,20 @@ export const ArtistDetails = memo((props: ArtistDetailsProps) => {
             ) : (
                 <div className={classNames(cls.artistDetails, {}, [className])}>
                     {artist?.img && (
-                        <Image
-                            className={cls.img}
+                        <AppImage
                             src={`${__STATIC_URL__}${artist?.img}`}
-                            squared
                             width="100%"
                             height="400px"
+                            className={cls.img}
+                            squared
                             cover
+                            fallback={
+                                <Skeleton
+                                    width="100%"
+                                    height="400px"
+                                    border="5px"
+                                />
+                            }
                         />
                     )}
                     <VStack className={cls.info} gap="32">

@@ -2,12 +2,13 @@
     display: grid;
     align-items: center;
     grid-template-columns:
-        minmax(300px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr)
+        minmax(300px, 1fr) minmax(400px, 1fr) minmax(100px, 1fr)
         minmax(100px, 1fr) minmax(100px, 1fr);
     margin-top: 20px;
     background-color: var(--secondary-bg-color);
     padding: 7px 12px 7px 10px;
     border-radius: 10px;
+    width: 100%;
 
     &:hover {
         background-color: var(--secondary-bg-hover-color);
@@ -44,7 +45,7 @@
 
     .shortTitle {
         h5 {
-            max-width: 200px;
+            max-width: 170px;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
@@ -53,10 +54,6 @@
 }
 
 .info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
     svg {
         fill: var(--primary-color);
     }
@@ -64,7 +61,7 @@
 
 .album {
     font: var(--font-m);
-    justify-self: start;
+    justify-self: end;
 }
 
 .image {

@@ -1,7 +1,6 @@
 .cardWrapper {
     padding: 12px;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 6px;
     display: inline-block;
     background-color: var(--secondary-bg-color);
 }
@@ -24,4 +23,32 @@
 .secondary {
     background-color: var(--shadow-color);
     color: var(--secondary-color);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.padding_0 {
+    padding: 0;
+}
+
+.padding_8 {
+    padding: 8px;
+}
+
+.padding_16 {
+    padding: 16px;
+}
+
+.padding_24 {
+    padding: 24px;
+}
+
+.padding_36 {
+    padding: 36px;
 }

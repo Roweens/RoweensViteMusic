@@ -56,12 +56,16 @@ export const Text = memo((props: TextProps) => {
 
     const mods: Mods = {
         [cls[align]]: true,
-        [cls[size]]: true,
         [cls.bold]: bold,
     };
 
     return (
-        <div className={classNames(cls.TextWrapper, mods, classname)}>
+        <div
+            className={classNames(cls.TextWrapper, mods, [
+                classname,
+                cls[size],
+            ])}
+        >
             {title && (
                 <h5 className={classNames(cls.title, cls[titleTheme])}>
                     {title}

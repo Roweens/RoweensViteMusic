@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { TabItem, Tabs } from 'shared/ui/Tabs';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Album } from 'entities/Album';
 import { Track } from 'entities/Track';
 import { Artist } from 'entities/Artist';
@@ -42,13 +42,21 @@ export const UserCollectionList = memo((props: userCollectionListProps) => {
 
     const tabItems: TabItem<UserCollectionListCategory>[] = useMemo(
         () => [
-            { id: 1, content: <Text text={t('Альбомы')} />, value: 'Albums' },
+            {
+                id: 1,
+                content: <Text title={t('Альбомы')} size={TextSize.S} />,
+                value: 'Albums',
+            },
             {
                 id: 2,
-                content: <Text text={t('Исполнители')} />,
+                content: <Text title={t('Исполнители')} size={TextSize.S} />,
                 value: 'Artists',
             },
-            { id: 3, content: <Text text={t('Треки')} />, value: 'Tracks' },
+            {
+                id: 3,
+                content: <Text title={t('Треки')} size={TextSize.S} />,
+                value: 'Tracks',
+            },
         ],
         [t],
     );

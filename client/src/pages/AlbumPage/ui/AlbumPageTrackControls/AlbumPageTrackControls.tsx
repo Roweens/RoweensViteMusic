@@ -6,6 +6,7 @@ import { TrackSortField, TrackSortSelector } from 'entities/Track';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { SortOrder } from 'shared/types/SortOrder';
+import { VStack } from 'shared/ui/Stack';
 import { getAlbumPageTracksOrder } from '../../model/selectors/getAlbumPageTracksOrder/getAlbumPageTracksOrder';
 import { getAlbumPageTracksSort } from '../../model/selectors/getAlbumPageTracksSort/getAlbumPageTracksSort';
 import { fetchTracksByAlbumId } from '../../model/services/fetchTracksByAlbumId';
@@ -42,7 +43,7 @@ export const AlbumPageTrackControls = memo(
         );
 
         return (
-            <div className={cls.controlsWrapper}>
+            <VStack className={cls.controlsWrapper} max gap="16" align="end">
                 <TrackSortSelector
                     sort={sort}
                     order={order}
@@ -79,7 +80,7 @@ export const AlbumPageTrackControls = memo(
                         Длительность
                     </Button>
                 </div>
-            </div>
+            </VStack>
         );
     },
 );

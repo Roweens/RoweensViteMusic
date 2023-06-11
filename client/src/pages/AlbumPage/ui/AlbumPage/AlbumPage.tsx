@@ -13,6 +13,7 @@ import { Page } from 'widgets/Page';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { SortOrder } from 'shared/types/SortOrder';
 import { AddAlbumToFavouriteButton } from 'features/addAlbumToFavourite';
+import { VStack } from 'shared/ui/Stack';
 import cls from './AlbumPage.module.scss';
 import {
     AlbumPageTracksSliceReducer,
@@ -74,10 +75,12 @@ const AlbumPage = memo((props: AlbumPageProps) => {
                 onScrollIntersection={onScrollEnd}
                 className={classNames(cls.albumPage, {}, [className])}
             >
-                <AlbumDetails id={id} />
-                <AddAlbumToFavouriteButton albumId={id} />
-                <AlbumPageTrackControls id={id} />
-                <AlbumPageTrackInfiniteList id={id} />
+                <VStack gap="16" max align="end">
+                    <AlbumDetails id={id} />
+                    <AddAlbumToFavouriteButton albumId={id} />
+                    <AlbumPageTrackControls id={id} />
+                    <AlbumPageTrackInfiniteList id={id} />
+                </VStack>
             </Page>
         </DynamicReducerLoader>
     );

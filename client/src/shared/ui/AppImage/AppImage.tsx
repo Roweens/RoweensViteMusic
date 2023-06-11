@@ -6,11 +6,15 @@ import {
     useState,
 } from 'react';
 import classNames from 'classnames';
+import { Mods } from 'shared/types/Mods';
+import cls from './AppImage.module.scss';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;
     fallback?: ReactElement;
     errorFallback?: ReactElement;
+    squared?: boolean;
+    cover?: boolean;
 }
 
 export const AppImage: FC<AppImageProps> = (props) => {
@@ -20,6 +24,8 @@ export const AppImage: FC<AppImageProps> = (props) => {
         alt = 'image',
         errorFallback,
         fallback,
+        squared = false,
+        cover = false,
         ...otherProps
     } = props;
     const [isLoading, setIsLoading] = useState(true);
@@ -46,9 +52,14 @@ export const AppImage: FC<AppImageProps> = (props) => {
         return errorFallback;
     }
 
+    const mods: Mods = {
+        [cls.squared]: squared,
+        [cls.cover]: cover,
+    };
+
     return (
         <img
-            className={classNames('', {}, [className])}
+            className={classNames(cls.appImage, mods, [className])}
             src={src}
             alt={alt}
             {...otherProps}

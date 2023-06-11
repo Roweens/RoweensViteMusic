@@ -10,6 +10,7 @@ import { ReactComponent as HomeIcon } from '../../assets/home.svg';
 import { ReactComponent as AlbumIcon } from '../../assets/album.svg';
 import { ReactComponent as PlusIcon } from '../../assets/plus.svg';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
+import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 
 interface SideBarItemsListProps {
     className?: string;
@@ -32,15 +33,20 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                 Icon: AlbumIcon,
                 path: RoutePath.main,
             },
-            {
-                text: t('Создать плейлист'),
-                Icon: PlusIcon,
-                path: RoutePath.main,
-            },
+            // {
+            //     text: t('Создать плейлист'),
+            //     Icon: PlusIcon,
+            //     path: RoutePath.main,
+            // },
             {
                 text: t('Избранные треки'),
                 Icon: HeartIcon,
                 path: RoutePath.main,
+            },
+            {
+                text: t('Поиск'),
+                Icon: SearchIcon,
+                path: RoutePath.search,
             },
         ],
         [t],
@@ -54,7 +60,7 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                         to={item.path}
                         className={classNames('', {}, [className])}
                     >
-                        <Icon Svg={item.Icon} height={24} width={24} />
+                        <Icon Svg={item.Icon} height={26} width={26} />
                     </Link>
                 ))}
             </>
@@ -68,8 +74,8 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                     to={item.path}
                     className={classNames('', {}, [className])}
                 >
-                    <Icon Svg={item.Icon} height={24} width={24} />
-                    <Text text={item.text} size={TextSize.M} />
+                    <Icon Svg={item.Icon} height={32} width={32} />
+                    <Text title={item.text} size={TextSize.M} bold />
                 </Link>
             ))}
         </>

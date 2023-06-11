@@ -3,7 +3,8 @@ import classNames from 'classnames';
 import { RoutePath } from 'shared/const/router';
 import { Link } from 'shared/ui/Link/Link';
 import { Card } from 'shared/ui/Card/Card';
-import { Image } from 'shared/ui/Image/Image';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { AppImage } from 'shared/ui/AppImage';
 import { Profile } from '../../model/types/profile';
 import cls from './ProfileItem.module.scss';
 
@@ -20,12 +21,25 @@ export const ProfileItem = memo((props: ProfileItemProps) => {
             <Link to={`${RoutePath.album}${profile.id}`}>
                 <Card>
                     <div className={cls.card}>
-                        <Image
+                        <AppImage
                             src={`${__STATIC_URL__}${profile.avatar}`}
-                            alt="card image"
+                            width={170}
+                            height={170}
                             squared
-                            width="170px"
-                            height="170px"
+                            errorFallback={
+                                <Skeleton
+                                    width={170}
+                                    height={170}
+                                    border="5px"
+                                />
+                            }
+                            fallback={
+                                <Skeleton
+                                    width={170}
+                                    height={170}
+                                    border="5px"
+                                />
+                            }
                         />
                         <div className={cls.info}>
                             <h5 className={cls.title}>{profile.username}</h5>

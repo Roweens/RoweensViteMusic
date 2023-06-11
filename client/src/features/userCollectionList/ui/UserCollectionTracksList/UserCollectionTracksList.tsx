@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Text, TextSize } from 'shared/ui/Text/Text';
-import { HStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import cls from './UserCollectionTracksList.module.scss';
 import { ReactComponent as FavIcon } from '../../assets/heart.svg';
 import { getUserCollectionListViewType } from '../../model/selectors/getUserCollectionListViewType';
@@ -61,10 +61,11 @@ export const UserCollectionTracksList = memo(
         }
 
         return (
-            <div
+            <VStack
                 className={classNames(cls.userCollectionTracksList, {}, [
                     className,
                 ])}
+                gap="16"
             >
                 {!compact && (
                     <HStack
@@ -91,7 +92,7 @@ export const UserCollectionTracksList = memo(
                     className={cls.list}
                     shortTitle
                 />
-            </div>
+            </VStack>
         );
     },
 );

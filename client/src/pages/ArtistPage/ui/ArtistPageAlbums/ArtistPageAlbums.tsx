@@ -10,6 +10,7 @@ import { getArtistPageAlbumsIsLoading } from '../../model/selectors/getArtistPag
 import { fetchAlbumsByArtistId } from '../../model/services/fetchAlbumsByArtistId/fetchAlbumsByArtistId';
 import cls from './ArtistPageAlbums.module.scss';
 import { getArtistAlbums } from '../../model/slice/artistPageAlbumsSlice';
+import { VStack } from 'shared/ui/Stack';
 
 interface ArtistPageAlbumsProps {
     className?: string;
@@ -28,9 +29,12 @@ export const ArtistPageAlbums = memo((props: ArtistPageAlbumsProps) => {
     });
 
     return (
-        <div className={classNames(cls.artistPageAlbums, {}, [className])}>
-            <Text title={t('Альбомы исполнителя')} classname={cls.text} />
+        <VStack
+            className={classNames(cls.artistPageAlbums, {}, [className])}
+            gap="16"
+        >
+            <Text title={t('Альбомы исполнителя')} bold />
             <AlbumList albums={albums} isLoading={isLoading} />
-        </div>
+        </VStack>
     );
 });

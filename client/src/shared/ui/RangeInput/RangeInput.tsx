@@ -1,6 +1,6 @@
 import { ChangeEvent, CSSProperties, memo } from 'react';
 import classNames from 'classnames';
-import { Text } from '../../ui/Text/Text';
+import { Text, TextSize } from '../../ui/Text/Text';
 import cls from './RangeInput.module.scss';
 
 interface RangeInputProps {
@@ -49,7 +49,9 @@ export const RangeInput = memo((props: RangeInputProps) => {
                 style={styles}
                 disabled={disabled}
             />
-            <Text text={`${leftLabel} ${left} / ${rightLabel} ${right}`} />
+            {(rightLabel || leftLabel) && (
+                <Text title={`${leftLabel}/${rightLabel}`} size={TextSize.S} />
+            )}
         </>
     );
 });
