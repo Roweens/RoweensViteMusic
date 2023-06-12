@@ -5,20 +5,21 @@ import { Link } from 'shared/ui/Link/Link';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { RoutePath } from 'shared/const/router';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { SidebarItemType } from '../../model/types/sidebarItem';
 import { ReactComponent as HomeIcon } from '../../assets/home.svg';
 import { ReactComponent as AlbumIcon } from '../../assets/album.svg';
-import { ReactComponent as PlusIcon } from '../../assets/plus.svg';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 
 interface SideBarItemsListProps {
     className?: string;
     isCollapsed: boolean;
+    onFavouriteTracksClick: () => void;
 }
 
 export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
-    const { className, isCollapsed } = props;
+    const { className, isCollapsed, onFavouriteTracksClick } = props;
     const { t } = useTranslation();
 
     const itemsList: SidebarItemType[] = useMemo<SidebarItemType[]>(
@@ -33,15 +34,10 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                 Icon: AlbumIcon,
                 path: RoutePath.main,
             },
-            // {
-            //     text: t('Создать плейлист'),
-            //     Icon: PlusIcon,
-            //     path: RoutePath.main,
-            // },
             {
                 text: t('Избранные треки'),
                 Icon: HeartIcon,
-                path: RoutePath.main,
+                onClick: onFavouriteTracksClick,
             },
             {
                 text: t('Поиск'),
@@ -49,35 +45,77 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                 path: RoutePath.search,
             },
         ],
-        [t],
+        [onFavouriteTracksClick, t],
     );
 
     if (isCollapsed) {
         return (
             <>
-                {itemsList.map((item) => (
-                    <Link
-                        to={item.path}
-                        className={classNames('', {}, [className])}
-                    >
-                        <Icon Svg={item.Icon} height={26} width={26} />
-                    </Link>
-                ))}
+                {itemsList.map((item) => {
+                    const content = (
+                        <>
+                            <Icon Svg={item.Icon} height={26} width={26} />
+                        </>
+                    );
+
+                    if (item.path) {
+                        return (
+                            <Link
+                                to={item.path}
+                                className={classNames('', {}, [className])}
+                            >
+                                {content}
+                            </Link>
+                        );
+                    }
+                    if (item.onClick) {
+                        return (
+                            <Button
+                                onClick={item.onClick}
+                                className={classNames('', {}, [className])}
+                                theme={ButtonTheme.CLEAN}
+                            >
+                                {content}
+                            </Button>
+                        );
+                    }
+                })}
             </>
         );
     }
 
     return (
         <>
-            {itemsList.map((item) => (
-                <Link
-                    to={item.path}
-                    className={classNames('', {}, [className])}
-                >
-                    <Icon Svg={item.Icon} height={32} width={32} />
-                    <Text title={item.text} size={TextSize.M} bold />
-                </Link>
-            ))}
+            {itemsList.map((item) => {
+                const content = (
+                    <>
+                        <Icon Svg={item.Icon} height={32} width={32} />
+                        <Text title={item.text} size={TextSize.M} bold />
+                    </>
+                );
+
+                if (item.path) {
+                    return (
+                        <Link
+                            to={item.path}
+                            className={classNames('', {}, [className])}
+                        >
+                            {content}
+                        </Link>
+                    );
+                }
+                if (item.onClick) {
+                    return (
+                        <Button
+                            onClick={item.onClick}
+                            className={classNames('', {}, [className])}
+                            theme={ButtonTheme.CLEAN}
+                        >
+                            {content}
+                        </Button>
+                    );
+                }
+            })}
         </>
     );
 });

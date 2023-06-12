@@ -1,5 +1,4 @@
 import { memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Track } from 'entities/Track';
@@ -19,7 +18,6 @@ interface addToFavouriteButtonProps {
 export const AddTrackToFavouriteButton = memo(
     (props: addToFavouriteButtonProps) => {
         const { className, track, onFavouriteChange } = props;
-        const { t } = useTranslation();
         const dispatch = useAppDispatch();
 
         const onAddToFavouriteHandle = useCallback(() => {

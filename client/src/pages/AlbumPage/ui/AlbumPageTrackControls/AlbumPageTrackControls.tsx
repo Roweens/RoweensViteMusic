@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { SortOrder } from 'shared/types/SortOrder';
 import { VStack } from 'shared/ui/Stack';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { getAlbumPageTracksOrder } from '../../model/selectors/getAlbumPageTracksOrder/getAlbumPageTracksOrder';
 import { getAlbumPageTracksSort } from '../../model/selectors/getAlbumPageTracksSort/getAlbumPageTracksSort';
 import { fetchTracksByAlbumId } from '../../model/services/fetchTracksByAlbumId';
@@ -56,28 +57,28 @@ export const AlbumPageTrackControls = memo(
                     ])}
                 >
                     <Button theme={ButtonTheme.CLEAN} className={cls.button}>
-                        Название
+                        <Text title={t('Название')} size={TextSize.S} />
                     </Button>
                     <Button theme={ButtonTheme.CLEAN} className={cls.button}>
-                        Альбом
+                        <Text title={t('Альбом')} size={TextSize.S} />
                     </Button>
                     <Button
                         theme={ButtonTheme.CLEAN}
                         className={cls.buttonJustifiedEnd}
                     >
-                        Прослушивания
+                        <Text title={t('Прослушивания')} size={TextSize.S} />
                     </Button>
                     <Button
                         theme={ButtonTheme.CLEAN}
                         className={cls.buttonJustifiedEnd}
                     >
-                        Любимое
+                        <Text title={t('Любимое')} size={TextSize.S} />
                     </Button>
                     <Button
                         theme={ButtonTheme.CLEAN}
                         className={cls.buttonJustifiedEnd}
                     >
-                        Длительность
+                        <Text title={t('Длительность')} size={TextSize.S} />
                     </Button>
                 </div>
             </VStack>

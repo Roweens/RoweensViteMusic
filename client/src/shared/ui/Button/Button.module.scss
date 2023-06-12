@@ -1,4 +1,4 @@
-.Button{
+.Button {
     border: none;
     outline: none;
     background-color: unset;
@@ -6,35 +6,36 @@
     font: var(--font-m);
     color: var(--primary-color);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 
-    &:hover{
+    &:hover {
         filter: opacity(0.9);
     }
 
-    
-    svg{
-        width: 100%;
+    svg {
         height: 100%;
     }
 }
 
-.outlined{
+.outlined {
     border: 1px solid var(--primary-color);
     padding: 5px 10px;
 }
 
-.filled{
+.filled {
     background-color: var(--app-color);
     padding: 5px 10px;
 }
 
-.shadow{
+.shadow {
     background-color: var(--app-color);
     padding: 5px 10px;
     box-shadow: 2px 2px 4px 1px var(--shadow-color);
     transition: 0.2s ease box-shadow, 0.2s ease transform;
 
-    &:hover{
+    &:hover {
         filter: unset;
         transform: translate(2px, 2px);
         box-shadow: inset 2px 2px 3px 1px var(--shadow-color);
@@ -75,7 +76,7 @@
     font: var(--font-xl);
 }
 
-.disabled{
+.disabled {
     opacity: 0.6;
     pointer-events: none;
 }

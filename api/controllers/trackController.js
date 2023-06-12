@@ -124,7 +124,21 @@ class TrackController {
             tracks.push(
                 await AlbumTrack.findOne({
                     where: { trackId: favTrack.trackId },
-                    include: [Artist, Album, Track],
+                    include: [
+                        Artist,
+                        Album,
+                        {
+                            model: Track,
+                            include: [
+                                {
+                                    model: FavouriteTrack,
+                                    where: { favouriteId: favouriteList.id },
+                                    required: true,
+                                    as: 'favourite_track',
+                                },
+                            ],
+                        },
+                    ],
                 })
             );
         }

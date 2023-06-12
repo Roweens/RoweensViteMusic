@@ -44,6 +44,10 @@ export const TrackItem = memo((props: TrackItemProps) => {
     const currentTrack = useSelector(getPlayerTrack);
     const paused = useSelector(getPlayerPaused);
 
+    if (!track) {
+        return null;
+    }
+
     if (isLoading) {
         return (
             <div className={classNames(cls.trackItem, {}, [className])}>
