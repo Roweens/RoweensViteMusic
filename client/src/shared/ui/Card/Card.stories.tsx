@@ -3,8 +3,8 @@ import testImage from 'shared/assets/testImage.jpg';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Themes } from 'shared/const/theme';
 import { Card } from './Card';
-import { Image } from '../Image/Image';
 import { Text } from '../Text/Text';
+import { AppImage } from '../AppImage';
 
 export default {
     title: 'shared/Card',
@@ -22,7 +22,7 @@ export const Normal = Template.bind({});
 Normal.args = {
     children: (
         <>
-            <Image src={testImage} />
+            <AppImage src={testImage} width={200} height={200} />
             <Text text="Some interesting text" />
         </>
     ),
@@ -32,7 +32,7 @@ export const Dark = Template.bind({});
 Dark.args = {
     children: (
         <>
-            <Image src={testImage} />
+            <AppImage src={testImage} width={200} height={200} />
             <Text text="Some interesting text" />
         </>
     ),

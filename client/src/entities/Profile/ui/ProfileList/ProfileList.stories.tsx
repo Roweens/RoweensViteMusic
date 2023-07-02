@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ProfileList } from './ProfileList';
 
 export default {
-    title: 'shared/ProfileList',
+    title: 'entities/Profile/ProfileList',
     component: ProfileList,
     argTypes: {
         backgroundColor: { control: 'color' },

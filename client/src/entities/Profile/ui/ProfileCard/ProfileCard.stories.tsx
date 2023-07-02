@@ -22,6 +22,7 @@ const Template: ComponentStory<typeof ProfileCard> = (args) => (
 );
 
 const data: Profile = {
+    id: 1,
     firstname: 'Тимур',
     lastname: 'Григорян',
     age: 23,
@@ -50,6 +51,30 @@ Dark.args = {
     form: data,
 };
 Dark.decorators = [
+    ThemeDecorator(Themes.DARK),
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
+
+export const PrimaryIsLoading = Template.bind({});
+
+PrimaryIsLoading.args = {
+    form: data,
+    isLoading: true,
+};
+PrimaryIsLoading.decorators = [
+    StoreDecorator({
+        login: { email: 'testEmail@gmail.com', password: 'testpassword' },
+    }),
+];
+
+export const DarkIsLoading = Template.bind({});
+DarkIsLoading.args = {
+    form: data,
+    isLoading: true,
+};
+DarkIsLoading.decorators = [
     ThemeDecorator(Themes.DARK),
     StoreDecorator({
         login: { email: 'testEmail@gmail.com', password: 'testpassword' },

@@ -1,4 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Themes } from 'shared/const/theme';
 import { RangeInput } from './RangeInput';
 
 export default {
@@ -14,4 +16,23 @@ const Template: ComponentStory<typeof RangeInput> = (args) => (
 );
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+    left: 0,
+    right: 100,
+    leftLabel: '0',
+    rightLabel: '100',
+    step: 0.1,
+    width: 200,
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+    left: 0,
+    right: 100,
+    leftLabel: '0',
+    rightLabel: '100',
+    step: 0.1,
+    width: 200,
+};
+
+Dark.decorators = [ThemeDecorator(Themes.DARK)];

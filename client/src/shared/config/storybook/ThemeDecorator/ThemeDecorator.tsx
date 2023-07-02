@@ -6,7 +6,7 @@ import { Themes } from 'shared/const/theme';
 export const ThemeDecorator = (theme: Themes) => (StoryComponent: Story) =>
     (
         <ThemeProvider initialTheme={theme}>
-            <div id={`${theme}`} className="app" style={{ width: '100%' }}>
+            <div id={`${theme}`} className="test_app" style={{ width: '100%' }}>
                 <StoryComponent />
             </div>
         </ThemeProvider>

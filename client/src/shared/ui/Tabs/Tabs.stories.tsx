@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+// eslint-disable-next-line roweens-plugin/upper-layer-imports
 import { UserCollectionListCategory } from 'features/userCollectionList';
 import { action } from '@storybook/addon-actions';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';

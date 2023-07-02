@@ -26,8 +26,6 @@ export const signUp = createAsyncThunk<User, SignUpProps, ThunkConfig<string>>(
 
             if (!response.data) throw new Error();
 
-            extra.navigate('/login');
-
             return response.data;
         } catch (error) {
             return rejectWithValue('error');

@@ -68,17 +68,16 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                             </Link>
                         );
                     }
-                    if (item.onClick) {
-                        return (
-                            <Button
-                                onClick={item.onClick}
-                                className={classNames('', {}, [className])}
-                                theme={ButtonTheme.CLEAN}
-                            >
-                                {content}
-                            </Button>
-                        );
-                    }
+
+                    return (
+                        <Button
+                            onClick={item.onClick}
+                            className={classNames('', {}, [className])}
+                            theme={ButtonTheme.CLEAN}
+                        >
+                            {content}
+                        </Button>
+                    );
                 })}
             </>
         );
@@ -104,17 +103,16 @@ export const SidebarItemsList = memo((props: SideBarItemsListProps) => {
                         </Link>
                     );
                 }
-                if (item.onClick) {
-                    return (
-                        <Button
-                            onClick={item.onClick}
-                            className={classNames('', {}, [className])}
-                            theme={ButtonTheme.CLEAN}
-                        >
-                            {content}
-                        </Button>
-                    );
-                }
+
+                return (
+                    <Button
+                        onClick={item.onClick}
+                        className={classNames('', {}, [className])}
+                        theme={ButtonTheme.CLEAN}
+                    >
+                        {content}
+                    </Button>
+                );
             })}
         </>
     );

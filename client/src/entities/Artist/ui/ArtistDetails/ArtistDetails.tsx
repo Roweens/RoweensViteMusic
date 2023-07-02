@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -11,6 +11,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { VStack } from 'shared/ui/Stack';
 import { AppImage } from 'shared/ui/AppImage';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     getArtistData,
     getArtistIsLoading,
@@ -36,27 +37,26 @@ export const ArtistDetails = memo((props: ArtistDetailsProps) => {
     const artist = useSelector(getArtistData);
     const isLoading = useSelector(getArtistIsLoading);
 
-    useEffect(() => {
+    useInitialEffect(() => {
         if (id) {
             dispatch(fetchArtistById({ artistId: id }));
         }
-    }, [dispatch, id]);
+    });
 
     return (
         <DynamicReducerLoader reducers={reducers}>
             {isLoading ? (
                 <div className={classNames(cls.artistDetails, {}, [className])}>
                     <Skeleton width="100%" height="400px" className={cls.img} />
-                    <div className={cls.info}>
+                    <VStack className={cls.info} gap="32">
                         <Skeleton
                             className={cls.name}
                             width={320}
                             height={70}
                             border="7px"
                         />
-                        <Skeleton width={140} height={25} border="7px" />
                         <Skeleton width={210} height={50} border="10px" />
-                    </div>
+                    </VStack>
                 </div>
             ) : (
                 <div className={classNames(cls.artistDetails, {}, [className])}>

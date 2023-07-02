@@ -6,11 +6,11 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { AlbumList } from 'entities/Album';
 import { useSelector } from 'react-redux';
+import { VStack } from 'shared/ui/Stack';
 import { fetchPlaylistsByArtistId } from '../../model/services/fetchPlaylistsForArtist/fetchPlaylistsForArtist';
 import { getArtistPlaylists } from '../../model/slice/artistPagePlaylistsSlice';
 import { getArtistPagePlaylistsIsLoading } from '../../model/selectors/getArtistPagePlaylists';
 import cls from './ArtistPagePlaylists.module.scss';
-import { VStack } from 'shared/ui/Stack';
 
 interface ArtistPagePlaylistsProps {
     className?: string;

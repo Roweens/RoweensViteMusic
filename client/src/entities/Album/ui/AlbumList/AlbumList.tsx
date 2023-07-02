@@ -1,13 +1,13 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import classNames from 'classnames';
 import { Text } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { ItemView } from 'shared/types/ItemView';
+import { HStack, VStack } from 'shared/ui/Stack';
 import cls from './AlbumList.module.scss';
 import { Album } from '../../model/types/album';
 import { AlbumCard } from '../AlbumCard/AlbumCard';
 import { AlbumCardSkeleton } from '../AlbumCardSkeleton/AlbumCardSkeleton';
-import { HStack, VStack } from 'shared/ui/Stack';
 
 interface AlbumListProps {
     className?: string;
@@ -17,11 +17,17 @@ interface AlbumListProps {
     viewType?: ItemView;
 }
 
-const skeletons = () => new Array(5).fill(0).map(() => <AlbumCardSkeleton />);
-
 export const AlbumList = memo((props: AlbumListProps) => {
     const { className, albums, isLoading, error, viewType = 'full' } = props;
     const { t } = useTranslation();
+
+    const skeletons = useMemo(
+        () =>
+            new Array(5)
+                .fill(0)
+                .map(() => <AlbumCardSkeleton viewType={viewType} />),
+        [viewType],
+    );
 
     if (!isLoading && !albums.length) {
         return (
@@ -43,9 +49,10 @@ export const AlbumList = memo((props: AlbumListProps) => {
         return (
             <VStack
                 className={classNames(cls.albumListCompact, {}, [className])}
+                gap="8"
             >
                 {isLoading
-                    ? skeletons()
+                    ? skeletons
                     : albums?.map((album) => (
                           <AlbumCard album={album} viewType={viewType} />
                       ))}
@@ -60,7 +67,7 @@ export const AlbumList = memo((props: AlbumListProps) => {
             gap="16"
         >
             {isLoading
-                ? skeletons()
+                ? skeletons
                 : albums?.map((album) => (
                       <AlbumCard album={album} viewType={viewType} />
                   ))}

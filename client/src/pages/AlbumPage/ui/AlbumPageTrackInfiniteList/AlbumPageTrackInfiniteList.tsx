@@ -27,7 +27,7 @@ export const AlbumPageTrackInfiniteList = memo(
         }, [dispatch, id]);
 
         const onPlayHandle = useCallback(
-            (track?: Track) => {
+            (track?: Track | null) => {
                 if (track) {
                     dispatch(playerActions.setTrack(track));
                     dispatch(playerActions.setPaused(false));

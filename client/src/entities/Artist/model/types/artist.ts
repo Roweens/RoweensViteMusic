@@ -1,4 +1,8 @@
-import { SubscribedArtist } from 'features/subscribeToArtist';
+export interface SubscribedArtist {
+    id: string;
+    favouriteId: string;
+    artistId: string;
+}
 
 export interface Artist {
     id: number;

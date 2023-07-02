@@ -20,7 +20,7 @@ export enum SelectorTheme {
 interface SelectorProps {
     className?: string;
     options: OptionsType[];
-    value: string;
+    value?: string;
     onChange?: (value: any) => void;
     theme?: SelectorTheme;
     readOnly?: boolean;

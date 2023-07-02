@@ -19,6 +19,7 @@ const config: StorybookViteConfig = {
                 __IS_DEV__: true,
                 __API_URL__: JSON.stringify(''),
                 __PROJECT__: JSON.stringify('Storybook'),
+                __STATIC_URL__: JSON.stringify('http://localhost:5000/'),
             },
         });
     },

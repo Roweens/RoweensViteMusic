@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import {
     DynamicReducerLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Link } from 'shared/ui/Link/Link';
@@ -40,9 +41,9 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
     const album = useSelector(getAlbumData);
     const isLoading = useSelector(getAlbumIsLoading);
 
-    useEffect(() => {
+    useInitialEffect(() => {
         dispatch(fetchAlbumById(id));
-    }, [dispatch, id]);
+    });
 
     return (
         <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
@@ -52,49 +53,57 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
                     fullWidth
                     withHoverEffect={false}
                 >
-                    <Skeleton width={250} height={250} border="15px" />
-                    <div className={cls.info}>
-                        <div className={cls.titleWrapper}>
-                            <Skeleton
-                                width={100}
-                                height={24}
-                                className={cls.type}
-                            />
-                            <Skeleton
-                                width={250}
-                                height={32}
-                                className={cls.title}
-                            />
-                            <Skeleton
-                                width={100}
-                                height={24}
-                                className={cls.bio}
-                            />
-                        </div>
-                        <div className={cls.additional}>
-                            <Skeleton
-                                width={40}
-                                height={40}
-                                className={cls.type}
-                                border="50%"
-                            />
-                            <Skeleton
-                                width={70}
-                                height={24}
-                                className={cls.type}
-                            />
-                            <Skeleton
-                                width={70}
-                                height={24}
-                                className={cls.type}
-                            />
-                            <Skeleton
-                                width={70}
-                                height={24}
-                                className={cls.type}
-                            />
-                        </div>
-                    </div>
+                    <HStack
+                        className={classNames(cls.albumDetails, {}, [
+                            className,
+                        ])}
+                        gap="32"
+                        max
+                    >
+                        <Skeleton width={250} height={250} border="15px" />
+                        <VStack gap="16">
+                            <VStack gap="16">
+                                <Skeleton
+                                    width={100}
+                                    height={24}
+                                    className={cls.type}
+                                />
+                                <Skeleton
+                                    width={250}
+                                    height={32}
+                                    className={cls.title}
+                                />
+                                <Skeleton
+                                    width={100}
+                                    height={24}
+                                    className={cls.bio}
+                                />
+                            </VStack>
+                            <div className={cls.additional}>
+                                <Skeleton
+                                    width={40}
+                                    height={40}
+                                    className={cls.type}
+                                    border="50%"
+                                />
+                                <Skeleton
+                                    width={70}
+                                    height={24}
+                                    className={cls.type}
+                                />
+                                <Skeleton
+                                    width={70}
+                                    height={24}
+                                    className={cls.type}
+                                />
+                                <Skeleton
+                                    width={70}
+                                    height={24}
+                                    className={cls.type}
+                                />
+                            </div>
+                        </VStack>
+                    </HStack>
                 </Card>
             ) : (
                 <Card fullWidth withHoverEffect={false} padding="24">

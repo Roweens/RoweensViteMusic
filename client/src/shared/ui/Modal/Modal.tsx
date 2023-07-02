@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import classNames from 'classnames';
 import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Portal } from 'shared/lib/components/Portal/Portal';

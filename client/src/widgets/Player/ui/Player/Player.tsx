@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { AppImage } from 'shared/ui/AppImage';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { formatAudioDuration } from 'shared/lib/utils/formatAudioDuration';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { getPlayerTrack } from '../../model/selectors/getPlayerTrack/getPlayerTrack';
 import { getPlayerPaused } from '../../model/selectors/getPlayerPaused/getPlayerPaused';
 import { getPlayerDuration } from '../../model/selectors/getPlayerDuration/getPlayerDuration';
@@ -25,6 +26,8 @@ import cls from './Player.module.scss';
 import { PlayButton } from '../PlayButton/PlayButton';
 import { VolumeButton } from '../VolumeButton/VolumeButton';
 import { PauseButton } from '../PauseButton/PauseButton';
+import { LoopButton } from '../LoopButton/LoopButton';
+import { FastPlayButton } from '../FastPlayButton/FastPlayButton';
 
 interface PlayerProps {
     className?: string;
@@ -45,10 +48,14 @@ export const Player = memo((props: PlayerProps) => {
 
     const audio: HTMLAudioElement = useMemo(() => new Audio(), []);
 
-    const formattedDuration = track ? formatAudioDuration(audio.duration) : '';
-    const formattedPlayTime = track
-        ? formatAudioDuration(audio.currentTime)
-        : '';
+    const formattedDuration =
+        track && !isPaused
+            ? formatAudioDuration(audio.duration)
+            : formatAudioDuration(duration);
+    const formattedPlayTime =
+        track && !isPaused
+            ? formatAudioDuration(audio.currentTime)
+            : formatAudioDuration(playTime);
 
     const play = useCallback(() => {
         if (!isPaused) {
@@ -63,7 +70,7 @@ export const Player = memo((props: PlayerProps) => {
             audio.src = `${__STATIC_URL__}${track.track.file}`;
             audio.volume = volume / 100;
             audio.onloadedmetadata = () => {
-                dispatch(playerActions.setDuration(Math.ceil(audio.duration)));
+                dispatch(playerActions.setDuration(Math.floor(audio.duration)));
             };
             audio.ontimeupdate = () => {
                 dispatch(
@@ -88,16 +95,6 @@ export const Player = memo((props: PlayerProps) => {
         },
         [audio, dispatch],
     );
-
-    const onPlayHandle = useCallback(() => {
-        if (track) {
-            dispatch(playerActions.setPaused(false));
-        }
-    }, [dispatch, track]);
-
-    const onPauseHandle = useCallback(() => {
-        dispatch(playerActions.setPaused(true));
-    }, [dispatch]);
 
     useEffect(() => {
         if (track) {
@@ -139,19 +136,19 @@ export const Player = memo((props: PlayerProps) => {
                         size={ButtonSize.EXTRA_LARGE}
                         theme={ButtonTheme.CLEAN}
                     >
-                        <PlayBack />
+                        <Icon Svg={PlayBack} stroke />
                     </Button>
                     {!isPaused ? (
-                        <PauseButton onPause={onPauseHandle} />
+                        <PauseButton track={track} />
                     ) : (
-                        <PlayButton onPlay={onPlayHandle} track={track} />
+                        <PlayButton track={track} />
                     )}
                     <Button
                         squared
                         size={ButtonSize.EXTRA_LARGE}
                         theme={ButtonTheme.CLEAN}
                     >
-                        <PlayNext />
+                        <Icon Svg={PlayNext} stroke />
                     </Button>
                 </HStack>
                 <RangeInput
@@ -171,8 +168,10 @@ export const Player = memo((props: PlayerProps) => {
                     size={ButtonSize.LARGE}
                     theme={ButtonTheme.CLEAN}
                 >
-                    <QueueIcon />
+                    <Icon Svg={QueueIcon} />
                 </Button>
+                <FastPlayButton audio={audio} />
+                <LoopButton audio={audio} />
                 <VolumeButton audio={audio} />
                 <RangeInput
                     left={volume}

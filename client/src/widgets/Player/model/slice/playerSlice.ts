@@ -10,6 +10,8 @@ const initialState: PlayerSchema = {
     paused: true,
     playTime: 0,
     duration: 0,
+    loop: false,
+    fastPlay: false,
 };
 
 export const playerSlice = createSlice({
@@ -33,6 +35,12 @@ export const playerSlice = createSlice({
         },
         setTrack: (state, action: PayloadAction<Track>) => {
             state.track = action.payload;
+        },
+        setLoop: (state, action: PayloadAction<boolean>) => {
+            state.loop = action.payload;
+        },
+        setFastPlay: (state, action: PayloadAction<boolean>) => {
+            state.fastPlay = action.payload;
         },
     },
 });

@@ -10,7 +10,7 @@ const addTrackToFavouriteApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         fetchTrackDetails: build.query<Track, addTrackToFavouriteApiProps>({
             query: ({ trackId, userId }) => ({
-                url: `/artist/${artistId}`,
+                url: `/artist/${trackId}`,
                 params: {
                     userId,
                 },

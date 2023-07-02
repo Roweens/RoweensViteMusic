@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { AppImage } from './AppImage';
-import { Skeleton } from '../Skeleton';
+import { Skeleton } from '../Skeleton/Skeleton';
 
 export default {
-    title: 'shared/redesigned/AppImage',
+    title: 'shared/AppImage',
     component: AppImage,
     argTypes: {
         backgroundColor: { control: 'color' },

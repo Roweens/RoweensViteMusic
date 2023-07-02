@@ -2,17 +2,22 @@
     position: relative;
 }
 
-.info{
+.info {
     position: absolute;
     bottom: 15%;
     left: 4%;
+
+    h5,
+    p {
+        color: white !important;
+    }
 }
 
-.img{
+.img {
     filter: brightness(0.7) blur(6px);
 }
 
-.name{
+.name {
     font-size: var(--title-font-size);
     color: var(--primary-color);
 }

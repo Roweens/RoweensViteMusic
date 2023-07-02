@@ -11,6 +11,7 @@ interface IconProps {
     stroke?: boolean;
     fill?: boolean;
     inverted?: boolean;
+    disabled?: boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
@@ -22,6 +23,7 @@ export const Icon = memo((props: IconProps) => {
         fill = true,
         stroke,
         inverted,
+        disabled = false,
     } = props;
 
     const styles: CSSProperties = {
@@ -31,6 +33,7 @@ export const Icon = memo((props: IconProps) => {
 
     const mods: Mods = {
         [cls.fill]: fill,
+        [cls.disabled]: disabled,
         [cls.stroke]: stroke,
         [cls.inverted]: inverted,
     };

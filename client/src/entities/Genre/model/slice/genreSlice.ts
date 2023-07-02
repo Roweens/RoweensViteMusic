@@ -43,5 +43,4 @@ export const genresSlice = createSlice({
     },
 });
 
-// export const { actions: genreSliceActions } = genresSlice;
 export const { reducer: genreSliceReducer } = genresSlice;

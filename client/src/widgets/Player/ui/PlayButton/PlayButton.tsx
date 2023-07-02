@@ -3,21 +3,28 @@ import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { Track } from 'entities/Track';
 import { Mods } from 'shared/types/Mods';
 import classNames from 'classnames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { ReactComponent as PlayIcon } from '../../assets/play.svg';
 import cls from './PlayButton.module.scss';
+import { playerActions } from '../../model/slice/playerSlice';
 
 interface PlayerPlayButtonProps {
     className?: string;
-    onPlay?: (track?: Track) => void;
     track: Track | null;
 }
 
 export const PlayButton = memo((props: PlayerPlayButtonProps) => {
-    const { className, onPlay, track } = props;
+    const { className, track } = props;
+
+    const dispatch = useAppDispatch();
 
     const onPlayHandle = useCallback(() => {
-        onPlay?.(track);
-    }, [onPlay, track]);
+        if (track) {
+            dispatch(playerActions.setTrack(track));
+            dispatch(playerActions.setPaused(false));
+        }
+    }, [dispatch, track]);
 
     const mods: Mods = {
         [cls.disabled]: !track,
@@ -31,7 +38,7 @@ export const PlayButton = memo((props: PlayerPlayButtonProps) => {
             className={classNames('', mods, [className])}
             onClick={onPlayHandle}
         >
-            <PlayIcon />
+            <Icon Svg={PlayIcon} />
         </Button>
     );
 });

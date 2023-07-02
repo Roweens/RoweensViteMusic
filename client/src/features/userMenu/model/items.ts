@@ -1,5 +1,5 @@
 import { FunctionComponent, SVGProps } from 'react';
-import { RoutePath } from '../../../app/providers/router/config/routeConfig';
+import { RoutePath } from 'shared/const/router';
 import { ReactComponent as ProfileIcon } from '../assets/profile.svg';
 import { ReactComponent as ExitIcon } from '../assets/exit.svg';
 

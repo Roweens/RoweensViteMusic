@@ -6,5 +6,7 @@ router.get('/single/:id', albumController.getOne);
 router.get('/artist/:id', albumController.getByArtist);
 router.get('/all', albumController.getAll);
 router.get('/user/:id', albumController.getByUserId);
+router.get('/popular', albumController.getPopular);
+router.get('/user/artist/:id', albumController.getByUserArtists);
 
 module.exports = router;

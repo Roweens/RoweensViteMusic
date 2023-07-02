@@ -7,4 +7,6 @@ export interface PlayerSchema {
     volumeOff: boolean;
     playTime: number;
     paused: boolean;
+    loop: boolean;
+    fastPlay: boolean;
 }

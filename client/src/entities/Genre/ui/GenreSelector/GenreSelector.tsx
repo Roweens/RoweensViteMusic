@@ -15,7 +15,7 @@ import { genreSliceReducer, getGenres } from '../../model/slice/genreSlice';
 
 interface GenreSelectorProps {
     className?: string;
-    value: string;
+    value?: string;
     onChange: (value: string) => void;
 }
 

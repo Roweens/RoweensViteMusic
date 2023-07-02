@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import { Page } from 'widgets/Page';
+import { PopularAlbumsList } from 'features/popularAlbumsList';
+import { AlbumsBySubscribedArtistsList } from 'features/albumsBySubscribedArtistsList';
 import cls from './MainPage.module.scss';
 import { MainPageAlbumsByGenre } from './MainPageAlbumsByGenre/MainPageAlbumsByGenre';
 
@@ -110,5 +112,7 @@ import { MainPageAlbumsByGenre } from './MainPageAlbumsByGenre/MainPageAlbumsByG
 export const MainPage = memo(() => (
     <Page className={classNames(cls.mainPage)}>
         <MainPageAlbumsByGenre />
+        <PopularAlbumsList />
+        <AlbumsBySubscribedArtistsList />
     </Page>
 ));

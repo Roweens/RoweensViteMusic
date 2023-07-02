@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { getPlayerVolume } from '../../model/selectors/getPlayerVolume/getPlayerVolume';
 import { playerActions } from '../../model/slice/playerSlice';
 import { getPlayerVolumeOff } from '../../model/selectors/getPlayerVolumeOff/getPlayerVolumeOff';
@@ -32,7 +33,11 @@ export const VolumeButton = memo((props: PlayerVolumeButtonProps) => {
             className={className}
             onClick={onSwitchVolume}
         >
-            {volumeOff || volume === 0 ? <VolumeOffIcon /> : <VolumeIcon />}
+            {volumeOff || volume === 0 ? (
+                <Icon Svg={VolumeOffIcon} />
+            ) : (
+                <Icon Svg={VolumeIcon} />
+            )}
         </Button>
     );
 });

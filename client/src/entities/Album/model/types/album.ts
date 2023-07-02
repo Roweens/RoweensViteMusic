@@ -1,5 +1,10 @@
 import { Artist } from 'entities/Artist';
-import { FavouriteAlbum } from 'features/addAlbumToFavourite';
+
+export interface FavouriteAlbum {
+    id: string;
+    favouriteId: string;
+    albumId: string;
+}
 
 export interface AlbumTracks {
     id: number;

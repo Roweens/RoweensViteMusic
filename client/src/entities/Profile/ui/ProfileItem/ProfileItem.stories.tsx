@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ProfileItem } from './ProfileItem';
 
 export default {
-    title: 'shared/ProfileItem',
+    title: 'entities/Profile/ProfileItem',
     component: ProfileItem,
     argTypes: {
         backgroundColor: { control: 'color' },

@@ -3,34 +3,35 @@
     margin-top: 20px;
 }
 
-.card{
+.card {
     display: flex;
     flex-direction: column;
 }
 
-.title{
+.title {
     margin-bottom: 10px;
 }
 
-.bioCard{
+.bioCard {
     position: relative;
     transition: transform 0.3s ease;
 }
 
-.bioCard:hover{
+.bioCard:hover {
     transform: scale(1.02);
 }
 
-.img{
+.img {
     cursor: pointer;
     filter: brightness(0.6);
-
 }
 
-
-
-.textWrapper{
+.textWrapper {
     position: absolute;
     bottom: 10%;
     left: 5%;
+
+    h5 {
+        color: white !important;
+    }
 }

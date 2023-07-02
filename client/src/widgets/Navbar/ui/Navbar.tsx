@@ -1,11 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef } from 'react';
 import classNames from 'classnames';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { UserMenu } from 'features/userMenu';
 import cls from './Navbar.module.scss';
-import { ReactComponent as BackArrow } from '../assets/backArrow.svg';
-import { ReactComponent as NextArrow } from '../assets/nextArrow.svg';
 
 interface NavbarProps {
     className?: string;
@@ -14,6 +11,7 @@ interface NavbarProps {
 export const Navbar = memo((props: NavbarProps) => {
     const { className } = props;
     const navigate = useNavigate();
+    const navbarRef = useRef<HTMLDivElement | null>(null);
 
     const handleGoBack = useCallback(() => {
         navigate(-1);
@@ -37,7 +35,7 @@ export const Navbar = memo((props: NavbarProps) => {
                     <NextArrow />
                 </Button> */}
             </div>
-            <UserMenu username="Cognus" />
+            <UserMenu />
         </div>
     );
 });
