@@ -4,5 +4,11 @@
     "TRACK": "Tracks",
     "ARTIST": "Artists",
     "PLAYLIST": "Playlists",
-    "PROFILE": "Profiles"
+    "PROFILE": "Profiles",
+    "Профили": "Profiles",
+    "Артисты": "Artists",
+    "Треки": "Tracks",
+    "Альбомы": "Albums",
+    "Плейлисты": "Playlists",
+    "Введите запрос": "Type your request"
 }

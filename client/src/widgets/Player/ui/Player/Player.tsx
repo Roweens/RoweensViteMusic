@@ -59,11 +59,12 @@ export const Player = memo((props: PlayerProps) => {
 
     const play = useCallback(() => {
         if (!isPaused) {
+            audio.currentTime = playTime;
             audio.play();
         } else {
             audio.pause();
         }
-    }, [audio, isPaused]);
+    }, [audio, isPaused, playTime]);
 
     const setAudio = useCallback(() => {
         if (track) {
@@ -73,12 +74,14 @@ export const Player = memo((props: PlayerProps) => {
                 dispatch(playerActions.setDuration(Math.floor(audio.duration)));
             };
             audio.ontimeupdate = () => {
-                dispatch(
-                    playerActions.setPlayTime(Math.ceil(audio.currentTime)),
-                );
+                if (!isPaused) {
+                    dispatch(
+                        playerActions.setPlayTime(Math.ceil(audio.currentTime)),
+                    );
+                }
             };
         }
-    }, [audio, dispatch, track, volume]);
+    }, [audio, dispatch, isPaused, track, volume]);
 
     const onChangeVolume = useCallback(
         (value: number) => {

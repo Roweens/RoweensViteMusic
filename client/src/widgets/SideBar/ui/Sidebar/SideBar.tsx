@@ -44,6 +44,7 @@ export const SideBar = memo((props: SideBarProps) => {
                 <UserCollectionList
                     isCollapsed={isCollapsed}
                     setIsCollapsed={setIsCollapsed}
+                    onFavouriteClick={onOpenTracksModal}
                 />
             </VStack>
             <VStack align="center" max gap="8" className={cls.switchers}>

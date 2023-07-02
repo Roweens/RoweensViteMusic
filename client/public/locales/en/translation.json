@@ -8,6 +8,18 @@
     "Профиль": "Profile",
     "Настройки": "Settings",
     "Войти": "Login",
-    "Выйти": "Logout",
-    "Неверные данные для входа": "Wrong credentials"
+    "Выход": "Logout",
+    "Неверные данные для входа": "Wrong credentials",
+    "Моя медиатека": "My collection",
+    "Альбомы": "Albums",
+    "Исполнители": "Artists",
+    "Треки": "Tracks",
+    "Любимые треки": "Favourite tracks",
+    "Плейлист": "Playlist",
+    "Плейлисты": "Playlists",
+    "Трек не выбран": "Track not selected",
+    "Лучшие альбомы из жанра:": "Best albums from genre:",
+    "Популярные альбомы": "Popular albums",
+    "Ваши подписки": "Your subscriptions",
+    "Выберите жанр": "Choose genre"
 }

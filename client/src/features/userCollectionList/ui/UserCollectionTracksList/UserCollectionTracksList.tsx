@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { Track, TrackList } from 'entities/Track';
 import { Card } from 'shared/ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/const/router';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { Icon } from 'shared/ui/Icon/Icon';
@@ -18,18 +17,21 @@ interface UserCollectionTracksListProps {
     items?: Track[];
     isLoading: boolean;
     compact: boolean;
+    onFavouriteClick?: () => void;
 }
 
 export const UserCollectionTracksList = memo(
     (props: UserCollectionTracksListProps) => {
-        const { className, items, isLoading, compact } = props;
+        const { className, items, isLoading, compact, onFavouriteClick } =
+            props;
         const { t } = useTranslation();
         const navigate = useNavigate();
         const authData = useSelector(getUserAuthData);
 
-        const onFavouriteCardNavigate = useCallback(() => {
-            navigate(`${RoutePath.favourite}${authData?.id}`);
-        }, [authData?.id, navigate]);
+        const onFavouriteCardClick = useCallback(() => {
+            console.log('12312');
+            onFavouriteClick?.();
+        }, [onFavouriteClick]);
 
         if (!items) {
             return null;
@@ -45,7 +47,7 @@ export const UserCollectionTracksList = memo(
                 {!compact && (
                     <HStack
                         className={classNames(cls.favItem, {}, [className])}
-                        onClick={onFavouriteCardNavigate}
+                        onClick={onFavouriteCardClick}
                         gap="16"
                     >
                         <Card className={cls.favCard}>

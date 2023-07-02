@@ -58,6 +58,7 @@ export const Flex: FC<FlexProps> = (props) => {
         justify = 'start',
         gap,
         max,
+        ...otherProps
     } = props;
 
     const styles = [
@@ -72,5 +73,9 @@ export const Flex: FC<FlexProps> = (props) => {
         [cls.max]: max,
     };
 
-    return <div className={classNames(cls.flex, mods, styles)}>{children}</div>;
+    return (
+        <div className={classNames(cls.flex, mods, styles)} {...otherProps}>
+            {children}
+        </div>
+    );
 };

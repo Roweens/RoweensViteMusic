@@ -29,10 +29,11 @@ interface userCollectionListProps {
     className?: string;
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
+    onFavouriteClick?: () => void;
 }
 
 export const UserCollectionList = memo((props: userCollectionListProps) => {
-    const { className, isCollapsed, setIsCollapsed } = props;
+    const { className, isCollapsed, setIsCollapsed, onFavouriteClick } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
@@ -89,6 +90,7 @@ export const UserCollectionList = memo((props: userCollectionListProps) => {
                 items={items as Track[]}
                 isLoading={isLoading}
                 compact={isCollapsed}
+                onFavouriteClick={onFavouriteClick}
             />
         ) : (
             <UserCollectionArtistList

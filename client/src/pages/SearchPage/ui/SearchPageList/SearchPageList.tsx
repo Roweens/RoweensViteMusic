@@ -18,7 +18,7 @@ interface SearchPageListProps {
 
 export const SearchPageList = memo((props: SearchPageListProps) => {
     const { className } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('search');
     const data = useSelector(getSearchPageData);
 
     return (

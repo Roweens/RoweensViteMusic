@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { useSelector } from 'react-redux';
 import { Track } from 'entities/Track';
 import { Mods } from 'shared/types/Mods';
 import classNames from 'classnames';
@@ -8,6 +9,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import { ReactComponent as PlayIcon } from '../../assets/play.svg';
 import cls from './PlayButton.module.scss';
 import { playerActions } from '../../model/slice/playerSlice';
+import { getPlayerTrack } from '../../model/selectors/getPlayerTrack/getPlayerTrack';
 
 interface PlayerPlayButtonProps {
     className?: string;
@@ -18,13 +20,17 @@ export const PlayButton = memo((props: PlayerPlayButtonProps) => {
     const { className, track } = props;
 
     const dispatch = useAppDispatch();
+    const currentTrack = useSelector(getPlayerTrack);
 
     const onPlayHandle = useCallback(() => {
         if (track) {
+            if (track.trackId !== currentTrack?.trackId) {
+                dispatch(playerActions.setPlayTime(0));
+            }
             dispatch(playerActions.setTrack(track));
             dispatch(playerActions.setPaused(false));
         }
-    }, [dispatch, track]);
+    }, [currentTrack, dispatch, track]);
 
     const mods: Mods = {
         [cls.disabled]: !track,
