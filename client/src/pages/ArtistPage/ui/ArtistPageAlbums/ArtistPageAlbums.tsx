@@ -32,6 +32,7 @@ export const ArtistPageAlbums = memo((props: ArtistPageAlbumsProps) => {
         <VStack
             className={classNames(cls.artistPageAlbums, {}, [className])}
             gap="16"
+            data-testid="ArtistPageAlbums"
         >
             <Text title={t('Альбомы исполнителя')} bold />
             <AlbumList albums={albums} isLoading={isLoading} />

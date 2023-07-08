@@ -92,13 +92,14 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
     }
 
     return (
-        <div className={classNames(cls.profileCard)}>
+        <div className={classNames(cls.profileCard)} data-testid="ProfileCard">
             <div className={cls.input}>
                 <Text title={t('Имя пользователя:')} />
                 <Input
                     onChange={onUsernameChange}
                     value={form?.username}
                     readOnly={readonly}
+                    data-testid="ProfileCard.username"
                 />
             </div>
             <div className={cls.input}>
@@ -107,6 +108,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     onChange={onFirstnameChange}
                     value={form?.firstname}
                     readOnly={readonly}
+                    data-testid="ProfileCard.firstname"
                 />
             </div>
             <div className={cls.input}>
@@ -115,6 +117,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     onChange={onLastnameChange}
                     value={form?.lastname}
                     readOnly={readonly}
+                    data-testid="ProfileCard.lastname"
                 />
             </div>
             <div className={cls.input}>
@@ -134,6 +137,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     onChange={onCityChange}
                     value={form?.city}
                     readOnly={readonly}
+                    data-testid="ProfileCard.city"
                 />
             </div>
             <div className={cls.input}>
@@ -143,6 +147,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     type="number"
                     value={form?.age}
                     readOnly={readonly}
+                    data-testid="ProfileCard.age"
                 />
             </div>
             <div className={cls.input}>

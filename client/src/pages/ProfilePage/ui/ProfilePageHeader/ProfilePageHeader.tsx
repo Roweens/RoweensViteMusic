@@ -38,11 +38,26 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
             <Text title={t('Настройки профиля')} />
             <div className={cls.controls}>
                 {readOnly ? (
-                    <Button onClick={onChangeEdit}>{t('Редактировать')}</Button>
+                    <Button
+                        onClick={onChangeEdit}
+                        data-testid="ProfilePageHeader.EditBtn"
+                    >
+                        {t('Редактировать')}
+                    </Button>
                 ) : (
-                    <Button onClick={onCancelEdit}>{t('Отменить')}</Button>
+                    <Button
+                        onClick={onCancelEdit}
+                        data-testid="ProfilePageHeader.CancelBtn"
+                    >
+                        {t('Отменить')}
+                    </Button>
                 )}
-                <Button onClick={onSave}>{t('Сохранить')}</Button>
+                <Button
+                    onClick={onSave}
+                    data-testid="ProfilePageHeader.SaveBtn"
+                >
+                    {t('Сохранить')}
+                </Button>
             </div>
         </div>
     );

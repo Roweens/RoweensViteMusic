@@ -110,7 +110,7 @@ import { MainPageAlbumsByGenre } from './MainPageAlbumsByGenre/MainPageAlbumsByG
 // ] as Album[];
 
 export const MainPage = memo(() => (
-    <Page className={classNames(cls.mainPage)}>
+    <Page className={classNames(cls.mainPage)} data-testid="MainPage">
         <MainPageAlbumsByGenre />
         <PopularAlbumsList />
         <AlbumsBySubscribedArtistsList />

@@ -27,7 +27,7 @@ export const albumPageTracksSlice = createSlice({
         order: 'DESC',
         sort: TrackSortField.CREATED,
         page: 1,
-        _limit: 2,
+        _limit: 7,
         totalCount: 0,
         _inited: false,
     }),

@@ -38,6 +38,7 @@ export const TrackList = memo((props: TrackListProps) => {
     return (
         <VStack
             className={classNames(cls.trackList, {}, [className])}
+            data-testid="TrackList"
             gap="16"
             max
         >

@@ -17,7 +17,8 @@
         "storybook": "SET NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006 -c ./config/storybook",
         "build-storybook": "build-storybook -c ./config/storybook",
         "test:ui": "npx loki test",
-        "test:ui:ok": "npx loki approve"
+        "test:ui:ok": "npx loki approve",
+        "test:e2e": "cypress open"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.9.3",
@@ -51,9 +52,11 @@
         "babel-loader": "^8.3.0",
         "classnames": "^2.3.2",
         "concurrently": "^7.6.0",
+        "cypress": "^11.0.0",
         "eslint": "^8.36.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-cypress": "^2.13.3",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-n": "^15.6.1",

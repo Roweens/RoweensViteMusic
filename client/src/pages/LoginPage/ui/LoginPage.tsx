@@ -12,7 +12,10 @@ const LoginPage = memo((props: LoginPageProps) => {
     const { className } = props;
 
     return (
-        <Page className={classNames(cls.loginPageWrapper, {}, [className])}>
+        <Page
+            className={classNames(cls.loginPageWrapper, {}, [className])}
+            data-testid="LoginPage"
+        >
             <LoginCard />
         </Page>
     );

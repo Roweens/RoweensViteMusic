@@ -119,7 +119,7 @@ const ProfilePage = memo(() => {
 
     return (
         <DynamicReducerLoader removeAfterUnmount reducers={reducers}>
-            <Page>
+            <Page data-testid="ProfilePage">
                 <div className={classNames(cls.profilePage)}>
                     <ProfilePageHeader />
                     {validationErrors?.length &&

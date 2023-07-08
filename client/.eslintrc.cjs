@@ -8,6 +8,7 @@ module.exports = {
         'airbnb',
         'plugin:storybook/recommended',
         'prettier',
+        'plugin:cypress/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {

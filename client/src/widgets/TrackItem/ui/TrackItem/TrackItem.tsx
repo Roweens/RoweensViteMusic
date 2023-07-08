@@ -71,7 +71,10 @@ export const TrackItem = memo((props: TrackItemProps) => {
 
     if (viewType === 'compact') {
         return (
-            <div className={classNames(cls.trackItemCompact, {}, [className])}>
+            <div
+                className={classNames(cls.trackItemCompact, {}, [className])}
+                data-testid="TrackItemCompact"
+            >
                 <HStack className={cls.info} gap="16" align="center">
                     {currentTrack?.id === track?.id && !paused ? (
                         <PauseButton track={track} />
@@ -106,7 +109,10 @@ export const TrackItem = memo((props: TrackItemProps) => {
     }
 
     return (
-        <div className={classNames(cls.trackItem, {}, [className])}>
+        <div
+            className={classNames(cls.trackItem, {}, [className])}
+            data-testid="TrackItemFull"
+        >
             <HStack className={cls.info} gap="16" align="center">
                 {currentTrack?.id === track?.id && !paused ? (
                     <PauseButton track={track} />

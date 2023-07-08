@@ -25,6 +25,7 @@ interface SelectorProps {
     theme?: SelectorTheme;
     readOnly?: boolean;
     label?: string;
+    'data-testid'?: string;
 }
 
 export const Selector = memo((props: SelectorProps) => {
@@ -36,6 +37,7 @@ export const Selector = memo((props: SelectorProps) => {
         theme = SelectorTheme.FILLED,
         readOnly = false,
         label,
+        'data-testid': dataTestId = 'Selector',
     } = props;
 
     const { ref, isComponentVisible, setIsComponentVisible } =
@@ -165,6 +167,7 @@ export const Selector = memo((props: SelectorProps) => {
                 className={classNames(cls.selectorBtn, {}, [className])}
                 onClick={() => setIsComponentVisible(!isComponentVisible)}
                 theme={SelectThemeToButtonThemeMap[theme]}
+                data-testid={`${dataTestId}.Trigger`}
             >
                 {currentValue || optionsWithLabel[0].label}
                 <Icon Svg={SelectIcon} stroke height={24} width={24} />
@@ -172,7 +175,7 @@ export const Selector = memo((props: SelectorProps) => {
             {isComponentVisible && (
                 <div className={classNames(cls.selectorList)}>
                     <ul>
-                        {optionsWithLabel.map((option) => (
+                        {optionsWithLabel.map((option, index) => (
                             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                             <li
                                 key={option.id}
@@ -183,6 +186,7 @@ export const Selector = memo((props: SelectorProps) => {
                                         isActive(option) || isHovered(option),
                                     [cls.disabled]: option.disabled,
                                 })}
+                                data-testid={`${dataTestId}.Option.${index}`}
                             >
                                 {isActive(option) && (
                                     <Icon

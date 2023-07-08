@@ -74,6 +74,7 @@ const AlbumPage = memo((props: AlbumPageProps) => {
             <Page
                 onScrollIntersection={onScrollEnd}
                 className={classNames(cls.albumPage, {}, [className])}
+                data-testid="AlbumPage"
             >
                 <VStack gap="16" max align="end">
                     <AlbumDetails id={id} />

@@ -4,16 +4,17 @@
     align-items: center;
 }
 
-.favIcon, .unfavIcon{
+.favIcon,
+.unfavIcon {
     transition: transform 0.2s ease;
 }
 
-.unfavIcon{
+.favIcon {
     fill: var(--app-color);
-    stroke:  var(--app-color);
+    stroke: var(--app-color);
 }
 
-.favIcon:hover, .unfavIcon:hover {
+.favIcon:hover,
+.unfavIcon:hover {
     transform: scale(1.07);
 }
-

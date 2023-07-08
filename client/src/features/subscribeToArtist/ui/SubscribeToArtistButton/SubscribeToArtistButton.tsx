@@ -62,6 +62,7 @@ export const SubscribeToArtistButton = memo(
                         ])}
                         theme={ButtonTheme.OUTLINED}
                         onClick={onUnsubscribeHandle}
+                        data-testid="UnsubscribeFromArtistBtn"
                     >
                         <Text title={t('Вы подписаны')} size={TextSize.S} />
                     </Button>
@@ -72,6 +73,7 @@ export const SubscribeToArtistButton = memo(
                         ])}
                         theme={ButtonTheme.FILLED}
                         onClick={onSubscribeHandle}
+                        data-testid="SubscribeToArtistBtn"
                     >
                         <Text title={t('Подписаться')} size={TextSize.S} />
                     </Button>

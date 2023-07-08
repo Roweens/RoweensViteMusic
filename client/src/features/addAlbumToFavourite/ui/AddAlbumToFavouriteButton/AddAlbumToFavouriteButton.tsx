@@ -57,6 +57,7 @@ export const AddAlbumToFavouriteButton = memo(
                         className={classNames('', {}, [className])}
                         theme={ButtonTheme.OUTLINED}
                         onClick={onRemoveAlbumFromFavouriteHandle}
+                        data-testid="RemoveAlbumFromFavButton"
                     >
                         <Text title={t('В избранном')} size={TextSize.S} />
                     </Button>
@@ -65,6 +66,7 @@ export const AddAlbumToFavouriteButton = memo(
                         className={classNames('', {}, [className])}
                         theme={ButtonTheme.FILLED}
                         onClick={onAddAlbumToFavouriteHandle}
+                        data-testid="AddAlbumToFavButton"
                     >
                         <Text
                             title={t('Добавить в избранное')}

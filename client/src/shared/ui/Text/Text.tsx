@@ -40,6 +40,7 @@ interface TextProps {
     size?: TextSize;
     classname?: string;
     bold?: boolean;
+    'data-testid'?: string;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -52,6 +53,7 @@ export const Text = memo((props: TextProps) => {
         size = TextSize.M,
         bold = false,
         classname,
+        'data-testid': dataTestId = 'Text',
     } = props;
 
     const mods: Mods = {
@@ -67,12 +69,20 @@ export const Text = memo((props: TextProps) => {
             ])}
         >
             {title && (
-                <h5 className={classNames(cls.title, cls[titleTheme])}>
+                <h5
+                    className={classNames(cls.title, cls[titleTheme])}
+                    data-testid={`${dataTestId}.Header`}
+                >
                     {title}
                 </h5>
             )}
             {text && (
-                <p className={classNames(cls.text, cls[textTheme])}>{text}</p>
+                <p
+                    className={classNames(cls.text, cls[textTheme])}
+                    data-testid={`${dataTestId}.Text`}
+                >
+                    {text}
+                </p>
             )}
         </div>
     );

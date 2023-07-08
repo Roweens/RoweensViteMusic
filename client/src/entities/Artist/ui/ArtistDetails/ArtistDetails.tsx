@@ -59,7 +59,10 @@ export const ArtistDetails = memo((props: ArtistDetailsProps) => {
                     </VStack>
                 </div>
             ) : (
-                <div className={classNames(cls.artistDetails, {}, [className])}>
+                <div
+                    className={classNames(cls.artistDetails, {}, [className])}
+                    data-testid="ArtistDetails"
+                >
                     {artist?.img && (
                         <AppImage
                             src={`${__STATIC_URL__}${artist?.img}`}

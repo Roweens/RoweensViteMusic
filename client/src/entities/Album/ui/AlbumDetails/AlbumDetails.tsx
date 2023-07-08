@@ -111,6 +111,7 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
                         className={classNames(cls.albumDetails, {}, [
                             className,
                         ])}
+                        data-testid="AlbumDetails"
                         gap="32"
                         max
                     >

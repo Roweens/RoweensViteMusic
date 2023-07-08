@@ -68,6 +68,7 @@ export const TrackSortSelector = memo((props: TrackSortSelectorProps) => {
                 onChange={onOrderChange}
                 theme={SelectorTheme.FILLED}
                 label={t('Порядок сортировки')}
+                data-testid="SortOrderSelector"
             />
             <Selector
                 options={sortOptions}
@@ -75,6 +76,7 @@ export const TrackSortSelector = memo((props: TrackSortSelectorProps) => {
                 onChange={onSortChange}
                 theme={SelectorTheme.FILLED}
                 label={t('Значение для сортировки')}
+                data-testid="SortValueSelector"
             />
         </div>
     );

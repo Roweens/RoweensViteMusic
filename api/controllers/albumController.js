@@ -185,6 +185,46 @@ class AlbumController {
 
         return await res.json(albums);
     }
+
+    async addOne(req, res, next) {
+        const { album, tracks } = req.body;
+
+        console.log(req.body);
+
+        if (!album) {
+            return next(ApiError.badRequest('No album'));
+        }
+
+        const newAlbum = await Album.create({ ...album });
+
+        for (const track of tracks) {
+            await AlbumTrack.create(track);
+        }
+
+        return await res.json(newAlbum);
+    }
+
+    async removeOne(req, res, next) {
+        const { id: albumId } = req.params;
+
+        if (!albumId) {
+            return next(ApiError.badRequest('No id'));
+        }
+
+        await AlbumTrack.destroy({
+            where: {
+                albumId: albumId,
+            },
+        });
+
+        const album = await Album.destroy({
+            where: {
+                id: albumId,
+            },
+        });
+
+        return await res.json(album);
+    }
 }
 
 module.exports = new AlbumController();

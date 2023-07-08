@@ -49,12 +49,13 @@ export const AddTrackToFavouriteButton = memo(
                         ])}
                         theme={ButtonTheme.CLEAN}
                         onClick={onRemoveFromFavouriteHandle}
+                        data-testid="AddTrackToFavouriteButton"
                     >
                         <Icon
                             Svg={HeartIcon}
                             height={30}
                             width={30}
-                            className={cls.unfavIcon}
+                            className={cls.favIcon}
                         />
                     </Button>
                 ) : (
@@ -64,12 +65,13 @@ export const AddTrackToFavouriteButton = memo(
                         ])}
                         theme={ButtonTheme.CLEAN}
                         onClick={onAddToFavouriteHandle}
+                        data-testid="AddTrackToFavouriteButton"
                     >
                         <Icon
                             Svg={HeartIcon}
                             height={30}
                             width={30}
-                            className={cls.favIcon}
+                            className={cls.unfavIcon}
                         />
                     </Button>
                 )}

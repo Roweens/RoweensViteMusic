@@ -24,7 +24,7 @@ export const fetchNextTracksByAlbumIdPage = createAsyncThunk<
         const _limit = getAlbumPageTracksLimit(getState());
 
         const totalPageCount = totalPages(totalCount, _limit);
-        const hasMore = page <= totalPageCount;
+        const hasMore = page < totalPageCount;
 
         if (hasMore) {
             dispatch(albumPageTracksSliceActions.setPage(page + 1));

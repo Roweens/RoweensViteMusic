@@ -7,6 +7,7 @@ interface PageProps {
     className?: string;
     children: ReactNode;
     onScrollIntersection?: () => void;
+    'data-testid'?: string;
 }
 
 export const Page = memo((props: PageProps) => {
@@ -24,6 +25,7 @@ export const Page = memo((props: PageProps) => {
         <main
             className={classNames(cls.page, {}, [className])}
             ref={wrapperRef}
+            data-testid={props['data-testid'] ?? 'Page'}
         >
             {children}
             {onScrollIntersection ? (
