@@ -36,7 +36,7 @@ const reducers: ReducersList = {
 export const AlbumDetails = memo((props: AlbumDetailsProps) => {
     const { className, id } = props;
     const dispatch = useAppDispatch();
-    const { t } = useTranslation();
+    const { t } = useTranslation('album');
 
     const album = useSelector(getAlbumData);
     const isLoading = useSelector(getAlbumIsLoading);
@@ -185,7 +185,9 @@ export const AlbumDetails = memo((props: AlbumDetailsProps) => {
                                     />
                                 </Link>
                                 <Text
-                                    text={`${album?.album_tracks.length} треков`}
+                                    text={t('{{count}} прослушиваний', {
+                                        count: album?.album_tracks.length,
+                                    })}
                                 />
                                 <Text text={album?.date} />
                             </div>

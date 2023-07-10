@@ -19,7 +19,7 @@ interface ArtistPagePlaylistsProps {
 
 export const ArtistPagePlaylists = memo((props: ArtistPagePlaylistsProps) => {
     const { className, id } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('artist');
     const dispatch = useAppDispatch();
     const playlists = useSelector(getArtistPlaylists.selectAll);
     const isLoading = useSelector(getArtistPagePlaylistsIsLoading);

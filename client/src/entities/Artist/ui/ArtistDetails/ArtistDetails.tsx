@@ -32,7 +32,7 @@ const reducers: ReducersList = {
 
 export const ArtistDetails = memo((props: ArtistDetailsProps) => {
     const { className, id } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('artist');
     const dispatch = useAppDispatch();
     const artist = useSelector(getArtistData);
     const isLoading = useSelector(getArtistIsLoading);
@@ -83,7 +83,9 @@ export const ArtistDetails = memo((props: ArtistDetailsProps) => {
                     <VStack className={cls.info} gap="32">
                         <h5 className={cls.name}>{artist?.name}</h5>
                         <Text
-                            text={`${artist?.listens} прослушиваний за всё время`}
+                            text={t('{{count}} прослушиваний за все время', {
+                                count: Number(artist?.listens),
+                            })}
                         />
                     </VStack>
                 </div>

@@ -56,8 +56,10 @@ describe('User navigates to artist page', () => {
         });
     });
     afterEach(() => {
-        cy.removeAlbum(defaultAlbum.id).then(() => {
-            cy.removeArtistDetails(currentArtistId);
+        cy.removeArtistDetails(currentArtistId).then(() => {
+            cy.removeAlbum(defaultAlbum.id).then(() => {
+                cy.removeArtistDetails(currentArtistId);
+            });
         });
     });
 

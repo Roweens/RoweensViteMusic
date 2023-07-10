@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { SortOrder } from 'shared/types/SortOrder';
@@ -15,50 +15,56 @@ interface TrackSortSelectorProps {
     onSortChange: (newSort: TrackSortField) => void;
 }
 
-const orderOptions: OptionsType[] = [
-    {
-        id: 1,
-        value: 'ASC',
-        label: 'По возрастанию',
-    },
-    {
-        id: 2,
-        value: 'DESC',
-        label: 'По убыванию',
-    },
-];
-
-const sortOptions: OptionsType[] = [
-    {
-        id: 1,
-        value: TrackSortField.ALBUM,
-        label: 'Альбом',
-    },
-    {
-        id: 2,
-        value: TrackSortField.CREATED,
-        label: 'Дата создания',
-    },
-    {
-        id: 3,
-        value: TrackSortField.LENGTH,
-        label: 'Длительность',
-    },
-    {
-        id: 4,
-        value: TrackSortField.LISTENS,
-        label: 'Прослушивания',
-    },
-    {
-        id: 5,
-        value: TrackSortField.NAME,
-        label: 'Название',
-    },
-];
-
 export const TrackSortSelector = memo((props: TrackSortSelectorProps) => {
     const { className, onOrderChange, onSortChange, order, sort } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('album');
+
+    const sortOptions = useMemo<OptionsType[]>(
+        () => [
+            {
+                id: 1,
+                value: TrackSortField.ALBUM,
+                label: t('Альбом'),
+            },
+            {
+                id: 2,
+                value: TrackSortField.CREATED,
+                label: t('Дата создания'),
+            },
+            {
+                id: 3,
+                value: TrackSortField.LENGTH,
+                label: t('Длительность'),
+            },
+            {
+                id: 4,
+                value: TrackSortField.LISTENS,
+                label: t('Прослушивания'),
+            },
+            {
+                id: 5,
+                value: TrackSortField.NAME,
+                label: t('Название'),
+            },
+        ],
+        [t],
+    );
+
+    const orderOptions = useMemo<OptionsType[]>(
+        () => [
+            {
+                id: 1,
+                value: 'ASC',
+                label: t('По возрастанию'),
+            },
+            {
+                id: 2,
+                value: 'DESC',
+                label: t('По убыванию'),
+            },
+        ],
+        [t],
+    );
 
     return (
         <div className={classNames(cls.trackSortSelector, {}, [className])}>

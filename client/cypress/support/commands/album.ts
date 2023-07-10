@@ -64,13 +64,22 @@ export const addAlbumToFavourite = (albumId: number, userId: number = 10) =>
         url: `http://localhost:5000/api/favourite/add/?userId=${userId}&albumId=${albumId}`,
     });
 
+export const removeAlbumFromFavourite = (
+    albumId: number,
+    userId: number = 10,
+) =>
+    cy.request({
+        method: 'GET',
+        url: `http://localhost:5000/api/favourite/remove/?userId=${userId}&albumId=${albumId}`,
+    });
+
 export const addTrackToFavourite = (
     trackId: number = 995,
     userId: number = 10,
 ) =>
     cy.request({
         method: 'GET',
-        url: `http://localhost:5000/api/favourite/remove/?userId=${userId}&trackId=${trackId}`,
+        url: `http://localhost:5000/api/favourite/add/?userId=${userId}&trackId=${trackId}`,
     });
 
 declare global {
@@ -79,6 +88,10 @@ declare global {
             createAlbum(album?: Album, tracks?: Track[]): Chainable<Album>;
             removeAlbum(albumId: number): Chainable<void>;
             addAlbumToFavourite(
+                albumId: number,
+                userId?: number,
+            ): Chainable<void>;
+            removeAlbumFromFavourite(
                 albumId: number,
                 userId?: number,
             ): Chainable<void>;

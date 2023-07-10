@@ -39,6 +39,16 @@ export const subscribeToArtist = (artistId: number, userId: number = 10) => {
     });
 };
 
+export const unSubscribeFromArtist = (
+    artistId: number,
+    userId: number = 10,
+) => {
+    cy.request({
+        method: 'GET',
+        url: `http://localhost:5000/api/favourite/remove/?userId=${userId}&artistId=${artistId}`,
+    });
+};
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -48,10 +58,10 @@ declare global {
                 artistId: number,
                 userId?: number,
             ): Chainable<void>;
-            // addTrackToFavourite(
-            //     trackId?: number,
-            //     userId?: number,
-            // ): Chainable<void>;
+            unSubscribeFromArtist(
+                artistId: number,
+                userId?: number,
+            ): Chainable<void>;
         }
     }
 }

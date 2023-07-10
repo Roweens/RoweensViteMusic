@@ -10,7 +10,9 @@ describe('User navigates to album page', () => {
         });
     });
     afterEach(() => {
-        cy.removeAlbum(currentAlbumId);
+        cy.removeAlbumFromFavourite(currentAlbumId).then(() => {
+            cy.removeAlbum(currentAlbumId);
+        });
     });
 
     it('Album details renders', () => {

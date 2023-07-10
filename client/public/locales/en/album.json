@@ -1,0 +1,15 @@
+{
+    "Альбом": "Album",
+    "Название": "Title",
+    "Прослушивания": "Listens",
+    "Любимое": "Favourite",
+    "Порядок сортировки": "Sort order",
+    "Значение для сортировки": "Sort value",
+    "Длительность": "Duration",
+    "Дата создания": "Creation date",
+    "По возрастанию": "Ascending",
+    "По убыванию": "Descending",
+    "{{count}} прослушиваний_zero": "{{count}} listens",
+    "{{count}} прослушиваний_one": "{{count}} listen",
+    "{{count}} прослушиваний_other": "{{count}} listens"
+}

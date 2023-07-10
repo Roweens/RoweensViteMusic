@@ -19,7 +19,7 @@ interface ArtistPageAlbumsProps {
 
 export const ArtistPageAlbums = memo((props: ArtistPageAlbumsProps) => {
     const { className, id } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('artist');
     const dispatch = useAppDispatch();
     const albums = useSelector(getArtistAlbums.selectAll);
     const isLoading = useSelector(getArtistPageAlbumsIsLoading);

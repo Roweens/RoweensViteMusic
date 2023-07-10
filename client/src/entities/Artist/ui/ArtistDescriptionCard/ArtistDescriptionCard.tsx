@@ -20,7 +20,7 @@ interface ArtistDescriptionCardProps {
 export const ArtistDescriptionCard = memo(
     (props: ArtistDescriptionCardProps) => {
         const { className, isOpen, onClose, onOpen } = props;
-        const { t } = useTranslation();
+        const { t } = useTranslation('artist');
 
         const artist = useSelector(getArtistData);
 
@@ -35,6 +35,7 @@ export const ArtistDescriptionCard = memo(
                         <Text
                             title={t('Об исполнителе')}
                             classname={cls.title}
+                            bold
                         />
                         <div className={cls.bioCard} onClick={onOpen}>
                             <AppImage

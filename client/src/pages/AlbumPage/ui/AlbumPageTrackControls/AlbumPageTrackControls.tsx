@@ -22,7 +22,7 @@ interface AlbumPageTrackControlsProps {
 export const AlbumPageTrackControls = memo(
     (props: AlbumPageTrackControlsProps) => {
         const { className, id } = props;
-        const { t } = useTranslation();
+        const { t } = useTranslation('album');
         const dispatch = useAppDispatch();
         const order = useSelector(getAlbumPageTracksOrder);
         const sort = useSelector(getAlbumPageTracksSort);

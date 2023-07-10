@@ -1,0 +1,10 @@
+{
+    "Об исполнителе": "About artist",
+    "Альбомы исполнителя": "Albums from this artist",
+    "Плейлисты с этим исполнителем": "Playlist including this artist",
+    "{{count}} прослушиваний за все время_zero": "{{count}} total listenы",
+    "{{count}} прослушиваний за все время_one": "{{count}} total listen",
+    "{{count}} прослушиваний за все время_other": "{{count}} total listens",
+    "Слушателей": "Listeners",
+    "Подписчиков": "Subscribers"
+}
